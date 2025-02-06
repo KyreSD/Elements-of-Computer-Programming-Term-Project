@@ -1,5 +1,4 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
 /**
  * Write a description of class Placeholder here.
  * 
@@ -12,34 +11,50 @@ public class Placeholder extends Actor
      * Act - do whatever the Placeholder wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    int playerHealth = 100;
+    int speed = 2;
+    
+    Sword sword = new Sword();
     public void act()
     {
-        int health = 1;
         
-        
-        if (Greenfoot.isKeyDown("left")){
+        if (Greenfoot.isKeyDown("a")){
+            setRotation(180);
+            move(speed);
+    }
+    if (Greenfoot.isKeyDown("d")){
             setRotation(0);
-            move(-2);
+            move(speed);
     }
-    if (Greenfoot.isKeyDown("right")){
-            setRotation(0);
-            move(2);
+    if (Greenfoot.isKeyDown("w")){
+            setRotation(270);
+            move(speed);
     }
-    if (Greenfoot.isKeyDown("up")){
+    if (Greenfoot.isKeyDown("s")){
             setRotation(90);
-            move(-2);
+            move(speed);
     }
-    if (Greenfoot.isKeyDown("down")){
-            setRotation(90);
-            move(2);
+    if (Greenfoot.isKeyDown("space")){
+            move(speed+1);
     }
     Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
     if (enemy != null){
-        health = health-1;
+        playerHealth -= 1;
         }
-    if (health == 0){
+    if (playerHealth == 0){
         move(-20);
     }
-    
-    
+    if (Greenfoot.isKeyDown("j")){
+            getWorld().addObject(sword, getX(), getY());
+            sword.setLocation(getX(), getY());
+    }else{
+        getWorld().removeObject(sword);
+    }
 }
+public int playerLocationX(){
+    return getX();
+}
+public int playerLocationY(){
+    return getY();
+}
+}   

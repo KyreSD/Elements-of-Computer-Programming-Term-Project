@@ -13,6 +13,9 @@ public class MyWorld extends World
      * Constructor for objects of class MyWorld.
      * 
      */
+    public int xp;
+    public int level;
+    public int xpThreshold;
     public MyWorld()
     {    
         super(600, 400, 1); 
@@ -23,6 +26,27 @@ public class MyWorld extends World
         addObject(new Enemy(), 100, 100);
         addObject(new Enemy(), 200, 100);
         
+        xp=0;
+        level = 1;
+        xpThreshold = 15;
         
+    }
+    
+    public void act(){
+        checkLevelUp();
+    }
+    public void addXP(int amount){
+        xp +=amount;
+        System.out.println("XP: " + xp);
+    }
+    public void checkLevelUp(){
+        if(xp >= xpThreshold){
+            levelUp();
+        }
+    }
+    public void levelUp(){
+        level++;
+        xpThreshold +=15;
+        System.out.println("New Level: " + level);
     }
 }

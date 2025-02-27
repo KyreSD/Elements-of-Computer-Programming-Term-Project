@@ -15,14 +15,12 @@ public class MyWorld extends World
      */
     public MyWorld()
     {    
-        super(600, 400, 1); 
+        super(600, 400, 1);
         Placeholder placeholder = new Placeholder();
         Enemy enemy = new Enemy();
         
         addObject(new Placeholder(), 300, 200);
         addObject(new Enemy(), 100, 100);
         addObject(new Enemy(), 200, 100);
-        
-        
     }
 }

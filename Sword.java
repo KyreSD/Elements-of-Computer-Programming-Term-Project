@@ -25,6 +25,7 @@ public class Sword extends Actor
     {
         Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
         if (enemy != null){
+            System.out.println(enemy);
             enemy.health = enemy.health - 1;
             enemy.move(-5);
             System.out.println("Health start");

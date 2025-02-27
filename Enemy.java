@@ -51,4 +51,14 @@ public void trackPlayer(){
 public int enemyHealth(){
     return health;
 }
+public void dropXp(){
+    if( getWorld().getObjects(Enemy.class) != null){
+    World world = getWorld();
+    world.addObject(new xpDropped(), getX(), getY());
+    }
+}
+public void dropAct(){
+    dropXp();
+    getWorld().removeObject(this);
+}
 }

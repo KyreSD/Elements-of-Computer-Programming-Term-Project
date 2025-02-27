@@ -24,6 +24,7 @@ public class Placeholder extends Actor
     int eastFrame = 4;
     int westFrame = 8;
     int rotateInt = 90;
+    boolean isFacingNorth, isFacingSouth, isFacingEast, isFacingWest = false;
     public Placeholder(String sheetPath, int cols, int rows) {
         spriteSheet = new GreenfootImage(sheetPath);
         frameWidth = spriteSheet.getWidth() / cols;
@@ -62,7 +63,7 @@ public class Placeholder extends Actor
     private Sword sword;
     private Fireball fireball;
     //Timers
-    int timerSword = 100;
+    int timerSword = 50;
     int timerFireball = 300;
     //Attack Timers
     int attackTimerSword = 0;
@@ -76,7 +77,7 @@ public class Placeholder extends Actor
     //Spawns
     private void spawnSword(int x, int y) {
         if (sword == null) {
-            sword = new Sword();
+            sword = new Sword("spriteSheetSword.png",6,1);
             getWorld().addObject(sword, x, y);
             attackTimerSword = timerSword;
         }
@@ -110,7 +111,7 @@ public class Placeholder extends Actor
             animateWalkSouth();
             setRotation(270);
             move(-speed);
-        }
+        } 
         if (Greenfoot.isKeyDown("shift")){
             if (speed == 3){
                 speed += 3;

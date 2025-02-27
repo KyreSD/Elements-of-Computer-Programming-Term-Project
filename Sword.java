@@ -12,15 +12,29 @@ public class Sword extends Actor
      * Act - do whatever the Sword wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    private GreenfootImage spriteSheet;
+    private GreenfootImage[] frames;
+    private int frameWidth, frameHeight;
     private int animationFrame = 0;
-    private String[] swingImages = {
-        "swordFile1.png", "swordFile2.png", "swordFile3.png",
-        "swordFile4.png", "swordFile5.png", "swordFile6.png"
-    };
     private int frameDelay = 2; // Adjust this for animation speed
     private int delayCounter = 0;
     private boolean isAnimating = false;
-    
+    public Sword(String sheetPath, int cols, int rows) {
+        spriteSheet = new GreenfootImage(sheetPath);
+        frameWidth = spriteSheet.getWidth() / cols;
+        frameHeight = spriteSheet.getHeight() / rows;
+        frames = new GreenfootImage[cols * rows];
+
+        // Extract frames
+        int index = 0;
+        for (int y = 0; y < rows; y++) {
+            for (int x = 0; x < cols; x++) {
+                frames[index] = new GreenfootImage(frameWidth, frameHeight);
+                frames[index].drawImage(spriteSheet, -x * frameWidth, -y * frameHeight);
+                index++;
+            }
+        }
+    }
     public void act()
     {
         Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
@@ -81,11 +95,10 @@ public class Sword extends Actor
                 setRotation(0);
             } else setRotation(0);
             if (delayCounter == 0) {
-                setImage(swingImages[animationFrame]); // Set current frame
-                scaleImage(getImage(), 100, 100); // Scale image
+                frames[animationFrame].scale(100,100);
+                setImage(frames[animationFrame]);
                 animationFrame++; // Move to next frame
-
-                if (animationFrame >= swingImages.length) {
+                if (animationFrame >= frames.length) {
                     isAnimating = false; // Stop animation after last frame
                     animationFrame = 0; // Reset for next use
                 }delayCounter = frameDelay;
@@ -94,10 +107,5 @@ public class Sword extends Actor
                 delayCounter--; // Countdown delay before switching frames
             }
         }
-    }
-
-    private void scaleImage(GreenfootImage img, int width, int height) {
-        img.scale(width, height);
-    }
-    
+    }  
 }

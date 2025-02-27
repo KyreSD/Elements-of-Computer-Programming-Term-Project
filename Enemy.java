@@ -18,7 +18,7 @@ public class Enemy extends Actor
     public void act(){   
         Sword sword = (Sword)getOneIntersectingObject(Sword.class);
         if (sword != null){
-            health = health-1;
+            health = health-3;
         } 
         Placeholder placeholder = (Placeholder)getOneIntersectingObject(Placeholder.class);
         if (placeholder != null){

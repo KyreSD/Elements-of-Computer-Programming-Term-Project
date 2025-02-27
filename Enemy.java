@@ -13,11 +13,13 @@ public class Enemy extends Actor
      * Act - do whatever the Enemy wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    public int X;
+    public int Y;
     int health = 100;
 public void act()
     {   
-        
-        
+        X = getX();
+        Y= getY();
         
     Sword sword = (Sword)getOneIntersectingObject(Sword.class);
         if (sword != null){
@@ -51,14 +53,16 @@ public void trackPlayer(){
 public int enemyHealth(){
     return health;
 }
-public void dropXp(){
-    if( getWorld().getObjects(Enemy.class) != null){
-    World world = getWorld();
-    world.addObject(new xpDropped(), getX(), getY());
+public void checkHealth(){
+    XpDropped xpDropped = (XpDropped)getOneIntersectingObject(XpDropped.class);
+    if (health <= 0){
+        dropXp();
+        getWorld().removeObject(this);
     }
 }
-public void dropAct(){
-    dropXp();
-    getWorld().removeObject(this);
-}
+
+public void dropXp(){
+    MyWorld world = (MyWorld)getWorld();
+    world.addObject(new XpDropped(), X, Y);
+    }
 }

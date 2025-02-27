@@ -31,22 +31,15 @@ public class MyWorld extends World
         xpThreshold = 15;
         
     }
-    
-    public void act(){
-        checkLevelUp();
+    public void levelUp(){
+        if(xp >= xpThreshold){
+        level++;
+        xpThreshold +=15;
+        System.out.println("New Level: " + level);
+    }
     }
     public void addXP(int amount){
         xp +=amount;
         System.out.println("XP: " + xp);
-    }
-    public void checkLevelUp(){
-        if(xp >= xpThreshold){
-            levelUp();
-        }
-    }
-    public void levelUp(){
-        level++;
-        xpThreshold +=15;
-        System.out.println("New Level: " + level);
     }
 }

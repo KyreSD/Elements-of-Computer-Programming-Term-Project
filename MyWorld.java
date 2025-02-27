@@ -16,13 +16,12 @@ public class MyWorld extends World
     public MyWorld()
     {    
         super(600, 400, 1); 
-        Placeholder placeholder = new Placeholder();
+        Placeholder placeholder = new Placeholder("FullSheetBoy.png", 4, 5);
         Enemy enemy = new Enemy();
-        
-        addObject(new Placeholder(), 300, 200);
-        addObject(new Enemy(), 100, 100);
-        addObject(new Enemy(), 200, 100);
-        
+        addObject(new Placeholder("FullSheetBoy.png", 4, 5), 300, 200);
+        addObject(new Enemy(), 400, 200);
+        addObject(new Enemy(), 400, 100);
+        addObject(new Enemy(), 400, 300);
         
     }
 }

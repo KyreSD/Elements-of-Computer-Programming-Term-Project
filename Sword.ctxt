@@ -1,7 +1,11 @@
 #BlueJ class context
 comment0.target=Sword
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Sword\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\n\ Write\ a\ description\ of\ class\ Sword\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=
 comment1.target=void\ act()
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Sword\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
-numComments=2
+comment2.params=
+comment2.target=void\ handleAnimation()
+comment2.text=private\ void\ handleAnimation()\ {\n\ \ \ \ \ \ \ \ if\ (Greenfoot.isKeyDown("right"))\ {\n\ \ \ \ \ \ \ \ \ \ \ \ if\ (Greenfoot.isKeyDown("w")){\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setRotation(270);\n\ \ \ \ \ \ \ \ \ \ \ \ }\ else\ if\ (Greenfoot.isKeyDown("a")){\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setRotation(180);\n\ \ \ \ \ \ \ \ \ \ \ \ }\ else\ if\ (Greenfoot.isKeyDown("s")){\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setRotation(90);\n\ \ \ \ \ \ \ \ \ \ \ \ }\ else\ if\ (Greenfoot.isKeyDown("d")){\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setRotation(0);\n\ \ \ \ \ \ \ \ \ \ \ \ }\ else\ setRotation(0);\n\ \ \ \ \ \ \ \ \ \ \ \ if\ (delayCounter\ \=\=\ 0)\ {\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setImage(swingImages[animationFrame]);\ //\ Set\ image\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scaleImage(getImage(),\ 200,\ 200);\ //\ Scale\ it\ to\ 100x100\ (adjust\ as\ needed)\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ animationFrame++;\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (animationFrame\ >\=\ swingImages.length)\ {\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ animationFrame\ \=\ 0;\ //\ Reset\ animation\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ delayCounter\ \=\ frameDelay;\n\ \ \ \ \ \ \ \ \ \ \ \ }\ else\ {\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ delayCounter--;\ //\ Countdown\n\ \ \ \ \ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ }\ else\ {\n\ \ \ \ \ \ \ \ \ \ \ \ animationFrame\ \=\ 0;\ //\ Reset\ animation\ when\ not\ swinging\n\ \ \ \ \ \ \ \ }\n}*
+comment3.params=img\ width\ height
+comment3.target=void\ scaleImage(greenfoot.GreenfootImage,\ int,\ int)
+numComments=4

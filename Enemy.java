@@ -36,6 +36,7 @@ public void act()
     }
     
     trackPlayer();
+    checkHealth();
 }
 
 public void trackPlayer(){
@@ -54,7 +55,6 @@ public int enemyHealth(){
     return health;
 }
 public void checkHealth(){
-    XpDropped xpDropped = (XpDropped)getOneIntersectingObject(XpDropped.class);
     if (health <= 0){
         dropXp();
         getWorld().removeObject(this);

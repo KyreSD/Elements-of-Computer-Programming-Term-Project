@@ -42,10 +42,22 @@ public class Placeholder extends Actor
         }
         int rotCount = 0;
         while (rotCount == 0){
-            frames[12].rotate(90);
-            frames[13].rotate(90);
-            frames[14].rotate(90);
-            frames[15].rotate(90);
+            frames[0].rotate(0);
+            frames[1].rotate(0);
+            frames[2].rotate(180);
+            frames[3].rotate(90);
+            frames[4].rotate(0);
+            frames[5].rotate(0);
+            frames[6].rotate(0);
+            frames[7].rotate(0);
+            frames[8].rotate(180);
+            frames[9].rotate(180);
+            frames[10].rotate(180);
+            frames[11].rotate(180);
+            frames[12].rotate(-90);
+            frames[13].rotate(-90);
+            frames[14].rotate(-90);
+            frames[15].rotate(-90);
             frames[16].rotate(90);
             frames[17].rotate(90);
             frames[18].rotate(90);
@@ -94,8 +106,8 @@ public class Placeholder extends Actor
         
         if (Greenfoot.isKeyDown("a")){
             animateWalkWest();
-            setRotation(0);
-            move(-speed);
+            setRotation(180);
+            move(speed);
         }
         if (Greenfoot.isKeyDown("d")){
             animateWalkEast();
@@ -109,8 +121,8 @@ public class Placeholder extends Actor
         }
         if (Greenfoot.isKeyDown("s")){
             animateWalkSouth();
-            setRotation(270);
-            move(-speed);
+            setRotation(90);
+            move(speed);
         } 
         if (Greenfoot.isKeyDown("shift")){
             if (speed == 3){

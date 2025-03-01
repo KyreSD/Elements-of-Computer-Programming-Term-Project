@@ -19,7 +19,7 @@ public class XpDropped extends Actor
     public void act()
     {
         Placeholder placeholder = (Placeholder)getOneIntersectingObject(Placeholder.class);
-        if(intersects(placeholder)){
+        if(isTouching(Placeholder.class)){
             MyWorld world = (MyWorld)getWorld();
             if(world != null){
             world.addXP(5);

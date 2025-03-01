@@ -70,4 +70,14 @@ public void attacking(){
         getWorld().removeObject(sword);
     }
 }
+public void pickUpXP(){
+    Placeholder placeholder = (Placeholder)getOneIntersectingObject(Placeholder.class);
+        if(isTouching(Placeholder.class)){
+            MyWorld world = (MyWorld)getWorld();
+            if(world != null){
+            world.addXP(5);
+            world.removeObject(this);
+        }        
+}
+}
 }   

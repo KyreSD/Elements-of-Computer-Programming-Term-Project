@@ -42,4 +42,5 @@ public class MyWorld extends World
         xp +=amount;
         System.out.println("XP: " + xp);
     }
+
 }

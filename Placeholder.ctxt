@@ -9,6 +9,4 @@ comment3.params=
 comment3.target=int\ playerLocationY()
 comment4.params=
 comment4.target=void\ attacking()
-comment5.params=
-comment5.target=void\ pickUpXP()
-numComments=6
+numComments=5

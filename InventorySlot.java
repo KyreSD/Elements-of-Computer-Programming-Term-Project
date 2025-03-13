@@ -12,6 +12,10 @@ public class InventorySlot extends Actor
      * Act - do whatever the in wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    public InventorySlot(){
+        setImage("inventory slot.png");
+        scale(50,50);
+    }
     public void act()
     {
         // Add your action code here.

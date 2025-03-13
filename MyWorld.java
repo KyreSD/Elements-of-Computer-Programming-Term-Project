@@ -40,7 +40,7 @@ public class MyWorld extends World
     }
     public void addXP(int amount){
         xp +=amount;
-        System.out.println("XP: " + xp);
+        levelUp();
     }
 
 }

@@ -19,12 +19,12 @@ public class XpDropped extends Actor
     public void act()
     {
         Placeholder placeholder = (Placeholder)getOneIntersectingObject(Placeholder.class);
-        if(isTouching(Placeholder.class)){
+        if(placeholder != null){
             MyWorld world = (MyWorld)getWorld();
             if(world != null){
             world.addXP(5);
             world.removeObject(this);
-        }        
+        }
     }
 }
 }

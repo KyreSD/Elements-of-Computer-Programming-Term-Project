@@ -6,6 +6,10 @@ comment1.target=Sword(int,\ int)
 comment2.params=
 comment2.target=void\ act()
 comment3.params=
-comment3.target=void\ handleAnimation()
+comment3.target=void\ updateDamage()
 comment3.text=private\ void\ handleAnimation()\ {\n\ \ \ \ \ \ \ \ if\ (Greenfoot.isKeyDown("right"))\ {\n\ \ \ \ \ \ \ \ \ \ \ \ if\ (Greenfoot.isKeyDown("w")){\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setRotation(270);\n\ \ \ \ \ \ \ \ \ \ \ \ }\ else\ if\ (Greenfoot.isKeyDown("a")){\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setRotation(180);\n\ \ \ \ \ \ \ \ \ \ \ \ }\ else\ if\ (Greenfoot.isKeyDown("s")){\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setRotation(90);\n\ \ \ \ \ \ \ \ \ \ \ \ }\ else\ if\ (Greenfoot.isKeyDown("d")){\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setRotation(0);\n\ \ \ \ \ \ \ \ \ \ \ \ }\ else\ setRotation(0);\n\ \ \ \ \ \ \ \ \ \ \ \ if\ (delayCounter\ \=\=\ 0)\ {\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setImage(swingImages[animationFrame]);\ //\ Set\ image\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scaleImage(getImage(),\ 200,\ 200);\ //\ Scale\ it\ to\ 100x100\ (adjust\ as\ needed)\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ animationFrame++;\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (animationFrame\ >\=\ swingImages.length)\ {\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ animationFrame\ \=\ 0;\ //\ Reset\ animation\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ delayCounter\ \=\ frameDelay;\n\ \ \ \ \ \ \ \ \ \ \ \ }\ else\ {\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ delayCounter--;\ //\ Countdown\n\ \ \ \ \ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ }\ else\ {\n\ \ \ \ \ \ \ \ \ \ \ \ animationFrame\ \=\ 0;\ //\ Reset\ animation\ when\ not\ swinging\n\ \ \ \ \ \ \ \ }\n}*
-numComments=4
+comment4.params=world
+comment4.target=void\ addedToWorld(greenfoot.World)
+comment5.params=
+comment5.target=void\ handleAnimation()
+numComments=6

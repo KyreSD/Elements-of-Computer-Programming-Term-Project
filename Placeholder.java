@@ -176,7 +176,6 @@ public class Placeholder extends Actor
         if (clickSword == true){
             if (attackTimerSword > 0) {
                 attackTimerSword--;
-                System.out.println(attackTimerSword);
                 if (attackTimerSword == timerSword - 20 && sword != null) {
                     getWorld().removeObject(sword);
                     sword = null;

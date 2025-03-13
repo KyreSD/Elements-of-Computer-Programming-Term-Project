@@ -1,16 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Enemy here.
+ * Write a description of class CopyOfEnemy here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
 
-public class Enemy extends Actor
+public class CopyOfEnemy extends Actor
 {
     /**
-     * Act - do whatever the Enemy wants to do. This method is called whenever
+     * Act - do whatever the CopyOfEnemy wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     private GreenfootImage spriteSheet;
@@ -30,35 +30,20 @@ public class Enemy extends Actor
     int X;
     int Y;
     private Placeholder placeholder;
-    private EnemyTracking enemyTrack = null;
-    public Enemy() {
+    public CopyOfEnemy() {
         spriteSheet = new GreenfootImage("zombie_n_skeleton2.png");
         frameWidth = spriteSheet.getWidth() / cols;
         frameHeight = spriteSheet.getHeight() / rows;
         frames = new GreenfootImage[cols * rows];
-        int index = 0;
-        for (int y = 0; y < rows; y++) {
-            for (int x = 0; x < cols; x++) {
-                frames[index] = new GreenfootImage(frameWidth, frameHeight);
-                frames[index].drawImage(spriteSheet, -x * frameWidth, -y * frameHeight);
-                index++;
-            }
-        }
         setImage(frames[0]);
-    }
-    public void setTracker(EnemyTracking tracker){
-        enemyTrack = tracker;
     }
     public void act(){
         X = getX();
         Y = getY();
-        if (enemyTrack != null) {
-            setLocation(enemyTrack.getX(), enemyTrack.getY());
-        }
         Sword sword = (Sword)getOneIntersectingObject(Sword.class);
         if (sword != null){
             health = health-3;
-        }
+        } 
         Placeholder placeholder = (Placeholder)getOneIntersectingObject(Placeholder.class);
         if (placeholder != null){
             if (placeholder.playerHealth > 0){
@@ -74,27 +59,27 @@ public class Enemy extends Actor
     }
     public void trackPlayer(){
         if (!getWorld().getObjects(Placeholder.class).isEmpty()){
-            for (Placeholder placeholder : getWorld().getObjects(Placeholder.class)){
-                if (placeholder.getX() < getX()){
-                    if (Math.abs(placeholder.getX() - getX()) > Math.abs(getY() - placeholder.getY())){
-                        animateWalkWest();
+            Placeholder placeholder = (Placeholder)getWorld().getObjects(Placeholder.class).get(0);
+            turnTowards(placeholder.getX(), placeholder.getY());
+            if (placeholder.getX() < getX()){
+                if (Math.abs(placeholder.getX() - getX()) > Math.abs(getY() - placeholder.getY())){
+                    animateWalkWest();
+                } else {
+                    if (placeholder.getY() <= getY()){
+                        animateWalkNorth();
                     } else {
-                        if (placeholder.getY() <= getY()){
-                            animateWalkNorth();
-                        } else {
-                            animateWalkSouth();
-                        }
+                        animateWalkSouth();
                     }
                 }
-                if (placeholder.getX() >= getX()){
-                    if (Math.abs(placeholder.getX() - getX()) > Math.abs(getY() - placeholder.getY())){
-                        animateWalkEast();
+            }
+            if (placeholder.getX() >= getX()){
+                if (Math.abs(placeholder.getX() - getX()) > Math.abs(getY() - placeholder.getY())){
+                    animateWalkEast();
+                } else {
+                    if (placeholder.getY() <= getY()){
+                        animateWalkNorth();
                     } else {
-                        if (placeholder.getY() <= getY()){
-                            animateWalkNorth();
-                        } else {
-                            animateWalkSouth();
-                        }
+                        animateWalkSouth();
                     }
                 }
             }
@@ -137,6 +122,14 @@ public class Enemy extends Actor
     }
     //Animation
     private void animateWalkNorth() {
+        int index = 0;
+        for (int y = 0; y < rows; y++) {
+            for (int x = 0; x < cols; x++) {
+                frames[index] = new GreenfootImage(frameWidth, frameHeight);
+                frames[index].drawImage(spriteSheet, -x * frameWidth, -y * frameHeight);
+                index++;
+            }
+        }
         delayCount++;
         if (delayCount >= frameDelay) {
             delayCount = 0;
@@ -146,8 +139,17 @@ public class Enemy extends Actor
             }
         }
         setImage(frames[frameNorth]);
+        frames[frameNorth].rotate(getRotation()-getRotation()*2);
     }
     private void animateWalkSouth() {
+        int index = 0;
+        for (int y = 0; y < rows; y++) {
+            for (int x = 0; x < cols; x++) {
+                frames[index] = new GreenfootImage(frameWidth, frameHeight);
+                frames[index].drawImage(spriteSheet, -x * frameWidth, -y * frameHeight);
+                index++;
+            }
+        }
         delayCount++;
         if (delayCount >= frameDelay) {
             delayCount = 0;
@@ -157,8 +159,17 @@ public class Enemy extends Actor
             }
         }
         setImage(frames[frameSouth]);
+        frames[frameSouth].rotate(getRotation()-getRotation()*2);
     }
     private void animateWalkEast() {
+        int index = 0;
+        for (int y = 0; y < rows; y++) {
+            for (int x = 0; x < cols; x++) {
+                frames[index] = new GreenfootImage(frameWidth, frameHeight);
+                frames[index].drawImage(spriteSheet, -x * frameWidth, -y * frameHeight);
+                index++;
+            }
+        }
         delayCount++;
         if (delayCount >= frameDelay) {
             delayCount = 0;
@@ -168,8 +179,17 @@ public class Enemy extends Actor
             }
         }
         setImage(frames[frameEast]);
+        frames[frameEast].rotate(getRotation()-getRotation()*2);
     }
     private void animateWalkWest() {
+        int index = 0;
+        for (int y = 0; y < rows; y++) {
+            for (int x = 0; x < cols; x++) {
+                frames[index] = new GreenfootImage(frameWidth, frameHeight);
+                frames[index].drawImage(spriteSheet, -x * frameWidth, -y * frameHeight);
+                index++;
+            }
+        }
         delayCount++;
         if (delayCount >= frameDelay) {
             delayCount = 0;
@@ -179,5 +199,6 @@ public class Enemy extends Actor
             }
         }
         setImage(frames[frameWest]);
+        frames[frameWest].rotate(getRotation()-getRotation()*2);
     }
 }

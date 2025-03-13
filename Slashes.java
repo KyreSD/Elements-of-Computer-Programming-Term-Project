@@ -26,14 +26,23 @@ public class Slashes extends Actor
     private int frameDelay = 2; 
     private int delayCounter = 0;
     private boolean isAnimating = false;
-    int damage = 2;
+    int damage;
     int damageCheck = 0;
+    public void updateDamage() {
+        if (getWorld() != null) {
+            damage = ((MyWorld) getWorld()).damageSlashes;
+        }
+    }
+    public void addedToWorld(World world) {
+        updateDamage();
+    }
     public void act()
     {
+        System.out.println("Slash damage is " + damage);
         Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
         Punchingbag bag = (Punchingbag)getOneIntersectingObject(Punchingbag.class);
         if (enemy != null){
-            enemy.health = enemy.health - 2;
+            enemy.health = enemy.health - damage;
             enemy.move(-1);
             System.out.println(enemy.health);
             if(enemy.health <= 0){

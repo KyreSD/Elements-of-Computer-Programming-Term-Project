@@ -18,7 +18,7 @@ public class Sword extends Actor
     private int animationFrame = 0;
     private int frameDelay = 2; // Adjust this for animation speed
     private int delayCounter = 0;
-    private int damage = 1;
+    int damage;
     int damageCheck = 0;
     private boolean isAnimating = false;
     public Sword(int cols, int rows) {
@@ -26,7 +26,6 @@ public class Sword extends Actor
         frameWidth = spriteSheet.getWidth() / cols;
         frameHeight = spriteSheet.getHeight() / rows;
         frames = new GreenfootImage[cols * rows];
-
         // Extract frames
         int index = 0;
         for (int y = 0; y < rows; y++) {
@@ -39,14 +38,20 @@ public class Sword extends Actor
     }
     public void act()
     {
+        System.out.println("Sword damage is " + damage);
         Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
+        EnemyTracking enemyTrack = (EnemyTracking)getOneIntersectingObject(EnemyTracking.class);
         Punchingbag bag = (Punchingbag)getOneIntersectingObject(Punchingbag.class);
         if (enemy != null){    
             enemy.health = enemy.health - damage;
-            enemy.move(-5);
+            if (enemyTrack != null){
+                enemyTrack.move(-5);
+                enemyTrack.health -= damage;
+                if(enemyTrack.health <= 0){
+                    getWorld().removeObject(enemyTrack);
+                }
+            }
             damageCheck += damage;
-            System.out.println(damageCheck);
-            
             if(enemy.health <= 0){
                 getWorld().removeObject(enemy);
             }
@@ -83,14 +88,20 @@ public class Sword extends Actor
             animationFrame = 0; // Reset animation when not swinging
         }
     }**/
-    
+    public void updateDamage() {
+        if (getWorld() != null) {
+            damage = ((MyWorld) getWorld()).damageSword;
+        }
+    }
+    public void addedToWorld(World world) {
+        updateDamage();
+    }
     private void handleAnimation() {
         if (!isAnimating && Greenfoot.isKeyDown("right")) {
-            isAnimating = true; // Start animation
-            animationFrame = 0; // Reset frame index
-            delayCounter = frameDelay; // Reset delay timer
+            isAnimating = true;
+            animationFrame = 0;
+            delayCounter = frameDelay;
         }
-
         if (isAnimating) {
             if (Greenfoot.isKeyDown("w")){
                 setRotation(270);
@@ -104,14 +115,14 @@ public class Sword extends Actor
             if (delayCounter == 0) {
                 frames[animationFrame].scale(100,100);
                 setImage(frames[animationFrame]);
-                animationFrame++; // Move to next frame
+                animationFrame++;
                 if (animationFrame >= frames.length) {
-                    isAnimating = false; // Stop animation after last frame
-                    animationFrame = 0; // Reset for next use
-                }delayCounter = frameDelay;
-                // Reset delay timer for next frame
+                    isAnimating = false;
+                    animationFrame = 0;
+                }
+                delayCounter = frameDelay;
             } else {
-                delayCounter--; // Countdown delay before switching frames
+                delayCounter--;
             }
         }
     }  

@@ -13,7 +13,7 @@ public class Fireball extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     private Slashes slashes;
-    int damage = 1;
+    int damage;
     int damageCheck = 0;
     boolean canTurn = true;
     private void spawnSlashes(int x, int y) {
@@ -49,11 +49,19 @@ public class Fireball extends Actor
     public int fireballLocationY(){
         return getY();
     }
+    public void updateDamage() {
+        if (getWorld() != null) {
+            damage = ((MyWorld) getWorld()).damageFireball;
+        }
+    }
+    public void addedToWorld(World world) {
+        updateDamage();
+    }
     public void act()
     {
+        System.out.println("Fireball damage is " + damage);
         Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
         Punchingbag bag = (Punchingbag)getOneIntersectingObject(Punchingbag.class);
-        System.out.println(enemy);
         if (enemy != null){
             enemy.health = enemy.health - damage;
             System.out.println(enemy.health);
@@ -72,7 +80,6 @@ public class Fireball extends Actor
             System.out.println(damageCheck);
         }
         move(2);
-        System.out.println(canTurn);
         if (canTurn == true){
             if (Greenfoot.isKeyDown("w")) {
                 setRotation(-90);

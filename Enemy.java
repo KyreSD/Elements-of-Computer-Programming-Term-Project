@@ -15,7 +15,7 @@ public class Enemy extends Actor
      */
     public int X;
     public int Y;
-    public int health = 100;
+    int health = 100;
 public void act()
     {   
         X = getX();
@@ -32,6 +32,7 @@ public void act()
         if(placeholder.playerHealth >= 0){
         getWorld().removeObject(placeholder);
         }
+        
     }
     
     trackPlayer();
@@ -49,19 +50,19 @@ public void trackPlayer(){
 }
 }
 
+
 public int enemyHealth(){
     return health;
 }
+
+public void dropXp(){
+    MyWorld world = (MyWorld)getWorld();
+    world.addObject(new XpDropped(), X, Y);
+    }
 public void checkHealth(){
     if (health <= 0){
         dropXp();
         getWorld().removeObject(this);
-    }
-}
-public void dropXp(){
-    MyWorld world = (MyWorld)getWorld();
-    if (world != null){
-    world.addObject(new XpDropped(), X,Y);
     }
 }
 }

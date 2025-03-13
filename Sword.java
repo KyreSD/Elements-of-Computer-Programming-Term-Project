@@ -17,7 +17,9 @@ public class Sword extends Actor
     Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
     if (enemy != null){
         enemy.health = enemy.health - 1;
-        enemy.checkHealth();
+        if(enemy.health >= 0){
+        getWorld().removeObject(enemy);
+        }
         }
     if (Greenfoot.isKeyDown("up")){
         setRotation(270);

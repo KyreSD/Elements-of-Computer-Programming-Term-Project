@@ -19,10 +19,10 @@ public class Placeholder extends Actor
     private int frameDelay = 5; // Adjust for speed
     private int delayCount = 0;
     //frameStarts
-    int northFrame = 16;
-    int southFrame = 12;
-    int eastFrame = 4;
-    int westFrame = 8;
+    int frameNorth = 16;
+    int frameSouth = 12;
+    int frameEast = 4;
+    int frameWest = 8;
     int rotateInt = 90;
     boolean isFacingNorth, isFacingSouth, isFacingEast, isFacingWest = false;
     public Placeholder(String sheetPath, int cols, int rows) {
@@ -89,7 +89,7 @@ public class Placeholder extends Actor
     //Spawns
     private void spawnSword(int x, int y) {
         if (sword == null) {
-            sword = new Sword("spriteSheetSword.png",6,1);
+            sword = new Sword(6,1);
             getWorld().addObject(sword, x, y);
             attackTimerSword = timerSword;
         }
@@ -151,6 +151,9 @@ public class Placeholder extends Actor
     public int playerLocationY(){
         return getY();
     }
+    public int attackCooldown(){
+        return timerFireball;
+    }
     public void attacking(){
         
         if (Greenfoot.isKeyDown("right") && canAttackSword) {
@@ -173,6 +176,7 @@ public class Placeholder extends Actor
         if (clickSword == true){
             if (attackTimerSword > 0) {
                 attackTimerSword--;
+                System.out.println(attackTimerSword);
                 if (attackTimerSword == timerSword - 20 && sword != null) {
                     getWorld().removeObject(sword);
                     sword = null;
@@ -226,50 +230,46 @@ public class Placeholder extends Actor
         }
     }
     private void animateWalkNorth() {
-        setImage(frames[northFrame]);
+        setImage(frames[frameNorth]);
         delayCount++;
         if (delayCount >= frameDelay) {
             delayCount = 0;
-            northFrame = (northFrame + 1) % frames.length;
-            System.out.println(northFrame);
-            if (northFrame < 16){
-                northFrame = 16;
+            frameNorth = (frameNorth + 1) % frames.length;
+            if (frameNorth < 16){
+                frameNorth = 16;
             }
         }
     }
     private void animateWalkSouth() {
-        setImage(frames[southFrame]);
+        setImage(frames[frameSouth]);
         delayCount++;
         if (delayCount >= frameDelay) {
             delayCount = 0;
-            southFrame = (southFrame + 1) % frames.length;
-            System.out.println(southFrame);
-            if (southFrame < 12 || southFrame == 16){
-                southFrame = 12;
+            frameSouth = (frameSouth + 1) % frames.length;
+            if (frameSouth < 12 || frameSouth == 16){
+                frameSouth = 12;
             }
         }
     }
     private void animateWalkEast() {
-        setImage(frames[eastFrame]);
+        setImage(frames[frameEast]);
         delayCount++;
         if (delayCount >= frameDelay) {
             delayCount = 0;
-            eastFrame = (eastFrame + 1) % frames.length;
-            System.out.println(eastFrame);
-            if (eastFrame < 4 || eastFrame == 8){
-                eastFrame = 4;
+            frameEast = (frameEast + 1) % frames.length;
+            if (frameEast < 4 || frameEast == 8){
+                frameEast = 4;
             }
         }
     }
     private void animateWalkWest() {
-        setImage(frames[westFrame]);
+        setImage(frames[frameWest]);
         delayCount++;
         if (delayCount >= frameDelay) {
             delayCount = 0;
-            westFrame = (westFrame + 1) % frames.length;
-            System.out.println(westFrame);
-            if (westFrame < 8 || westFrame == 12){
-                westFrame = 8;
+            frameWest = (frameWest + 1) % frames.length;
+            if (frameWest < 8 || frameWest == 12){
+                frameWest = 8;
             }
         }
     }

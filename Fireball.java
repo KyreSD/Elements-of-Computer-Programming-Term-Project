@@ -13,7 +13,9 @@ public class Fireball extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     private Slashes slashes;
-    boolean canTurn = false;
+    int damage = 1;
+    int damageCheck = 0;
+    boolean canTurn = true;
     private void spawnSlashes(int x, int y) {
         if (slashes == null) {
             int slashCount = 0;
@@ -21,31 +23,10 @@ public class Fireball extends Actor
             getWorld().addObject(slashes, x, y);
         }
     }
-    public int fireballLocationX(){
-        return getX();
-    }
-    public int fireballLocationY(){
-        return getY();
-    }
-    public void act()
-    {
+    public Fireball(){
         setImage("fireball.png");
         scaleImage(getImage(), 50, 50);
-        Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
-        if (enemy != null){
-            enemy.health = enemy.health - 1;
-            System.out.println(enemy.health);
-            if(enemy.health >= 0){
-                spawnSlashes(getX(),getY());
-                getWorld().removeObject(this);
-                if(enemy.health <= 0){
-                    getWorld().removeObject(enemy);
-                }
-            }
-        }
-        move(2);
-        System.out.println(canTurn);
-        if (!canTurn){
+        if (canTurn == true){
             if (Greenfoot.isKeyDown("w")) {
                 setRotation(-90);
                 canTurn = false;
@@ -59,6 +40,54 @@ public class Fireball extends Actor
                 setRotation(0);
                 canTurn = false;
             }
+            canTurn = false;
+        }
+    }
+    public int fireballLocationX(){
+        return getX();
+    }
+    public int fireballLocationY(){
+        return getY();
+    }
+    public void act()
+    {
+        Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
+        Punchingbag bag = (Punchingbag)getOneIntersectingObject(Punchingbag.class);
+        System.out.println(enemy);
+        if (enemy != null){
+            enemy.health = enemy.health - damage;
+            System.out.println(enemy.health);
+            if(enemy.health >= 0){
+                spawnSlashes(getX(),getY());
+                getWorld().removeObject(this);
+                if(enemy.health <= 0){
+                    getWorld().removeObject(enemy);
+                }
+            }
+        }
+        if (bag != null){    
+            damageCheck += damage;
+            spawnSlashes(getX(),getY());
+            getWorld().removeObject(this);
+            System.out.println(damageCheck);
+        }
+        move(2);
+        System.out.println(canTurn);
+        if (canTurn == true){
+            if (Greenfoot.isKeyDown("w")) {
+                setRotation(-90);
+                canTurn = false;
+            } if (Greenfoot.isKeyDown("a")) {
+                setRotation(-180);
+                canTurn = false;
+            } if (Greenfoot.isKeyDown("s")) {
+                setRotation(90);
+                canTurn = false;
+            } if (Greenfoot.isKeyDown("d")) {
+                setRotation(0);
+                canTurn = false;
+            }
+            canTurn = false;
         }
     }
     private void scaleImage(GreenfootImage img, int width, int height) {

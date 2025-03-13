@@ -2,9 +2,20 @@
 comment0.target=Enemy
 comment0.text=\n\ Write\ a\ description\ of\ class\ Enemy\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=
-comment1.target=void\ act()
+comment1.target=Enemy()
 comment2.params=
-comment2.target=void\ trackPlayer()
+comment2.target=void\ act()
 comment3.params=
-comment3.target=int\ enemyHealth()
-numComments=4
+comment3.target=void\ trackPlayer()
+comment4.params=
+comment4.target=int\ enemyHealth()
+comment5.params=
+comment5.target=void\ animateWalkNorth()
+comment5.text=private\ void\ animate()\ {\n\ \ \ \ \ \ \ \ delayCount++;\n\ \ \ \ \ \ \ \ int\ cols\ \=\ 6;\n\ \ \ \ \ \ \ \ int\ rows\ \=\ 4;\n\ \ \ \ \ \ \ \ int\ index\ \=\ 0;\n\ \ \ \ \ \ \ \ for\ (int\ y\ \=\ 0;\ y\ <\ rows;\ y++)\ {\n\ \ \ \ \ \ \ \ \ \ \ \ for\ (int\ x\ \=\ 0;\ x\ <\ cols;\ x++)\ {\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frames[index]\ \=\ new\ GreenfootImage(frameWidth,\ frameHeight);\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frames[index].drawImage(spriteSheet,\ -x\ *\ frameWidth,\ -y\ *\ frameHeight);\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ index++;\n\ \ \ \ \ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ if\ (delayCount\ >\=\ frameDelay)\ {\n\ \ \ \ \ \ \ \ \ \ \ \ delayCount\ \=\ 0;\n\ \ \ \ \ \ \ \ \ \ \ \ currentFrame\ \=\ (currentFrame\ +\ 1)\ %\ frames.length;\n\ \ \ \ \ \ \ \ \ \ \ \ setImage(frames[currentFrame]);\n\ \ \ \ \ \ \ \ \ \ \ \ frames[currentFrame].rotate(getRotation()-getRotation()*2);\n\ \ \ \ \ \ \ \ }\n}
+comment6.params=
+comment6.target=void\ animateWalkSouth()
+comment7.params=
+comment7.target=void\ animateWalkEast()
+comment8.params=
+comment8.target=void\ animateWalkWest()
+numComments=9

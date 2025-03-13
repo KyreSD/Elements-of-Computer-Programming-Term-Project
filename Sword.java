@@ -18,9 +18,11 @@ public class Sword extends Actor
     private int animationFrame = 0;
     private int frameDelay = 2; // Adjust this for animation speed
     private int delayCounter = 0;
+    private int damage = 1;
+    int damageCheck = 0;
     private boolean isAnimating = false;
-    public Sword(String sheetPath, int cols, int rows) {
-        spriteSheet = new GreenfootImage(sheetPath);
+    public Sword(int cols, int rows) {
+        spriteSheet = new GreenfootImage("spriteSheetSword.png");
         frameWidth = spriteSheet.getWidth() / cols;
         frameHeight = spriteSheet.getHeight() / rows;
         frames = new GreenfootImage[cols * rows];
@@ -38,15 +40,20 @@ public class Sword extends Actor
     public void act()
     {
         Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
-        if (enemy != null){
-            System.out.println(enemy);
-            enemy.health = enemy.health - 1;
+        Punchingbag bag = (Punchingbag)getOneIntersectingObject(Punchingbag.class);
+        if (enemy != null){    
+            enemy.health = enemy.health - damage;
             enemy.move(-5);
-            System.out.println("Health start");
-            System.out.println(enemy.health);
+            damageCheck += damage;
+            System.out.println(damageCheck);
+            
             if(enemy.health <= 0){
                 getWorld().removeObject(enemy);
             }
+        }
+        if (bag != null){    
+            damageCheck += damage;
+            System.out.println(damageCheck);
         }
         handleAnimation();
     }

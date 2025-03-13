@@ -26,9 +26,12 @@ public class Slashes extends Actor
     private int frameDelay = 2; 
     private int delayCounter = 0;
     private boolean isAnimating = false;
+    int damage = 2;
+    int damageCheck = 0;
     public void act()
     {
         Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
+        Punchingbag bag = (Punchingbag)getOneIntersectingObject(Punchingbag.class);
         if (enemy != null){
             enemy.health = enemy.health - 2;
             enemy.move(-1);
@@ -36,6 +39,10 @@ public class Slashes extends Actor
             if(enemy.health <= 0){
                 getWorld().removeObject(enemy);
             }
+        }
+        if (bag != null){    
+            damageCheck += damage;
+            System.out.println(damageCheck);
         }
         handleAnimation();
     }

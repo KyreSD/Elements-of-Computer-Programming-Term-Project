@@ -22,9 +22,18 @@ public class InventorySlot extends Actor
     public void act()
     {
         if(Greenfoot.isKeyDown("1")){
-            Sword sword = new Sword();
-            getWorld().addObject(sword,300,375);
-            currentWeapon = sword;
-        } 
+            equipWeapon(new Sword());
+        } else if (Greenfoot. isKeyDown("2")){
+            equipWeapon(new Enemy());
+        }
+
     }
-}
+    public void equipWeapon(Actor weapon){
+        if(currentWeapon != null){
+            getWorld().removeObject(currentWeapon);
+        }
+        getWorld().addObject(weapon, 300, 375);
+        currentWeapon = weapon;
+
+    }
+    }

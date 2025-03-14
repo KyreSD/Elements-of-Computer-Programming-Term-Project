@@ -25,10 +25,6 @@ public class InventorySlot extends Actor
             Sword sword = new Sword();
             getWorld().addObject(sword,300,375);
             currentWeapon = sword;
-        } else if (Greenfoot. isKeyDown("2")){
-            Enemy enemy = new Enemy();
-            getWorld().addObject(enemy, 300, 375);
-            currentWeapon = enemy;
-        }
+        } 
     }
 }

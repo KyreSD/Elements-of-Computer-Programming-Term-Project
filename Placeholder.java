@@ -13,62 +13,67 @@ public class Placeholder extends Actor
      */
     int playerHealth = 100;
     int speed = 2;
+    Actor currentWeapon;
     
-    Sword sword = new Sword();
     public void act()
     {
-        
+
         if (Greenfoot.isKeyDown("a")){
             setRotation(180);
             move(speed);
-    }
-    if (Greenfoot.isKeyDown("d")){
+        }
+        if (Greenfoot.isKeyDown("d")){
             setRotation(0);
             move(speed);
-    }
-    if (Greenfoot.isKeyDown("w")){
+        }
+        if (Greenfoot.isKeyDown("w")){
             setRotation(270);
             move(speed);
-    }
-    if (Greenfoot.isKeyDown("s")){
+        }
+        if (Greenfoot.isKeyDown("s")){
             setRotation(90);
             move(speed);
-    }
-    if (Greenfoot.isKeyDown("space")){
-            move(speed+1);
-    }
-    Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
-    if (enemy != null){
-        playerHealth -= 1;
         }
-    if (playerHealth == 0){
-        move(-20);
+        if (Greenfoot.isKeyDown("space")){
+            move(speed+1);
+        }
+        Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
+        if (enemy != null){
+            playerHealth -= 1;
+        }
+        if (playerHealth == 0){
+            move(-20);
+        }
+
+        attacking();
     }
-    
-    attacking();
-}
-public int playerLocationX(){
-    return getX();
-}
-public int playerLocationY(){
-    return getY();
-}
-public void attacking(){
-    if (Greenfoot.isKeyDown("up")){
-            getWorld().addObject(sword, getX(), getY());
-            sword.setLocation(getX(), getY()-30);
-    }else if (Greenfoot.isKeyDown("down")){
-            getWorld().addObject(sword, getX(), getY());
-            sword.setLocation(getX(), getY()+30);
-    }else if (Greenfoot.isKeyDown("left")){
-            getWorld().addObject(sword, getX(), getY());
-            sword.setLocation(getX()-30, getY());
-    }else if (Greenfoot.isKeyDown("right")){
-            getWorld().addObject(sword, getX(), getY());
-            sword.setLocation(getX()+30, getY());
-    }else{
-        getWorld().removeObject(sword);
+
+    public int playerLocationX(){
+        return getX();
     }
-}
+
+    public int playerLocationY(){
+        return getY();
+    }
+
+    public void attacking(){
+        if(currentWeapon !=null){
+            if (Greenfoot.isKeyDown("up")){
+                getWorld().addObject(currentWeapon, getX(), getY());
+                currentWeapon.setLocation(getX(), getY()-30);
+            }else if (Greenfoot.isKeyDown("down")){
+                getWorld().addObject(currentWeapon, getX(), getY());
+                currentWeapon.setLocation(getX(), getY()+30);
+            }else if (Greenfoot.isKeyDown("left")){
+                getWorld().addObject(currentWeapon, getX(), getY());
+                currentWeapon.setLocation(getX()-30, getY());
+            }else if (Greenfoot.isKeyDown("right")){
+                getWorld().addObject(currentWeapon, getX(), getY());
+                currentWeapon.setLocation(getX()+30, getY());
+            }else{
+                getWorld().removeObject(currentWeapon);
+            }
+        }
+    }
 
 }   

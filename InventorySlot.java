@@ -17,6 +17,7 @@ public class InventorySlot extends Actor
         setImage("inventory slot.png");
         getImage().scale(65,65);
         currentWeapon = null;
+        
     }
     
     public void act()

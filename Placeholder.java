@@ -14,7 +14,7 @@ public class Placeholder extends Actor
     int playerHealth = 100;
     int speed = 2;
     Actor currentWeapon;
-    
+
     public void act()
     {
 
@@ -46,6 +46,7 @@ public class Placeholder extends Actor
         }
 
         attacking();
+        weaponFromInventory();
     }
 
     public int playerLocationX(){
@@ -76,4 +77,13 @@ public class Placeholder extends Actor
         }
     }
 
-}   
+    public void weaponFromInventory(){
+        InventorySlot inventorySlot = (InventorySlot) getWorld().getObjects(InventorySlot.class).get(0);
+        if(inventorySlot != null){
+            if(Greenfoot.isKeyDown("1") ||
+            Greenfoot.isKeyDown("2")){
+                Actor weapon = inventorySlot.getCurrentWeapon();
+            }
+        }
+    }   
+}

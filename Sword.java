@@ -48,7 +48,6 @@ public class Sword extends Actor
                 enemyTrack.move(-5);
                 enemyTrack.health -= damage;
                 if(enemyTrack.health <= 0){
-                    getWorld().removeObject(enemyTrack);
                 }
             }
             damageCheck += damage;

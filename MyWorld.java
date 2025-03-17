@@ -38,16 +38,17 @@ public class MyWorld extends World
         
         /**placeholder, enemies, bag things**/
         placeholder = new Placeholder("FullSheetBoy.png", 4, 5);
-        TrackingTesting track = new TrackingTesting();
         /*Enemy enemy = new Enemy();
         EnemyTracking trackEnemy = new EnemyTracking();*/
         for (int x = 0; x < 3; x++) {
             Enemy enemy = new Enemy();
             EnemyTracking trackEnemy = new EnemyTracking();
-            
+            HealthBar heba = new HealthBar();
             addObject(enemy, 400, 100 + (x*100));
             addObject(trackEnemy, 400, 100 + (x*100));
+            addObject(heba, 400, 100 + (x*100));
             enemy.setTracker(trackEnemy);
+            heba.setTracker(trackEnemy);
         }
         exp = new XpDropped();
         Punchingbag bag = new Punchingbag();
@@ -69,7 +70,6 @@ public class MyWorld extends World
         addObject(damageUISword, getWidth()/6, 30);
         addObject(damageUIFireball, getWidth()/2, 30);
         addObject(damageUISlashes, getWidth()*5/6, 30);
-        addObject(track, getWidth()/2, getHeight()/2);
         
         /**Level things**/
         levell = new DamageUI("level: 1");

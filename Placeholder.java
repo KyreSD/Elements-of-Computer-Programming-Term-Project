@@ -69,7 +69,7 @@ public class Placeholder extends Actor
     }
     
     
-    int playerHealth = 1000000;
+    int playerHealth = 10000000;
     int speed = 3;
     //Privates
     private Sword sword;
@@ -86,6 +86,9 @@ public class Placeholder extends Actor
     //Click booleans
     boolean clickSword = true;
     boolean clickFireball = true;
+    int inactiveCount = 0;
+    int invincibilityCount = 0;
+    int invinEnd = 30;
     //Spawns
     private void spawnSword(int x, int y) {
         if (sword == null) {
@@ -103,7 +106,7 @@ public class Placeholder extends Actor
     }
     public void act()
     {
-        
+        System.out.println(playerHealth);
         if (Greenfoot.isKeyDown("a")){
             animateWalkWest();
             setRotation(180);
@@ -136,10 +139,6 @@ public class Placeholder extends Actor
                 frameDelay += 2;
             }
         }
-        Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
-        if (enemy != null){
-            playerHealth -= 1;
-        }
         if (playerHealth == 0){
             move(-20);
         }
@@ -166,6 +165,7 @@ public class Placeholder extends Actor
                 spawnSword(getX(), getY() + 60);
             } else {
                 spawnSword(getX() + 60, getY());
+                sword.setLocation(getX()+ 60,getY());
             }
         }
         if (Greenfoot.isKeyDown("up") && canAttackFireball) {

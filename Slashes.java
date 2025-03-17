@@ -40,11 +40,17 @@ public class Slashes extends Actor
     {
         System.out.println("Slash damage is " + damage);
         Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
+        EnemyTracking enemyTrack = (EnemyTracking)getOneIntersectingObject(EnemyTracking.class);
         Punchingbag bag = (Punchingbag)getOneIntersectingObject(Punchingbag.class);
         if (enemy != null){
             enemy.health = enemy.health - damage;
-            enemy.move(-1);
-            System.out.println(enemy.health);
+            if (enemyTrack != null){
+                enemyTrack.move(-1);
+                enemyTrack.health -= damage;
+                if(enemyTrack.health <= 0){
+                    getWorld().removeObject(enemyTrack);
+                }
+            }
             if(enemy.health <= 0){
                 getWorld().removeObject(enemy);
             }

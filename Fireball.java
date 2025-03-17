@@ -64,7 +64,6 @@ public class Fireball extends Actor
         Punchingbag bag = (Punchingbag)getOneIntersectingObject(Punchingbag.class);
         if (enemy != null){
             enemy.health = enemy.health - damage;
-            System.out.println(enemy.health);
             if(enemy.health >= 0){
                 spawnSlashes(getX(),getY());
                 getWorld().removeObject(this);

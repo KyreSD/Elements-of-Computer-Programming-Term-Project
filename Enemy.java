@@ -15,7 +15,7 @@ public class Enemy extends Actor
      */
     private GreenfootImage spriteSheet;
     private GreenfootImage[] frames;
-    private int frameWidth, frameHeight;
+    int frameWidth, frameHeight;
     private int currentFrame = 0;
     private int frameDelay = 5; // Adjust for speed
     private int delayCount = 0;
@@ -24,7 +24,8 @@ public class Enemy extends Actor
     int frameSouth = 0;
     int frameEast = 12;
     int frameWest = 6;
-    int health = 200;
+    private HealthSets hese = new HealthSets();
+    int health = hese.enemyHealth;
     int cols = 6;
     int rows = 4;
     int X;
@@ -50,10 +51,12 @@ public class Enemy extends Actor
         enemyTrack = tracker;
     }
     public void act(){
+        //sSystem.out.println("Enemy health: " + health);
         X = getX();
         Y = getY();
         if (enemyTrack != null) {
             setLocation(enemyTrack.getX(), enemyTrack.getY());
+            enemyTrack.health = health;
         }
         Sword sword = (Sword)getOneIntersectingObject(Sword.class);
         if (sword != null){
@@ -62,7 +65,7 @@ public class Enemy extends Actor
         Placeholder placeholder = (Placeholder)getOneIntersectingObject(Placeholder.class);
         if (placeholder != null){
             if (placeholder.playerHealth > 0){
-                placeholder.playerHealth = placeholder.playerHealth - 1;
+                placeholder.playerHealth -= 1;
             } else {
                 getWorld().removeObject(placeholder);
                 placeholder = null;

@@ -1,4 +1,4 @@
 *.class
-*ctxt
+*.ctxt
 *.iml
-*project.greenfoot
+project.greenfoot

@@ -16,52 +16,54 @@ public class Enemy extends Actor
     public int X;
     public int Y;
     public int health = 100;
-public void act()
+    public void act()
     {   
         X = getX();
         Y= getY();
-        
-    Sword sword = (Sword)getOneIntersectingObject(Sword.class);
+
+        Sword sword = (Sword)getOneIntersectingObject(Sword.class);
         if (sword != null){
-        health = health-1;
+            health = health-1;
         } 
-        
-    Placeholder placeholder = (Placeholder)getOneIntersectingObject(Placeholder.class);
-    if (placeholder != null){
-        placeholder.playerHealth = placeholder.playerHealth - 1;
-        if(placeholder.playerHealth >= 0){
-        getWorld().removeObject(placeholder);
+
+        Placeholder placeholder = (Placeholder)getOneIntersectingObject(Placeholder.class);
+        if (placeholder != null){
+            placeholder.playerHealth = placeholder.playerHealth - 1;
+            if(placeholder.playerHealth >= 0){
+                getWorld().removeObject(placeholder);
+            }
+        }
+
+        trackPlayer();
+        checkHealth();
+    }
+
+    public void trackPlayer(){
+        java.util.List actors = getWorld().getObjects(Actor.class);
+        if (! actors.isEmpty())
+        {
+            Actor actor = (Placeholder)actors.get(0);
+            turnTowards(actor.getX(), actor.getY());
+            move(3);
+            // setRotation(0);
         }
     }
-    
-    trackPlayer();
-    checkHealth();
-}
 
-public void trackPlayer(){
-    java.util.List actors = getWorld().getObjects(Actor.class);
-    if (! actors.isEmpty())
-{
-    Actor actor = (Placeholder)actors.get(0);
-    turnTowards(actor.getX(), actor.getY());
-    move(3);
-    // setRotation(0);
-}
-}
+    public int enemyHealth(){
+        return health;
+    }
 
-public int enemyHealth(){
-    return health;
-}
-public void checkHealth(){
-    if (health <= 0){
-        dropXp();
-        getWorld().removeObject(this);
+    public void checkHealth(){
+        if (health <= 0){
+            dropXp();
+            getWorld().removeObject(this);
+        }
     }
-}
-public void dropXp(){
-    MyWorld world = (MyWorld)getWorld();
-    if (world != null){
-    world.addObject(new XpDropped(), X,Y);
+
+    public void dropXp(){
+        MyWorld world = (MyWorld)getWorld();
+        if (world != null){
+            world.addObject(new XpDropped(), X,Y);
+        }
     }
-}
 }

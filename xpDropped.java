@@ -16,15 +16,16 @@ public class XpDropped extends Actor
         setImage("blob.png");
         getImage().scale(30,30);
     }
+
     public void act()
     {
         Placeholder placeholder = (Placeholder)getOneIntersectingObject(Placeholder.class);
         if(placeholder != null){
             MyWorld world = (MyWorld)getWorld();
             if(world != null){
-            world.addXP(5);
-            world.removeObject(this);
+                world.addXP(5);
+                world.removeObject(this);
+            }
         }
     }
-}
 }

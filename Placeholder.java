@@ -14,7 +14,6 @@ public class Placeholder extends Actor
     int playerHealth = 100;
     int speed = 2;
     Actor currentWeapon;
-
     public void act()
     {
         if (Greenfoot.isKeyDown("a")){
@@ -45,7 +44,6 @@ public class Placeholder extends Actor
         }
 
         attacking();
-        weaponFromInventory();
     }
     public int playerLocationX(){
         return getX();
@@ -53,6 +51,20 @@ public class Placeholder extends Actor
 
     public int playerLocationY(){
         return getY();
+    }
+    public void currentWeapon()
+    {
+        if(Greenfoot.isKeyDown("1")){
+            equipWeapon(new Sword());
+        }else if(Greenfoot.isKeyDown("2")){
+            equipWeapon(new Enemy());
+        }
+    }
+    public void equipWeapon(Actor weapon){
+        if(currentWeapon != null){
+            getWorld().removeObject(currentWeapon);
+        }
+        currentWeapon = weapon;
     }
     
     public void attacking(){
@@ -74,13 +86,4 @@ public class Placeholder extends Actor
         }
     }
 }
-    public void weaponFromInventory(){
-        InventorySlot inventorySlot = (InventorySlot) getWorld().getObjects(InventorySlot.class).get(0);
-        if(inventorySlot != null){
-            if(Greenfoot.isKeyDown("1") ||
-            Greenfoot.isKeyDown("2")){
-                Actor weapon = inventorySlot.getCurrentWeapon();
-            }
-        }
-    }   
 }

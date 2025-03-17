@@ -17,7 +17,6 @@ public class Placeholder extends Actor
 
     public void act()
     {
-
         if (Greenfoot.isKeyDown("a")){
             setRotation(180);
             move(speed);
@@ -48,7 +47,6 @@ public class Placeholder extends Actor
         attacking();
         weaponFromInventory();
     }
-
     public int playerLocationX(){
         return getX();
     }
@@ -56,27 +54,26 @@ public class Placeholder extends Actor
     public int playerLocationY(){
         return getY();
     }
-
+    
     public void attacking(){
-        if(currentWeapon !=null){
-            if (Greenfoot.isKeyDown("up")){
-                getWorld().addObject(currentWeapon, getX(), getY());
-                currentWeapon.setLocation(getX(), getY()-30);
-            }else if (Greenfoot.isKeyDown("down")){
-                getWorld().addObject(currentWeapon, getX(), getY());
-                currentWeapon.setLocation(getX(), getY()+30);
-            }else if (Greenfoot.isKeyDown("left")){
-                getWorld().addObject(currentWeapon, getX(), getY());
-                currentWeapon.setLocation(getX()-30, getY());
-            }else if (Greenfoot.isKeyDown("right")){
-                getWorld().addObject(currentWeapon, getX(), getY());
-                currentWeapon.setLocation(getX()+30, getY());
-            }else{
-                getWorld().removeObject(currentWeapon);
-            }
+        if(currentWeapon != null){
+        if (Greenfoot.isKeyDown("up")){
+            getWorld().addObject(currentWeapon, getX(), getY());
+            currentWeapon.setLocation(getX(), getY()-30);
+        }else if (Greenfoot.isKeyDown("down")){
+            getWorld().addObject(currentWeapon, getX(), getY());
+            currentWeapon.setLocation(getX(), getY()+30);
+        }else if (Greenfoot.isKeyDown("left")){
+            getWorld().addObject(currentWeapon, getX(), getY());
+            currentWeapon.setLocation(getX()-30, getY());
+        }else if (Greenfoot.isKeyDown("right")){
+            getWorld().addObject(currentWeapon, getX(), getY());
+            currentWeapon.setLocation(getX()+30, getY());
+        }else{
+            getWorld().removeObject(currentWeapon);
         }
     }
-
+}
     public void weaponFromInventory(){
         InventorySlot inventorySlot = (InventorySlot) getWorld().getObjects(InventorySlot.class).get(0);
         if(inventorySlot != null){

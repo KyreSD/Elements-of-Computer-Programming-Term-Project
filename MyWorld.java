@@ -23,6 +23,6 @@ public class MyWorld extends World
         addObject(new Enemy(), 100, 100);
         addObject(new Enemy(), 200, 100);
         
-        addObject(new InventorySlot(); 300; 0);
+        addObject(new InventorySlot(), 300, 375);
     }
 }

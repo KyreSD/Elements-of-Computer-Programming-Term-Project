@@ -22,7 +22,7 @@ public class MyWorld extends World
         addObject(new Placeholder(), 300, 200);
         addObject(new Enemy(), 100, 100);
         addObject(new Enemy(), 200, 100);
-        
+        addObject(new HealthBar(), 57, 18);
         
     }
 }

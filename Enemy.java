@@ -14,41 +14,40 @@ public class Enemy extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     int health = 100;
-public void act()
-    {   
+    public void act(){   
         
         
         
-    Sword sword = (Sword)getOneIntersectingObject(Sword.class);
+        Sword sword = (Sword)getOneIntersectingObject(Sword.class);
         if (sword != null){
-        health = health-1;
+            health = health-1;
         } 
         
-    Placeholder placeholder = (Placeholder)getOneIntersectingObject(Placeholder.class);
-    if (placeholder != null){
-        placeholder.playerHealth = placeholder.playerHealth - 1;
-        if(placeholder.playerHealth >= 0){
-        getWorld().removeObject(placeholder);
-        }
+        Placeholder placeholder = (Placeholder)getOneIntersectingObject(Placeholder.class);
+        if (placeholder != null){
+            placeholder.playerHealth = placeholder.playerHealth - 1;
+            if(placeholder.playerHealth >= 0){
+                getWorld().removeObject(placeholder);
+            }
         
-    }
+        }
     
-    trackPlayer();
-}
+        trackPlayer();
+        }
 
-public void trackPlayer(){
-    java.util.List actors = getWorld().getObjects(Actor.class);
-    if (! actors.isEmpty())
-{
-    Actor actor = (Placeholder)actors.get(0);
-    turnTowards(actor.getX(), actor.getY());
-    move(3);
-    // setRotation(0);
-}
-}
+    public void trackPlayer(){
+        java.util.List actors = getWorld().getObjects(Actor.class);
+        if (! actors.isEmpty())
+        {
+            Actor actor = (Placeholder)actors.get(0);
+            turnTowards(actor.getX(), actor.getY());
+            move(3);
+            // setRotation(0);
+        }
+    }
 
 
-public int enemyHealth(){
-    return health;
-}
+    public int enemyHealth(){
+        return health;
+    }
 }

@@ -37,7 +37,4 @@ public class InventorySlot extends Actor
         getWorld().addObject(weapon, 300, 375);
         currentWeapon = weapon;
     }
-    public Actor getCurrentWeapon(){
-        return currentWeapon;
-    }
 }

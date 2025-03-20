@@ -19,7 +19,7 @@ public class TitleScreen extends World
         super(600, 400, 1); 
         Greenfoot.start();
         addObject(new StartButton(), 300, 200);
-        addObject(new ControlsButton(), 300, 300);
+        addObject(new ControlButton(), 300, 300);
         
         
     }

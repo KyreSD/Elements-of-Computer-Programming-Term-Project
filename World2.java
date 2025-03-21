@@ -9,13 +9,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class World2 extends World
 {
 
-    /**
-     * Constructor for objects of class World2.
-     * 
-     */
+    private Placeholder placeholder;
+    
     public World2()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
+        placeholder = new Placeholder("FullSheetBoy.png", 4, 5);
+        addObject(placeholder, 300, 200);
+    }
+    
+    public World2(int xp, int health, int playerX, int playerY){
+        super(600, 400,1);
+        placeholder = new Placeholder("FullSheetBoy.png", 4, 5);
+        addObject(placeholder, playerX, playerY);
     }
 }

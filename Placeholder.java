@@ -25,6 +25,9 @@ public class Placeholder extends Actor
     int frameWest = 8;
     int rotateInt = 90;
     boolean isFacingNorth, isFacingSouth, isFacingEast, isFacingWest = false;
+    
+    World World2;
+    
     public Placeholder(String sheetPath, int cols, int rows) {
         spriteSheet = new GreenfootImage(sheetPath);
         frameWidth = spriteSheet.getWidth() / cols;
@@ -68,8 +71,8 @@ public class Placeholder extends Actor
         setImage(frames[0]); // Set initial frame
     }
     
-    
-    int playerHealth = 10000000;
+    HealthSets2 hese = new HealthSets2();
+    int playerHealth = hese.playerHealth;
     int speed = 3;
     //Privates
     private Sword sword;
@@ -143,6 +146,11 @@ public class Placeholder extends Actor
             move(-20);
         }
         attacking();
+        if(playerLocationX()<5){
+
+            World2 w = new World2(5, playerHealth, getWorld().getWidth()-getX(),getY());
+            Greenfoot.setWorld(w);
+        }
     }
     public int playerLocationX(){
         return getX();

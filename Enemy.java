@@ -25,6 +25,7 @@ public class Enemy extends Actor
     int frameEast = 12;
     int frameWest = 6;
     private HealthSets hese = new HealthSets();
+    HealthSets2 hese2 = new HealthSets2();
     int health = hese.enemyHealth;
     int cols = 6;
     int rows = 4;
@@ -51,7 +52,7 @@ public class Enemy extends Actor
         enemyTrack = tracker;
     }
     public void act(){
-        //sSystem.out.println("Enemy health: " + health);
+        //System.out.println("Enemy health: " + health);
         X = getX();
         Y = getY();
         if (enemyTrack != null) {
@@ -66,6 +67,8 @@ public class Enemy extends Actor
         if (placeholder != null){
             if (placeholder.playerHealth > 0){
                 placeholder.playerHealth -= 1;
+                hese.playerHealth -= 1;
+                
             } else {
                 getWorld().removeObject(placeholder);
                 placeholder = null;

@@ -12,7 +12,8 @@ public class HealthSets extends Actor
      * Act - do whatever the HealthSets wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    int enemyHealth = 200;
+    int healthEnemy = 200;
+    //int enemy
     public void act()
     {
         // Add your action code here.

@@ -32,6 +32,7 @@ public class MyWorld extends World
     public int xp;
     public int level;
     public int xpThreshold;
+    public int EnemyCount = 0;
     public MyWorld()
     {    
         super(600, 400, 1); 

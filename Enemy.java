@@ -25,7 +25,7 @@ public class Enemy extends Actor
     int frameEast = 12;
     int frameWest = 6;
     private HealthSets hese = new HealthSets();
-    int health = hese.enemyHealth;
+    int health = hese.healthEnemy;
     int cols = 6;
     int rows = 4;
     int X;
@@ -102,9 +102,6 @@ public class Enemy extends Actor
                 }
             }
         }
-    }
-    public int enemyHealth(){
-        return health;
     }
     /*private void animate() {
         delayCount++;

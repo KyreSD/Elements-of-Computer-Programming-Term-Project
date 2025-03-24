@@ -20,13 +20,16 @@ javadoc
 UTF-8
 -charset
 UTF-8
-/Users/gomezfile/Documents/GitHub/Elements-of-Computer-Programming-Term-Project/HealthBar.java
+/Users/gomezfile/Documents/GitHub/Elements-of-Computer-Programming-Term-Project/StartButton.java
 <---- end of javadoc command ---->
-Loading source file /Users/gomezfile/Documents/GitHub/Elements-of-Computer-Programming-Term-Project/HealthBar.java...
-/Users/gomezfile/Documents/GitHub/Elements-of-Computer-Programming-Term-Project/HealthBar.java:24: error: not a statement
-            set
-            ^
-/Users/gomezfile/Documents/GitHub/Elements-of-Computer-Programming-Term-Project/HealthBar.java:24: error: ';' expected
-            set
-               ^
-2 errors
+Loading source file /Users/gomezfile/Documents/GitHub/Elements-of-Computer-Programming-Term-Project/StartButton.java...
+Constructing Javadoc information...
+warning: unknown enum constant Tag.Any
+  reason: class file for threadchecker.Tag not found
+warning: unknown enum constant Tag.Any
+Standard Doclet version 21.0.4+7-LTS
+Building tree for all the packages and classes...
+Generating /Users/gomezfile/Documents/GitHub/Elements-of-Computer-Programming-Term-Project/doc/StartButton.html...
+Generating /Users/gomezfile/Documents/GitHub/Elements-of-Computer-Programming-Term-Project/doc/package-summary.html...
+Generating /Users/gomezfile/Documents/GitHub/Elements-of-Computer-Programming-Term-Project/doc/index.html...
+2 warnings

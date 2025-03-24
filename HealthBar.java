@@ -26,7 +26,7 @@ public class HealthBar extends Actor
             health = enemyTrack.health;
         }
         updateHealthBar();
-        if (health <= 0){
+        if (health <= 4){
             getWorld().removeObject(this);
         }
     }

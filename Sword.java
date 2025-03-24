@@ -21,6 +21,7 @@ public class Sword extends Actor
     int damage;
     int damageCheck = 0;
     private boolean isAnimating = false;
+    boolean canTurn = false;
     public Sword(int cols, int rows) {
         spriteSheet = new GreenfootImage("spriteSheetSword.png");
         frameWidth = spriteSheet.getWidth() / cols;
@@ -96,21 +97,28 @@ public class Sword extends Actor
         updateDamage();
     }
     private void handleAnimation() {
-        if (!isAnimating && Greenfoot.isKeyDown("right")) {
+        if (!isAnimating && (Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("up")
+        || Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("left"))) {
             isAnimating = true;
             animationFrame = 0;
             delayCounter = frameDelay;
         }
         if (isAnimating) {
-            if (Greenfoot.isKeyDown("w")){
-                setRotation(270);
-            } else if (Greenfoot.isKeyDown("a")){
-                setRotation(180);
-            } else if (Greenfoot.isKeyDown("s")){
-                setRotation(90);
-            } else if (Greenfoot.isKeyDown("d")){
-                setRotation(0);
-            } else setRotation(0);
+            if (canTurn == false){
+                if (Greenfoot.isKeyDown("up")){
+                    setRotation(270);
+                    canTurn = true;
+                } else if (Greenfoot.isKeyDown("left")){
+                    setRotation(180);
+                    canTurn = true;
+                } else if (Greenfoot.isKeyDown("down")){
+                    setRotation(90);
+                    canTurn = true;
+                } else if (Greenfoot.isKeyDown("right")){
+                    setRotation(0);
+                    canTurn = true;
+                } else setRotation(0);
+            }
             if (delayCounter == 0) {
                 frames[animationFrame].scale(100,100);
                 setImage(frames[animationFrame]);
@@ -124,5 +132,5 @@ public class Sword extends Actor
                 delayCounter--;
             }
         }
-    }  
+    }
 }

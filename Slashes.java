@@ -43,11 +43,10 @@ public class Slashes extends Actor
         EnemyTracking enemyTrack = (EnemyTracking)getOneIntersectingObject(EnemyTracking.class);
         Punchingbag bag = (Punchingbag)getOneIntersectingObject(Punchingbag.class);
         if (enemy != null){
-            enemy.health = enemy.health - damage;
+            enemy.health -= damage;
             if (enemyTrack != null){
                 enemyTrack.move(-1);
-                enemyTrack.health -= damage;
-                if(enemyTrack.health <= 0){
+                if(enemy.health <= 0){
                     getWorld().removeObject(enemyTrack);
                 }
             }

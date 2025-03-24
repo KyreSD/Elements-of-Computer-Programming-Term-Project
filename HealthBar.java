@@ -16,19 +16,19 @@ public class HealthBar extends Actor
     private GreenfootImage barGreen,barRed;
     private GreenfootImage combinedImage;
     private EnemyTracking enemyTrack = null;
-    public HealthBar(){
-    }
     public void act()
     {   
         Enemy enemyLocation = new Enemy();
         if (enemyTrack != null) {
             setLocation(enemyTrack.getX(), enemyTrack.getY() - enemyLocation.frameHeight/3);
             health = enemyTrack.health;
+        } else {
+            getWorld().removeObject(this);
         }
-        updateHealthBar();
         if (health <= 0){
             getWorld().removeObject(this);
         }
+        updateHealthBar();
     }
     public void setTracker(EnemyTracking tracker){
         enemyTrack = tracker;

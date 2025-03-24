@@ -27,16 +27,16 @@ public class Fireball extends Actor
         setImage("fireball.png");
         scaleImage(getImage(), 50, 50);
         if (canTurn == true){
-            if (Greenfoot.isKeyDown("w")) {
+            if (Greenfoot.isKeyDown("up")) {
                 setRotation(-90);
                 canTurn = false;
-            } if (Greenfoot.isKeyDown("a")) {
+            } if (Greenfoot.isKeyDown("left")) {
                 setRotation(-180);
                 canTurn = false;
-            } if (Greenfoot.isKeyDown("s")) {
+            } if (Greenfoot.isKeyDown("down")) {
                 setRotation(90);
                 canTurn = false;
-            } if (Greenfoot.isKeyDown("d")) {
+            } if (Greenfoot.isKeyDown("right")) {
                 setRotation(0);
                 canTurn = false;
             }

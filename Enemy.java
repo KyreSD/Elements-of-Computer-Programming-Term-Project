@@ -57,7 +57,7 @@ public class Enemy extends Actor
         if (enemyTrack != null) {
             setLocation(enemyTrack.getX(), enemyTrack.getY());
             enemyTrack.health = health;
-        }
+        } 
         Sword sword = (Sword)getOneIntersectingObject(Sword.class);
         if (sword != null){
             health = health-3;

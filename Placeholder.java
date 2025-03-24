@@ -74,6 +74,9 @@ public class Placeholder extends Actor
     //Privates
     private Sword sword;
     private Fireball fireball;
+    //Weapon selection booleans
+    boolean selectedSword = true;
+    boolean selectedFireball = false;
     //Timers
     int timerSword = 50;
     int timerFireball = 300;
@@ -143,6 +146,7 @@ public class Placeholder extends Actor
             move(-20);
         }
         attacking();
+        weaponSelection();
     }
     public int playerLocationX(){
         return getX();
@@ -155,22 +159,35 @@ public class Placeholder extends Actor
     }
     public void attacking(){
         
-        if (Greenfoot.isKeyDown("right") && canAttackSword) {
-            clickSword = true;
-            if (Greenfoot.isKeyDown("w")) {
-                spawnSword(getX(), getY() - 60);
-            } else if (Greenfoot.isKeyDown("a")) {
-                spawnSword(getX() - 60, getY());
-            } else if (Greenfoot.isKeyDown("s")) {
-                spawnSword(getX(), getY() + 60);
-            } else {
-                spawnSword(getX() + 60, getY());
-                sword.setLocation(getX()+ 60,getY());
+        if (selectedSword == true){
+            if (canAttackSword){
+                if (Greenfoot.isKeyDown("up")) {
+                    clickSword = true;
+                    spawnSword(getX(), getY() - 60);
+                } else if (Greenfoot.isKeyDown("left")) {
+                    clickSword = true;
+                    spawnSword(getX() - 60, getY());
+                } else if (Greenfoot.isKeyDown("down")) {
+                    clickSword = true;
+                    spawnSword(getX(), getY() + 60);
+                } else if (Greenfoot.isKeyDown("right")){
+                    clickSword = true;
+                    spawnSword(getX() + 60, getY());
+                }
             }
         }
-        if (Greenfoot.isKeyDown("up") && canAttackFireball) {
+        /*if (Greenfoot.isKeyDown("up") && canAttackFireball) {
             clickFireball = true;
             spawnFireball(getX(), getY());
+        }*/
+        if (selectedFireball == true){
+            if (canAttackFireball){
+                if (Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("up")
+        || Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("left")){
+                    clickFireball = true;
+                    spawnFireball(getX(), getY());
+                }
+            }
         }
 
         if (clickSword == true){
@@ -270,6 +287,16 @@ public class Placeholder extends Actor
             if (frameWest < 8 || frameWest == 12){
                 frameWest = 8;
             }
+        }
+    }
+    public void weaponSelection(){
+        if (Greenfoot.isKeyDown("1")){
+            selectedSword = true;
+            selectedFireball = false;
+        }
+        if (Greenfoot.isKeyDown("2")){
+            selectedSword = false;
+            selectedFireball = true;
         }
     }
 }   

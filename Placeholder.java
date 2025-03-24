@@ -71,7 +71,7 @@ public class Placeholder extends Actor
         setImage(frames[0]); // Set initial frame
     }
     
-    HealthSets2 hese = new HealthSets2();
+    HealthSets hese = new HealthSets();
     int playerHealth = hese.playerHealth;
     int speed = 3;
     //Privates
@@ -147,7 +147,6 @@ public class Placeholder extends Actor
         }
         attacking();
         if(playerLocationX()<5){
-
             World2 w = new World2(5, playerHealth, getWorld().getWidth()-getX(),getY());
             Greenfoot.setWorld(w);
         }
@@ -279,5 +278,8 @@ public class Placeholder extends Actor
                 frameWest = 8;
             }
         }
+    }
+    public void setPlayerHealth(int health) {
+        playerHealth = health;
     }
 }   

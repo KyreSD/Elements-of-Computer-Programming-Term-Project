@@ -25,7 +25,6 @@ public class Enemy extends Actor
     int frameEast = 12;
     int frameWest = 6;
     private HealthSets hese = new HealthSets();
-    HealthSets2 hese2 = new HealthSets2();
     int health = hese.enemyHealth;
     int cols = 6;
     int rows = 4;
@@ -59,6 +58,9 @@ public class Enemy extends Actor
             setLocation(enemyTrack.getX(), enemyTrack.getY());
             enemyTrack.health = health;
         }
+        if (health <= 0){
+            getWorld().removeObject(enemyTrack);
+        }
         Sword sword = (Sword)getOneIntersectingObject(Sword.class);
         if (sword != null){
             health = health-3;
@@ -66,9 +68,7 @@ public class Enemy extends Actor
         Placeholder placeholder = (Placeholder)getOneIntersectingObject(Placeholder.class);
         if (placeholder != null){
             if (placeholder.playerHealth > 0){
-                placeholder.playerHealth -= 1;
-                hese.playerHealth -= 1;
-                
+                placeholder.playerHealth -= 1;         
             } else {
                 getWorld().removeObject(placeholder);
                 placeholder = null;

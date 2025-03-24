@@ -25,6 +25,7 @@ public class HealthBar extends Actor
             setLocation(enemyTrack.getX(), enemyTrack.getY() - enemyLocation.frameHeight/3);
             health = enemyTrack.health;
         }
+        
         updateHealthBar();
         if (health <= 0){
             getWorld().removeObject(this);

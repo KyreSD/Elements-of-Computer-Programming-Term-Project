@@ -27,7 +27,7 @@ public class HealthBar extends Actor
         }
         
         updateHealthBar();
-        if (health <= 0){
+        if (health <= 4){
             getWorld().removeObject(this);
         }
     }

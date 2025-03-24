@@ -46,10 +46,6 @@ public class Slashes extends Actor
             enemy.health = enemy.health - damage;
             if (enemyTrack != null){
                 enemyTrack.move(-1);
-                enemyTrack.health -= damage;
-                if(enemyTrack.health <= 0){
-                    getWorld().removeObject(enemyTrack);
-                }
             }
             if(enemy.health <= 0){
                 getWorld().removeObject(enemy);

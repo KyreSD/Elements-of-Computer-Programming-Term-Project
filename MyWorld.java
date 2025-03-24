@@ -32,6 +32,7 @@ public class MyWorld extends World
     public int xp;
     public int level;
     public int xpThreshold;
+    int playerHealth;
     public MyWorld(int xp, int health, int playerX, int playerY)
     {    
         super(600, 400, 1); 

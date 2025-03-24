@@ -32,7 +32,7 @@ public class MyWorld extends World
     public int xp;
     public int level;
     public int xpThreshold;
-    public MyWorld()
+    public MyWorld(int xp, int health, int playerX, int playerY)
     {    
         super(600, 400, 1); 
         
@@ -52,7 +52,7 @@ public class MyWorld extends World
         }
         exp = new XpDropped();
         Punchingbag bag = new Punchingbag();
-        addObject(placeholder, 300, 200);
+        addObject(placeholder, playerX, playerY);
         /*for (int x = 0; x < 3; x++){
             addObject(new Enemy(), 400, 100 + (x*100));
             addObject(new EnemyTracking(), 400, 100 + (x*100));

@@ -146,10 +146,13 @@ public class Placeholder extends Actor
             move(-20);
         }
         attacking();
-        if(playerLocationX()<5){
-
+        if(playerLocationX()<2){
             World2 w = new World2(5, playerHealth, getWorld().getWidth()-getX(),getY());
             Greenfoot.setWorld(w);
+        }
+        if(playerLocationX()>598){
+            MyWorld m = new MyWorld(5, playerHealth, getWorld().getWidth()-getX(),getY());
+            Greenfoot.setWorld(m);
         }
     }
     public int playerLocationX(){

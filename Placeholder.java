@@ -19,11 +19,11 @@ public class Placeholder extends Actor
     private int frameDelay = 5; // Adjust for speed
     private int delayCount = 0;
     //frameStarts
-    int frameNorth = 16;
-    int frameSouth = 12;
-    int frameEast = 4;
-    int frameWest = 8;
-    int rotateInt = 90;
+    int frameNorth = 16; //60
+    int frameSouth = 12; //40
+    int frameEast = 4;   //70
+    int frameWest = 8;  //50
+    int rotateInt = 90;  //90
     boolean isFacingNorth, isFacingSouth, isFacingEast, isFacingWest = false;
     
     World World2;

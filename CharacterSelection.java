@@ -19,7 +19,7 @@ public class CharacterSelection extends World
         super(600, 400, 1); 
         Greenfoot.start();
         addObject(new Placeholder("FullSheetBoy.png",1,1), 300, 200);
-        addObject(new Link(), 250 , 200);
+        addObject(new Link("linkSprite.png",1,1), 250 , 200);
     }
     public static void pickCharacter(){
         if(Greenfoot.isKeyDown("right")){

@@ -19,6 +19,9 @@ public class Link extends Actor
     private int currentFrame = 0;
     private int frameDelay = 5; // Adjust for speed
     private int delayCount = 0;
+     // 8x10 sprite sheet
+    private final int rows = 10; 
+    private final int cols = 8; 
     //frameStarts
     int frameNorth = 60;
     int frameSouth = 40;
@@ -29,7 +32,8 @@ public class Link extends Actor
     
     World World2;
     
-    public Link(String sheetPath, int cols, int rows) {
+
+    public Link(String sheetPath) {
         spriteSheet = new GreenfootImage(sheetPath);
         frameWidth = spriteSheet.getWidth() / cols;
         frameHeight = spriteSheet.getHeight() / rows;
@@ -38,9 +42,15 @@ public class Link extends Actor
         // Extract frames
         int index = 0;
         for (int y = 0; y < rows; y++) {
-            for (int x = 0; x < cols; x++) {
+            for(int x = 0; x < cols; x++){
+            //skip missing frames 
+            if(isFrameMissing(x, y)){
+                frames[index] = new GreenfootImage(frameWidth, frameHeight);
+            }
+            else {
                 frames[index] = new GreenfootImage(frameWidth, frameHeight);
                 frames[index].drawImage(spriteSheet, -x * frameWidth, -y * frameHeight);
+            }
                 index++;
             }
         }
@@ -53,6 +63,10 @@ public class Link extends Actor
         }
 
         setImage(frames[0]); // Set initial frame
+    }
+    //the 8X10 has missing frames not every col and row have an image
+    private boolean isFrameMissing(int x, int y){
+       return(y < 2 && x > 2) || (y ==2 && x == 0);     
     }
     
     HealthSets hese = new HealthSets();

@@ -18,7 +18,6 @@ public class CharacterSelection extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
-        Greenfoot.start();
         addObject(new FullSheetBoyImage(), 300 , 300);
         addObject(new linkImage(), 200 , 300);
         

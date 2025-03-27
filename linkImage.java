@@ -18,8 +18,8 @@ public class linkImage extends Actor
         CharacterSelection.pickCharacter();
         if(CharacterSelection.SELECT == 0){
             setImage("linkSpriteGrey.png");
-        } if (CharacterSelection.SELECT == 2){
-            setImage("ctrl.png");
+        } if (CharacterSelection.SELECT == 1){
+            setImage("linkSpriteSingle.png");
         }
         if(Greenfoot.isKeyDown("enter")&&CharacterSelection.SELECT==1){
             Greenfoot.setWorld(new MyWorld(1, 1000000, 300, 200));

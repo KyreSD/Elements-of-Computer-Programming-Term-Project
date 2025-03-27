@@ -12,6 +12,11 @@ public class ArmorDropped extends Actor
      * Act - do whatever the ArmorDropped wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    public ArmorDropped(){
+        setImage("Armor.png");
+        getImage().scale(30,30);
+        System.out.println("Armor has dropped!");
+    }
     public void act()
     {
         Placeholder placeholder = (Placeholder)getOneIntersectingObject(Placeholder.class);
@@ -22,10 +27,5 @@ public class ArmorDropped extends Actor
                 world.removeObject(this);
             }
         }
-    }
-    public ArmorDropped(){
-        setImage("armor.png");
-        getImage().scale(30,30);
-        System.out.println("armor has dropped");
     }
 }

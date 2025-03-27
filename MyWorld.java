@@ -32,7 +32,7 @@ public class MyWorld extends World
     DamageUI damageUISword, damageUIFireball, damageUISlashes, levell;
     //xps
     public int xp;
-    public int armor;
+    public int armor = 0;
     public int level;
     public int xpThreshold;
     int playerHealth;
@@ -116,6 +116,7 @@ public class MyWorld extends World
         levelUp();
     }
     public void addArmor(int amount){
+        System.out.println("Armor Added! " + amount);
         if(armor<3){
             playerHealth += amount;
             armor += 1; 

@@ -131,6 +131,7 @@ public class Enemy extends Actor
     public void checkHealth(){
         if (health <= 0){
             dropXp();
+            dropArmor();
             getWorld().removeObject(this);
             System.out.println("XP has dropped");
         }
@@ -139,6 +140,12 @@ public class Enemy extends Actor
         MyWorld world = (MyWorld)getWorld();
         if (world != null){
             world.addObject(new XpDropped(), X,Y);
+        }
+    }
+    public void dropArmor(){
+        MyWorld world = (MyWorld)getWorld();
+        if (world != null){
+            world.addObject(new ArmorDropped(), X,Y);
         }
     }
     //Animation

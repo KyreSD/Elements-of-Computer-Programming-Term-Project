@@ -76,7 +76,7 @@ public class Fireball extends Actor
             damageCheck += damage;
             spawnSlashes(getX(),getY());
             getWorld().removeObject(this);
-            System.out.println(damageCheck);
+            //System.out.println(damageCheck);
         }
         move(2);
         if (canTurn == true){

@@ -9,17 +9,23 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class CharacterSelection extends World
 {
     public static int SELECT = 0;
+    public Greenfoot[] characters;
+    public Actor displayCharacter;
     /**
      * Constructor for objects of class CharacterSelection.
      * 
      */
+    
     public CharacterSelection()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
         Greenfoot.start();
-        addObject(new Placeholder("FullSheetBoy.png",4,5), 300, 200);
-        //addObject(new Link("linkSprite.png",1,1), 250 , 200);
+        addObject("FullSheetBoy.png" , 300 , 300);
+        addObject("linkSprite.png", 200 , 300);
+        
+        
+        displayCharacter = new Actor();
     }
     public static void pickCharacter(){
         if(Greenfoot.isKeyDown("right")){
@@ -29,4 +35,7 @@ public class CharacterSelection extends World
             SELECT = 0;
         }
     }
+    public void startGame(){
+    Greenfoot.setWorld(new MyWorld(1, 1000000, 300, 200));
+}
 }

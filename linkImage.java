@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class linkImage extends Actor
+public class LinkImage extends Actor
 {
     /**
      * Act - do whatever the linkImage wants to do. This method is called whenever
@@ -14,11 +14,11 @@ public class linkImage extends Actor
      */
     public void act()
     {
-        GreenfootImage link = new GreenfootImage("linkSpritSpriteSingle.png");
+        GreenfootImage link = new GreenfootImage("linkSpritSingle.png");
         CharacterSelection.pickCharacter();
         if(CharacterSelection.SELECT == 0){
             setImage("linkSpriteGrey.png");
-        } if (CharacterSelection.SELECT == 1){
+        } else{
             setImage("linkSpriteSingle.png");
         }
         if(Greenfoot.isKeyDown("enter")&&CharacterSelection.SELECT==1){

@@ -20,8 +20,7 @@ public class Link extends Actor
     private int frameDelay = 5; // Adjust for speed
     private int delayCount = 0;
      // 8x10 sprite sheet
-    private final int rows = 10; 
-    private final int cols = 8; 
+    
     //frameStarts
     int frameNorth = 60;
     int frameSouth = 40;
@@ -33,7 +32,7 @@ public class Link extends Actor
     World World2;
     
 
-    public Link(String sheetPath) {
+    public Link(String sheetPath, int cols, int rows) {
         spriteSheet = new GreenfootImage(sheetPath);
         frameWidth = spriteSheet.getWidth() / cols;
         frameHeight = spriteSheet.getHeight() / rows;
@@ -151,6 +150,16 @@ public class Link extends Actor
         if(playerLocationX()>598){
             MyWorld m = new MyWorld(5, playerHealth, getWorld().getWidth()-getX(),getY());
             Greenfoot.setWorld(m);
+        }
+        // selecting a character
+        CharacterSelection.pickCharacter();
+        if(CharacterSelection.SELECT == 1){
+            setImage(frames[0]);
+        } else{
+            setImage("linkSpriteGrey.png");
+        }
+        if(Greenfoot.isKeyDown("enter")&&CharacterSelection.SELECT==1){
+            Greenfoot.setWorld(new MyWorld(1, 1000000, 300, 200));
         }
     }
     public int playerLocationX(){

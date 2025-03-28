@@ -17,7 +17,6 @@ public class FullSheetBoyImage extends Actor
         GreenfootImage boyImage = new GreenfootImage("FullSheetBoyGrey.png");
         if(CharacterSelection.SELECT == 0){
             setImage("FullSheetBoySingle.png");
-        }
         if(CharacterSelection.SELECT == 1){
             setImage("FullSheetBoyGrey.png");
         }
@@ -25,4 +24,5 @@ public class FullSheetBoyImage extends Actor
             Greenfoot.setWorld(new MyWorld(1, 1000000, 300, 200));
         }
     }
+}
 }

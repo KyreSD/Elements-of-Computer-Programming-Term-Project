@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Link here.
+ * Write a description of class RetroSprite here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Link extends Actor
+public class RetroSprite extends Actor
 {
     /**
-     * Act - do whatever the Link wants to do. This method is called whenever
+     * Act - do whatever the RetroSprite wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     //Sprite Sheet Shenanigans
@@ -20,16 +20,16 @@ public class Link extends Actor
     private int frameDelay = 5; // Adjust for speed
     private int delayCount = 0;
     //frameStarts
-    int frameNorth = 12; 
+    int frameNorth = 4; 
     int frameSouth = 0; 
-    int frameEast = 4;   
+    int frameEast = 12;   
     int frameWest = 8;  
     int rotateInt = 90;  
     boolean isFacingNorth, isFacingSouth, isFacingEast, isFacingWest = false;
     
     World World2;
     
-    public Link(String sheetPath, int cols, int rows) {
+    public RetroSprite(String sheetPath, int cols, int rows) {
         spriteSheet = new GreenfootImage(sheetPath);
         frameWidth = spriteSheet.getWidth() / cols;
         frameHeight = spriteSheet.getHeight() / rows;
@@ -58,10 +58,10 @@ public class Link extends Actor
             frames[9].rotate(180);
             frames[10].rotate(180);
             frames[11].rotate(180);
-            frames[12].rotate(270);
-            frames[13].rotate(270);
-            frames[14].rotate(270);
-            frames[15].rotate(270);
+            frames[12].rotate(0);
+            frames[13].rotate(0);
+            frames[14].rotate(0);
+            frames[15].rotate(0);
             rotCount += 1;
         }
 
@@ -153,10 +153,10 @@ public class Link extends Actor
         }
         // selecting a character
         CharacterSelection.pickCharacter();
-        if(CharacterSelection.SELECT == 0){
+        if(CharacterSelection.SELECT == 2){
             setImage(frames[0]);
         }else{
-            setImage("FullSheetBoyGrey.png");
+            setImage("RetroSpriteGrey.png");
         }
         
         if(Greenfoot.isKeyDown("enter")&&CharacterSelection.SELECT==0){
@@ -228,13 +228,13 @@ public class Link extends Actor
     
     //Animate voids
     private void animateIdleNorth() {
-        setImage(frames[12]);
+        setImage(frames[4]);
     }
     private void animateIdleSouth() {
         setImage(frames[0]);
     }
     private void animateIdleEast() {
-        setImage(frames[4]);
+        setImage(frames[12]);
     }
     private void animateIdleWest() {
         setImage(frames[8]);
@@ -252,9 +252,9 @@ public class Link extends Actor
         delayCount++;
         if (delayCount >= frameDelay) {
             delayCount = 0;
-            frameNorth = (frameNorth + 1) % frames.length;
-            if (frameNorth < 12){
-                frameNorth = 12;
+            frameNorth = frameNorth + 1;
+            if (frameNorth < 7){
+                frameNorth = 4;
             }
         }
     }
@@ -263,7 +263,7 @@ public class Link extends Actor
         delayCount++;
         if (delayCount >= frameDelay) {
             delayCount = 0;
-            frameSouth = (frameSouth + 1) % frames.length;
+            frameSouth = frameSouth + 1;
             if (frameSouth > 3){
                 frameSouth = 0;
             }
@@ -274,9 +274,9 @@ public class Link extends Actor
         delayCount++;
         if (delayCount >= frameDelay) {
             delayCount = 0;
-            frameEast = (frameEast + 1) % frames.length;
-            if (frameEast > 7 || frameEast < 4){
-                frameEast = 4;
+            frameEast = frameEast + 1;
+            if (frameEast > 15){
+                frameEast = 12;
             }
         }
     }
@@ -285,8 +285,8 @@ public class Link extends Actor
         delayCount++;
         if (delayCount >= frameDelay) {
             delayCount = 0;
-            frameWest = (frameWest + 1) % frames.length;
-            if (frameWest > 11 || frameWest < 8){
+            frameWest = frameWest + 1;
+            if (frameWest > 11){
                 frameWest = 8;
             }
         }
@@ -295,6 +295,4 @@ public class Link extends Actor
         playerHealth = health;
     }
 }   
-
-
 

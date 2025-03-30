@@ -152,16 +152,16 @@ public class Link extends Actor
             Greenfoot.setWorld(m);
         }
         // selecting a character
-        CharacterSelection.pickCharacter();
-        if(CharacterSelection.SELECT == 0){
-            setImage(frames[0]);
-        }else{
-            setImage("FullSheetBoyGrey.png");
-        }
+        //CharacterSelection.pickCharacter();
+        //if(CharacterSelection.SELECT == 0){
+          //  setImage(frames[0]);
+        //}else{
+          //  setImage("FullSheetBoyGrey.png");
+        //}
         
-        if(Greenfoot.isKeyDown("enter")&&CharacterSelection.SELECT==0){
-            Greenfoot.setWorld(new MyWorld(1, 1000000, 300, 200));
-        }
+        //if(Greenfoot.isKeyDown("enter")&&CharacterSelection.SELECT==0){
+          //  Greenfoot.setWorld(new MyWorld(1, 1000000, 300, 200));
+        //}
     }
     public int playerLocationX(){
         return getX();

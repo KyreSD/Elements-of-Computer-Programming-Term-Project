@@ -21,7 +21,7 @@ public class RetroSprite extends Actor
     private int delayCount = 0;
     //frameStarts
     int frameNorth = 4; 
-    int frameSouth = 0; 
+    int frameSouth = 0;
     int frameEast = 12;   
     int frameWest = 8;  
     int rotateInt = 90;  
@@ -31,6 +31,10 @@ public class RetroSprite extends Actor
     
     public RetroSprite(String sheetPath, int cols, int rows) {
         spriteSheet = new GreenfootImage(sheetPath);
+        // these RetroSprite needs to be scaled
+        int scaleFactor = 9; // to adjust the size
+        spriteSheet.scale(spriteSheet.getWidth() /  scaleFactor, spriteSheet.getHeight() / scaleFactor);
+        
         frameWidth = spriteSheet.getWidth() / cols;
         frameHeight = spriteSheet.getHeight() / rows;
         frames = new GreenfootImage[cols * rows];
@@ -152,16 +156,16 @@ public class RetroSprite extends Actor
             Greenfoot.setWorld(m);
         }
         // selecting a character
-        CharacterSelection.pickCharacter();
-        if(CharacterSelection.SELECT == 2){
-            setImage(frames[0]);
-        }else{
-            setImage("RetroSpriteGrey.png");
-        }
+        //CharacterSelection.pickCharacter();
+        //if(CharacterSelection.SELECT == 2){
+          //  setImage(frames[0]);
+        //}else{
+          //  setImage("RetroSpriteGrey.png");
+        //}
         
-        if(Greenfoot.isKeyDown("enter")&&CharacterSelection.SELECT==0){
-            Greenfoot.setWorld(new MyWorld(1, 1000000, 300, 200));
-        }
+        //if(Greenfoot.isKeyDown("enter")&&CharacterSelection.SELECT==0){
+          //  Greenfoot.setWorld(new MyWorld(1, 1000000, 300, 200));
+        //}
     }
     public int playerLocationX(){
         return getX();

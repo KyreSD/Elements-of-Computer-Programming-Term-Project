@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-
+    private boolean isPaused = false;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -22,7 +22,32 @@ public class MyWorld extends World
         addObject(new Placeholder(), 300, 200);
         addObject(new Enemy(), 100, 100);
         addObject(new Enemy(), 200, 100);
+        addObject(new NPC(), 550, 350);
         
-        
+    }
+    
+    public void act() {
+        if (Greenfoot.isKeyDown("escape")) {
+            if (!isPaused) {
+                isPaused = true;
+                freezeGame(true);
+                Greenfoot.setWorld(new PauseMenu(this));
+            }
+        }
+    }
+    
+    public void freezeGame(boolean freeze) {
+        if (freeze) {
+            setActOrder();
+        }
+    }
+    
+    public void resumeGame() {
+        isPaused = false;
+        freezeGame(false);
+    }
+    
+    public void makePaused(boolean paused) {
+        this.isPaused = paused;
     }
 }

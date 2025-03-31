@@ -109,7 +109,7 @@ public class Placeholder extends Actor
     }
     public void act()
     {
-        System.out.println(playerHealth);
+        //System.out.println(playerHealth);
         if (Greenfoot.isKeyDown("a")){
             animateWalkWest();
             setRotation(180);

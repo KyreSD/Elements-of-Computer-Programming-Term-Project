@@ -13,9 +13,16 @@ public class HealthSets extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     int playerHealth = 1000000;
+    public static int maxHealthP1 = 1000000;
+    int armorCount = 0;
+    int maxArmor = 3;
     int enemyHealth = 200;
     public void act()
     {
         playerHealth = playerHealth;
+    }
+    
+    public int getMaxHealth(){
+        return maxHealthP1;
     }
 }

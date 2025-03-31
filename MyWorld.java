@@ -8,6 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
+    
+    
 
     /**
      * Constructor for objects of class MyWorld.
@@ -30,10 +32,17 @@ public class MyWorld extends World
     DamageUI damageUISword, damageUIFireball, damageUISlashes, levell;
     //xps
     public int xp;
+    public int armor = 0;
     public int level;
     public int xpThreshold;
     int playerHealth;
     public MyWorld(int xp, int health, int playerX, int playerY)
+    /*public MyWorld(player P1, int playerX, int playerY)
+        code...
+       when you go to a new world
+    // World level2 = new World(P1, Xcor, Ycor)
+    changescene(level2)
+       */
     {    
         super(600, 400, 1); 
         
@@ -105,6 +114,13 @@ public class MyWorld extends World
     public void addXP(int amount){
         xp += amount;
         levelUp();
+    }
+    public void addArmor(int amount){
+        System.out.println("Armor Added! " + amount);
+        if(armor<3){
+            playerHealth += amount;
+            armor += 1; 
+        }
     }
     public void act() {
         cooldownDisplaySword.setText("Sword Cooldown: "  + placeholder.attackTimerSword);

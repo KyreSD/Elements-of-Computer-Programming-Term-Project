@@ -15,10 +15,13 @@ public class RetroImage extends Actor
     public void act()
     {
         CharacterSelection.pickCharacter();
-        if(CharacterSelection.SELECT == 0){
+        if(CharacterSelection.SELECT == 2){
             setImage("RetroSpriteImage.png");
+            new RetroSprite("RetroSpriteSheet.png" , 4, 4);
+            getImage().scale(80,80);
         }else{
-            setImage("RetroSpritGrey.png");
+            setImage("RetroSpriteGrey.png");
+            getImage().scale(80,80);
         }
         
         if(Greenfoot.isKeyDown("enter")&&CharacterSelection.SELECT==0){

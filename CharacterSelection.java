@@ -19,9 +19,9 @@ public class CharacterSelection extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
-        characters[0]= new Placeholder("FullSheetBoy.png", 4,5 );
-        characters[1] = new Link("linkSprite.png", 10, 8);
-        characters[2] = new RetroSprite("RetroSpriteSheet.png", 4, 4);
+        characters[0]= new FullSheetBoyImage();
+        characters[1] = new LinkImage();
+        characters[2] = new RetroImage();
         
         addObject(characters[0], 150 , 300);
         addObject(characters[1], 300 , 300);

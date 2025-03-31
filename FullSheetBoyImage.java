@@ -21,8 +21,11 @@ public class FullSheetBoyImage extends Actor
         CharacterSelection.pickCharacter();
         if(CharacterSelection.SELECT == 0){
             setImage("FullSheetBoySingle.png");
+            new Placeholder("FullSheetBoy.png" , 4, 5);
+            getImage().scale(80,80);
         }else{
             setImage("FullSheetBoyGrey.png");
+            getImage().scale(80,80);
         }
         
         if(Greenfoot.isKeyDown("enter")&&CharacterSelection.SELECT==0){

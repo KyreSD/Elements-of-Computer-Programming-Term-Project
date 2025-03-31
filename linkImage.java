@@ -14,12 +14,15 @@ public class LinkImage extends Actor
      */
     public void act()
     {
-        GreenfootImage link = new GreenfootImage("linkSpritSingle.png");
+        GreenfootImage link = new GreenfootImage("linkSpriteSingle.png");
         CharacterSelection.pickCharacter();
-        if(CharacterSelection.SELECT == 0){
-            setImage("linkSpriteGrey.png");
-        } else{
+        if(CharacterSelection.SELECT == 1){
             setImage("linkSpriteSingle.png");
+            new Link("linkSprite.png" , 10, 8);
+            getImage().scale(80,80);
+        } else{
+            setImage("linkSpriteGrey.png");
+            getImage().scale(80,80);
         }
         if(Greenfoot.isKeyDown("enter")&&CharacterSelection.SELECT==1){
             Greenfoot.setWorld(new MyWorld(1, 1000000, 300, 200));

@@ -161,7 +161,7 @@ public class Link extends Actor
         
         //if(Greenfoot.isKeyDown("enter")&&CharacterSelection.SELECT==0){
           //  Greenfoot.setWorld(new MyWorld(1, 1000000, 300, 200));
-        //}
+        //2}
     }
     public int playerLocationX(){
         return getX();

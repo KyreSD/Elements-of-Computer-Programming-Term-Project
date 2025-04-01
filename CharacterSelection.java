@@ -14,7 +14,7 @@ public class CharacterSelection extends World
      * Constructor for objects of class CharacterSelection.
      * 
      */
-    
+
     public CharacterSelection()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -22,14 +22,14 @@ public class CharacterSelection extends World
         characters[0]= new FullSheetBoyImage();
         characters[1] = new LinkImage();
         characters[2] = new RetroImage();
-        
+
         addObject(characters[0], 150 , 300);
         addObject(characters[1], 300 , 300);
         addObject(characters[2], 450, 300);
-        
-        
+
         //displayCharacter = new Actor();
     }
+
     public static void pickCharacter(){
         if(Greenfoot.isKeyDown("right")&& SELECT < 2){  
             SELECT++;  
@@ -38,6 +38,16 @@ public class CharacterSelection extends World
         if(Greenfoot.isKeyDown("left") && SELECT > 0){
             SELECT--;
             Greenfoot.delay(10);
+        }
+    }
+
+    public static Actor getSelectedCharacter(){
+        if(SELECT == 0){
+            return new Placeholder("FullSheetBoy.png", 4, 5);
+        } else if (SELECT == 1){
+            return new Link("linkSprite.png", 10, 8);
+        } else {
+            return new RetroSprite("RetroSpriteSheet.png", 4, 4);
         }
     }
 }

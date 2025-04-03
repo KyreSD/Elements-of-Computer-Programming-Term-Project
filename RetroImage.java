@@ -17,15 +17,14 @@ public class RetroImage extends Actor
         CharacterSelection.pickCharacter();
         if(CharacterSelection.SELECT == 2){
             setImage("RetroSpriteImage.png");
-            new RetroSprite("RetroSpriteSheet.png" , 4, 4);
             getImage().scale(80,80);
         }else{
             setImage("RetroSpriteGrey.png");
             getImage().scale(80,80);
         }
         
-        if(Greenfoot.isKeyDown("enter")&&CharacterSelection.SELECT==0){
-            Greenfoot.setWorld(new MyWorld(1, 1000000, 300, 200));
+        if(Greenfoot.isKeyDown("enter")&&CharacterSelection.SELECT == 2){
+            Greenfoot.setWorld(new MyWorld(CharacterSelection.getSelectedCharacter(), 1, 1000000, 300, 200));
         }
 }
 }

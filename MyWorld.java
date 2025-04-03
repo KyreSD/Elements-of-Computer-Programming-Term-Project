@@ -13,7 +13,7 @@ public class MyWorld extends World
      * Constructor for objects of class MyWorld.
      * 
      */
-    
+    private Actor playerCharacter;
     private Placeholder placeholder;
     private Enemy enemy = new Enemy();
     XpDropped exp;
@@ -33,7 +33,7 @@ public class MyWorld extends World
     public int level;
     public int xpThreshold;
     int playerHealth;
-    public MyWorld(int xp, int health, int playerX, int playerY)
+    public MyWorld(Actor selectedCharacter, int xp, int health, int playerX, int playerY)
     {    
         super(600, 400, 1); 
         
@@ -53,7 +53,9 @@ public class MyWorld extends World
         }
         exp = new XpDropped();
         Punchingbag bag = new Punchingbag();
-        addObject(placeholder, playerX, playerY);
+        
+        playerCharacter = selectedCharacter;
+        addObject(playerCharacter, playerX, playerY);
         /*for (int x = 0; x < 3; x++){
             addObject(new Enemy(), 400, 100 + (x*100));
             addObject(new EnemyTracking(), 400, 100 + (x*100));

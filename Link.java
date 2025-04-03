@@ -148,7 +148,7 @@ public class Link extends Actor
             Greenfoot.setWorld(w);
         }
         if(playerLocationX()>598){
-            MyWorld m = new MyWorld(CharacterSelection.getSelectedCharacter(), 5, playerHealth, getWorld().getWidth()-getX(),getY());
+            MyWorld m = new MyWorld(5, playerHealth, getWorld().getWidth()-getX(),getY());
             Greenfoot.setWorld(m);
         }
         // selecting a character

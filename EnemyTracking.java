@@ -19,21 +19,10 @@ public class EnemyTracking extends Actor
         trackPlayer();
         //System.out.println("Tracker health: " + health);
     }
-
     public void trackPlayer(){
         if (!getWorld().getObjects(Placeholder.class).isEmpty()){
             Placeholder placeholder = (Placeholder)getWorld().getObjects(Placeholder.class).get(0);
             turnTowards(placeholder.getX(), placeholder.getY());
-            move(2);
-        }
-        if (!getWorld().getObjects(Link.class).isEmpty()){
-            Link link = (Link)getWorld().getObjects(Link.class).get(0);
-            turnTowards(link.getX(), link.getY());
-            move(2);
-        }
-        if (!getWorld().getObjects(RetroSprite.class).isEmpty()){
-            RetroSprite retro = (RetroSprite)getWorld().getObjects(RetroSprite.class).get(0);
-            turnTowards(retro.getX(), retro.getY());
             move(2);
         }
     }

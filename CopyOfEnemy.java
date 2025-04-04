@@ -53,6 +53,24 @@ public class CopyOfEnemy extends Actor
                 placeholder = null;
             }
         }
+        Link link = (Link)getOneIntersectingObject(Link.class);
+        if (link != null){
+            if (link.playerHealth > 0){
+                link.playerHealth = link.playerHealth - 1;
+            } else {
+                getWorld().removeObject(link);
+                link = null;
+            }
+        }
+        RetroSprite retro = (RetroSprite)getOneIntersectingObject(RetroSprite.class);
+        if (retro != null){
+            if (retro.playerHealth > 0){
+                retro.playerHealth = retro.playerHealth - 1;
+            } else {
+                getWorld().removeObject(retro);
+                retro = null;
+            }
+        }
         trackPlayer();
         checkHealth();
         //animate();
@@ -84,6 +102,59 @@ public class CopyOfEnemy extends Actor
                 }
             }
         }
+        if (!getWorld().getObjects(Link.class).isEmpty()){
+            Link link = (Link)getWorld().getObjects(Link.class).get(0);
+            turnTowards(link.getX(), link.getY());
+            if (link.getX() < getX()){
+                if (Math.abs(link.getX() - getX()) > Math.abs(getY() - link.getY())){
+                    animateWalkWest();
+                } else {
+                    if (link.getY() <= getY()){
+                        animateWalkNorth();
+                    } else {
+                        animateWalkSouth();
+                    }
+                }
+            }
+            if (link.getX() >= getX()){
+                if (Math.abs(link.getX() - getX()) > Math.abs(getY() - link.getY())){
+                    animateWalkEast();
+                } else {
+                    if (link.getY() <= getY()){
+                        animateWalkNorth();
+                    } else {
+                        animateWalkSouth();
+                    }
+                }
+            }
+        }
+        if (!getWorld().getObjects(RetroSprite.class).isEmpty()){
+            RetroSprite retro = (RetroSprite)getWorld().getObjects(RetroSprite.class).get(0);
+            turnTowards(retro.getX(), retro.getY());
+            if (retro.getX() < getX()){
+                if (Math.abs(retro.getX() - getX()) > Math.abs(getY() - retro.getY())){
+                    animateWalkWest();
+                } else {
+                    if (retro.getY() <= getY()){
+                        animateWalkNorth();
+                    } else {
+                        animateWalkSouth();
+                    }
+                }
+            }
+            if (retro.getX() >= getX()){
+                if (Math.abs(retro.getX() - getX()) > Math.abs(getY() - retro.getY())){
+                    animateWalkEast();
+                } else {
+                    if (retro.getY() <= getY()){
+                        animateWalkNorth();
+                    } else {
+                        animateWalkSouth();
+                    }
+                }
+            }
+        }
+        
     }
     public int enemyHealth(){
         return health;

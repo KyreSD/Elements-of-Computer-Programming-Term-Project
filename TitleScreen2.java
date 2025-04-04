@@ -18,7 +18,7 @@ public class TitleScreen2 extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
         Greenfoot.start();
-        addObject(new StartButton(), 300, 200);
+        addObject(new StartButton2(), 300, 200);
         addObject(new ControlButton(), 300, 300);
         
         

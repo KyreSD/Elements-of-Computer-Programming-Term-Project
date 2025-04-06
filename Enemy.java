@@ -136,7 +136,7 @@ public class Enemy extends Actor
         }
     }
     public void dropXp(){
-        MyWorld world = (MyWorld)getWorld();
+        SuperWorld world = (SuperWorld)getWorld();
         if (world != null){
             world.addObject(new XpDropped(), X,Y);
         }

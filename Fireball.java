@@ -51,7 +51,7 @@ public class Fireball extends Actor
     }
     public void updateDamage() {
         if (getWorld() != null) {
-            damage = ((MyWorld) getWorld()).damageFireball;
+            damage = ((SuperWorld) getWorld()).damageFireball;
         }
     }
     public void addedToWorld(World world) {

@@ -25,7 +25,7 @@ public class StartButton extends Actor
         }
         if(Greenfoot.isKeyDown("enter")&&TitleScreen.SELECT==0)
         {
-            Greenfoot.setWorld(new MyWorld(1, 1000000, 300, 200));
+            Greenfoot.setWorld(new MyWorld(1, 1000, 300, 200));
         }
         }
     }

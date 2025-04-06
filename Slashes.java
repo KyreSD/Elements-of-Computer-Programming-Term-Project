@@ -30,7 +30,7 @@ public class Slashes extends Actor
     int damageCheck = 0;
     public void updateDamage() {
         if (getWorld() != null) {
-            damage = ((MyWorld) getWorld()).damageSlashes;
+            damage = ((SuperWorld) getWorld()).damageSlashes;
         }
     }
     public void addedToWorld(World world) {

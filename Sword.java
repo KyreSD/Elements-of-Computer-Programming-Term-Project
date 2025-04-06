@@ -77,7 +77,7 @@ public class Sword extends Actor
                 scaleImage(getImage(), 200, 200); // Scale it to 100x100 (adjust as needed)
                 animationFrame++;
                 if (animationFrame >= swingImages.length) {
-                    animationFrame = 0; // Reset animation
+                    animationuFrame = 0; // Reset animation
                 }
                 delayCounter = frameDelay;
             } else {
@@ -89,7 +89,7 @@ public class Sword extends Actor
     }**/
     public void updateDamage() {
         if (getWorld() != null) {
-            damage = ((MyWorld) getWorld()).damageSword;
+            damage = ((SuperWorld) getWorld()).damageSword;
         }
     }
     public void addedToWorld(World world) {

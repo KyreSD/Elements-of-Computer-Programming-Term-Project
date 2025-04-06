@@ -1,6 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-public class World2 extends SuperWorld {
+public class World3 extends SuperWorld {
 
     private Placeholder placeholder;
     private Enemy enemy = new Enemy();
@@ -21,7 +21,7 @@ public class World2 extends SuperWorld {
     public int level;
     public int xpThreshold;
     int playerHealth;
-    public World2() {    
+    public World3() {    
     placeholder = new Placeholder("FullSheetBoy.png", 4, 5);
     addObject(placeholder, 300, 200);
     Sword sword = new Sword(6, 1);
@@ -30,7 +30,7 @@ public class World2 extends SuperWorld {
     }    
 
     // Constructor to transition player with health
-    public World2(int xp, int health, int playerX, int playerY) {
+    public World3(int xp, int health, int playerX, int playerY) {
         playerHealth = health;
         Placeholder newPlayer = new Placeholder("FullSheetBoy.png", 4, 5);
         addObject(newPlayer, playerX, playerY);

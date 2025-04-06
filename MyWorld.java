@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MyWorld extends World
+public class MyWorld extends SuperWorld
 {
 
     /**
@@ -18,7 +18,7 @@ public class MyWorld extends World
     private Enemy enemy = new Enemy();
     XpDropped exp;
     //weapon damage variables
-    int damageSword = 1;
+    int damageSword;
     int damageFireball = 1;
     int damageSlashes = 2;
     //weapons news
@@ -35,7 +35,6 @@ public class MyWorld extends World
     int playerHealth;
     public MyWorld(int xp, int health, int playerX, int playerY)
     {    
-        super(600, 400, 1); 
         
         /**placeholder, enemies, bag things**/
         placeholder = new Placeholder("FullSheetBoy.png", 4, 5);
@@ -86,26 +85,8 @@ public class MyWorld extends World
         level = 1;
         xpThreshold = 15;
     }
-    public void levelUp(){
-        if(xp >= xpThreshold){
-            level++;
-            damageSword *= level;
-            damageFireball *= level;
-            damageSlashes *= level;
-            sword.updateDamage();
-            fireball.updateDamage();
-            slashes.updateDamage();
-            System.out.println("Sword Damage: " + damageSword);
-            System.out.println("Fireball Damage: " + damageFireball);
-            System.out.println("Slashes Damage: " + damageSlashes);
-            xpThreshold +=15;
-            System.out.println("New Level: " + level);
-        }
-    }
-    public void addXP(int amount){
-        xp += amount;
-        levelUp();
-    }
+    
+    
     public void act() {
         cooldownDisplaySword.setText("Sword Cooldown: "  + placeholder.attackTimerSword);
         cooldownDisplayFireball.setText("Fireball Cooldown: " + placeholder.attackTimerFireball);

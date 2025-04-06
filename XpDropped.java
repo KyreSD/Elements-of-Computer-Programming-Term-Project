@@ -1,4 +1,4 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Write a description of class xpDropped here.
@@ -22,7 +22,7 @@ public class XpDropped extends Actor
     {
         Placeholder placeholder = (Placeholder)getOneIntersectingObject(Placeholder.class);
         if(placeholder != null){
-            MyWorld world = (MyWorld)getWorld();
+            SuperWorld world = (SuperWorld)getWorld();
             if(world != null){
                 world.addXP(5);
                 world.removeObject(this);

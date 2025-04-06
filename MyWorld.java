@@ -33,9 +33,13 @@ public class MyWorld extends World
     public int level;
     public int xpThreshold;
     int playerHealth;
+    //Keeps track if paused or not
+    private boolean isPaused = false;
     public MyWorld(int xp, int health, int playerX, int playerY)
     {    
         super(600, 400, 1); 
+        
+        
         
         /**placeholder, enemies, bag things**/
         placeholder = new Placeholder("FullSheetBoy.png", 4, 5);
@@ -71,6 +75,8 @@ public class MyWorld extends World
         addObject(damageUISword, getWidth()/6, 30);
         addObject(damageUIFireball, getWidth()/2, 30);
         addObject(damageUISlashes, getWidth()*5/6, 30);
+        /**NPC Addition and Location**/
+        addObject(new NPC(), 400, 300);
         
         /**Level things**/
         levell = new DamageUI("level: 1");
@@ -115,5 +121,31 @@ public class MyWorld extends World
         levell.setText("Level: " + level);
         //showText("Sword Cooldown: " + placeholder.attackTimerSword, 200, 200);
         //showText("Fireball Cooldown: " + placeholder.attackTimerFireball, 200, 220);
+        
+        //if esc is pressed game is paused and pause world opens
+        if (Greenfoot.isKeyDown("escape")) {
+            if (!isPaused) {
+                isPaused = true;
+                freezeGame(true);
+                Greenfoot.setWorld(new PauseMenu(this));
+            }
+        }
     }
+    
+    public void freezeGame(boolean freeze) {
+        if (freeze) {
+            setActOrder();
+        }
+    }
+    
+    public void resumeGame() {
+        isPaused = false;
+        freezeGame(false);
+    }
+    
+    public void makePaused(boolean paused) {
+        this.isPaused = paused;
+    }
+    
+    
 }

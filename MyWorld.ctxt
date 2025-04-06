@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=MyWorld
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ MyWorld\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\n\ Write\ a\ description\ of\ class\ MyWorld\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=xp\ health\ playerX\ playerY
 comment1.target=MyWorld(int,\ int,\ int,\ int)
 comment2.params=
@@ -9,4 +9,10 @@ comment3.params=amount
 comment3.target=void\ addXP(int)
 comment4.params=
 comment4.target=void\ act()
-numComments=5
+comment5.params=freeze
+comment5.target=void\ freezeGame(boolean)
+comment6.params=
+comment6.target=void\ resumeGame()
+comment7.params=paused
+comment7.target=void\ makePaused(boolean)
+numComments=8

@@ -21,7 +21,23 @@ public class XpDropped extends Actor
     public void act()
     {
         Placeholder placeholder = (Placeholder)getOneIntersectingObject(Placeholder.class);
+        Link link = (Link)getOneIntersectingObject(Link.class);
+        RetroSprite retrosprite = (RetroSprite)getOneIntersectingObject(RetroSprite.class);
         if(placeholder != null){
+            MyWorld world = (MyWorld)getWorld();
+            if(world != null){
+                world.addXP(5);
+                world.removeObject(this);
+            }
+        }
+        if(link != null){
+            MyWorld world = (MyWorld)getWorld();
+            if(world != null){
+                world.addXP(5);
+                world.removeObject(this);
+            }
+        }
+        if(retrosprite != null){
             MyWorld world = (MyWorld)getWorld();
             if(world != null){
                 world.addXP(5);

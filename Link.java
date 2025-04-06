@@ -1,14 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
 /**
- * Write a description of class Placeholder here.
+ * Write a description of class Link here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Placeholder extends Actor
+public class Link extends Actor
 {
     /**
-     * Act - do whatever the Placeholder wants to do. This method is called whenever
+     * Act - do whatever the Link wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     //Sprite Sheet Shenanigans
@@ -19,8 +20,8 @@ public class Placeholder extends Actor
     private int frameDelay = 5; // Adjust for speed
     private int delayCount = 0;
     //frameStarts
-    int frameNorth = 16; 
-    int frameSouth = 12; 
+    int frameNorth = 12; 
+    int frameSouth = 0; 
     int frameEast = 4;   
     int frameWest = 8;  
     int rotateInt = 90;  
@@ -28,7 +29,7 @@ public class Placeholder extends Actor
     
     World World2;
     
-    public Placeholder(String sheetPath, int cols, int rows) {
+    public Link(String sheetPath, int cols, int rows) {
         spriteSheet = new GreenfootImage(sheetPath);
         frameWidth = spriteSheet.getWidth() / cols;
         frameHeight = spriteSheet.getHeight() / rows;
@@ -47,8 +48,8 @@ public class Placeholder extends Actor
         while (rotCount == 0){
             frames[0].rotate(0);
             frames[1].rotate(0);
-            frames[2].rotate(180);
-            frames[3].rotate(90);
+            frames[2].rotate(0);
+            frames[3].rotate(0);
             frames[4].rotate(0);
             frames[5].rotate(0);
             frames[6].rotate(0);
@@ -57,14 +58,10 @@ public class Placeholder extends Actor
             frames[9].rotate(180);
             frames[10].rotate(180);
             frames[11].rotate(180);
-            frames[12].rotate(-90);
-            frames[13].rotate(-90);
-            frames[14].rotate(-90);
-            frames[15].rotate(-90);
-            frames[16].rotate(90);
-            frames[17].rotate(90);
-            frames[18].rotate(90);
-            frames[19].rotate(90);
+            frames[12].rotate(270);
+            frames[13].rotate(270);
+            frames[14].rotate(270);
+            frames[15].rotate(270);
             rotCount += 1;
         }
 
@@ -147,24 +144,24 @@ public class Placeholder extends Actor
         }
         attacking();
         if(playerLocationX()<2){
-            World2 w = new World2(CharacterSelection.getSelectedCharacter(), 5, playerHealth, getWorld().getWidth()-getX(),getY());
+            World2 w = new World2(CharacterSelection.getSelectedCharacter(),5, playerHealth, getWorld().getWidth()-getX(),getY());
             Greenfoot.setWorld(w);
         }
         if(playerLocationX()>598){
-            MyWorld m = new MyWorld(CharacterSelection.getSelectedCharacter(),5, playerHealth, getWorld().getWidth()-getX(),getY());
+            MyWorld m = new MyWorld(CharacterSelection.getSelectedCharacter(), 5, playerHealth, getWorld().getWidth()-getX(),getY());
             Greenfoot.setWorld(m);
         }
         // selecting a character
         //CharacterSelection.pickCharacter();
         //if(CharacterSelection.SELECT == 0){
-           // setImage(frames[0]);
+          //  setImage(frames[0]);
         //}else{
-            //setImage("FullSheetBoyGrey.png");
+          //  setImage("FullSheetBoyGrey.png");
         //}
         
         //if(Greenfoot.isKeyDown("enter")&&CharacterSelection.SELECT==0){
-           // Greenfoot.setWorld(new MyWorld(1, 1000000, 300, 200));
-        //}
+          //  Greenfoot.setWorld(new MyWorld(1, 1000000, 300, 200));
+        //2}
     }
     public int playerLocationX(){
         return getX();
@@ -231,16 +228,16 @@ public class Placeholder extends Actor
     
     //Animate voids
     private void animateIdleNorth() {
-        setImage(frames[3]);
+        setImage(frames[12]);
     }
     private void animateIdleSouth() {
         setImage(frames[0]);
     }
     private void animateIdleEast() {
-        setImage(frames[1]);
+        setImage(frames[4]);
     }
     private void animateIdleWest() {
-        setImage(frames[2]);
+        setImage(frames[8]);
     }
     private void animate() {
         delayCount++;
@@ -256,8 +253,8 @@ public class Placeholder extends Actor
         if (delayCount >= frameDelay) {
             delayCount = 0;
             frameNorth = (frameNorth + 1) % frames.length;
-            if (frameNorth < 16){
-                frameNorth = 16;
+            if (frameNorth < 12){
+                frameNorth = 12;
             }
         }
     }
@@ -267,8 +264,8 @@ public class Placeholder extends Actor
         if (delayCount >= frameDelay) {
             delayCount = 0;
             frameSouth = (frameSouth + 1) % frames.length;
-            if (frameSouth < 12 || frameSouth == 16){
-                frameSouth = 12;
+            if (frameSouth > 3){
+                frameSouth = 0;
             }
         }
     }
@@ -278,7 +275,7 @@ public class Placeholder extends Actor
         if (delayCount >= frameDelay) {
             delayCount = 0;
             frameEast = (frameEast + 1) % frames.length;
-            if (frameEast < 4 || frameEast == 8){
+            if (frameEast > 7 || frameEast < 4){
                 frameEast = 4;
             }
         }
@@ -287,10 +284,9 @@ public class Placeholder extends Actor
         setImage(frames[frameWest]);
         delayCount++;
         if (delayCount >= frameDelay) {
-            
             delayCount = 0;
             frameWest = (frameWest + 1) % frames.length;
-            if (frameWest < 8 || frameWest == 12){
+            if (frameWest > 11 || frameWest < 8){
                 frameWest = 8;
             }
         }
@@ -299,3 +295,6 @@ public class Placeholder extends Actor
         playerHealth = health;
     }
 }   
+
+
+

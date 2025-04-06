@@ -74,6 +74,24 @@ public class Enemy extends Actor
                 placeholder = null;
             }
         }
+        Link link = (Link)getOneIntersectingObject(Link.class);
+        if (link != null){
+            if (link.playerHealth > 0){
+                link.playerHealth -= 1;         
+            } else {
+                getWorld().removeObject(link);
+                link = null;
+            }
+        }
+        RetroSprite retrosprite = (RetroSprite)getOneIntersectingObject(RetroSprite.class);
+        if (retrosprite != null){
+            if (retrosprite.playerHealth > 0){
+                retrosprite.playerHealth -= 1;         
+            } else {
+                getWorld().removeObject(retrosprite);
+                retrosprite = null;
+            }
+        }
         trackPlayer();
         checkHealth();
         //animate();
@@ -97,6 +115,58 @@ public class Enemy extends Actor
                         animateWalkEast();
                     } else {
                         if (placeholder.getY() <= getY()){
+                            animateWalkNorth();
+                        } else {
+                            animateWalkSouth();
+                        }
+                    }
+                }
+            }
+        }
+        if (!getWorld().getObjects(Link.class).isEmpty()){
+            for (Link link : getWorld().getObjects(Link.class)){
+                if (link.getX() < getX()){
+                    if (Math.abs(link.getX() - getX()) > Math.abs(getY() - link.getY())){
+                        animateWalkWest();
+                    } else {
+                        if (link.getY() <= getY()){
+                            animateWalkNorth();
+                        } else {
+                            animateWalkSouth();
+                        }
+                    }
+                }
+                if (link.getX() >= getX()){
+                    if (Math.abs(link.getX() - getX()) > Math.abs(getY() - link.getY())){
+                        animateWalkEast();
+                    } else {
+                        if (link.getY() <= getY()){
+                            animateWalkNorth();
+                        } else {
+                            animateWalkSouth();
+                        }
+                    }
+                }
+            }
+        }
+        if (!getWorld().getObjects(RetroSprite.class).isEmpty()){
+            for (RetroSprite retro : getWorld().getObjects(RetroSprite.class)){
+                if (retro.getX() < getX()){
+                    if (Math.abs(retro.getX() - getX()) > Math.abs(getY() - retro.getY())){
+                        animateWalkWest();
+                    } else {
+                        if (retro.getY() <= getY()){
+                            animateWalkNorth();
+                        } else {
+                            animateWalkSouth();
+                        }
+                    }
+                }
+                if (retro.getX() >= getX()){
+                    if (Math.abs(retro.getX() - getX()) > Math.abs(getY() - retro.getY())){
+                        animateWalkEast();
+                    } else {
+                        if (retro.getY() <= getY()){
                             animateWalkNorth();
                         } else {
                             animateWalkSouth();

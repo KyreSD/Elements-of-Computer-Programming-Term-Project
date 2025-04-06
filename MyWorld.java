@@ -14,6 +14,7 @@ public class MyWorld extends SuperWorld
      * 
      */
     
+    
     private Placeholder placeholder;
     private Enemy enemy = new Enemy();
     XpDropped exp;
@@ -58,6 +59,8 @@ public class MyWorld extends SuperWorld
             addObject(new EnemyTracking(), 400, 100 + (x*100));
         }*/
         addObject(bag, 400, 200);
+        //portal
+        //addObject(new Portal(), 100, 350);
         
         /**cooldown and damage UIs**/
         cooldownDisplaySword = new CooldownDisplay("Sword Cooldown: 0");

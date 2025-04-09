@@ -148,7 +148,7 @@ public class RetroSprite extends Actor
         }
         attacking();
         if(playerLocationX()<2){
-            World2 w = new World2(CharacterSelection.getSelectedCharacter(),5, playerHealth, getWorld().getWidth()-getX(),getY());
+            World2 w = new World2(5, playerHealth, getWorld().getWidth()-getX(),getY());
             Greenfoot.setWorld(w);
         }
         if(playerLocationX()>598){

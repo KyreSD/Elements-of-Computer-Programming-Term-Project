@@ -86,10 +86,10 @@ public class Enemy extends Actor
         RetroSprite retrosprite = (RetroSprite)getOneIntersectingObject(RetroSprite.class);
         if (retrosprite != null){
             if (retrosprite.playerHealth > 0){
-                retrosprite.playerHealth -= 1;         
+                placeholder.playerHealth -= 1;         
             } else {
-                getWorld().removeObject(retrosprite);
-                retrosprite = null;
+                getWorld().removeObject(placeholder);
+                placeholder = null;
             }
         }
         trackPlayer();

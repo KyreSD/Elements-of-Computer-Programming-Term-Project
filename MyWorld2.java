@@ -13,7 +13,7 @@ public class MyWorld2 extends World
      * Constructor for objects of class MyWorld2.
      * 
      */
-    private Placeholder2 player;
+
     private int xp = 0, level = 1, xpThreshold = 15;
     private int damageSword = 1, damageFireball = 1, damageSlashes = 2;
     private CooldownDisplay cooldownDisplaySword, cooldownDisplayFireball;
@@ -21,7 +21,7 @@ public class MyWorld2 extends World
 
     public MyWorld2(int xp, int health, int playerX, int playerY) {    
         super(600, 400, 1);
-        player = new Placeholder2("FullSheetBoy.png", 4, 5);
+        Placeholder player = new Placeholder("FullSheetBoy.png", 4, 5);
         addObject(player, playerX, playerY);
         initializeUI();
         spawnEnemies(3);

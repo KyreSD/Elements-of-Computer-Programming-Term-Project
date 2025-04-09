@@ -20,7 +20,7 @@ public class Ganon extends Actor
     }
 
     private void followPlayer() {
-        Placeholder2 player = (Placeholder2) getWorld().getObjects(Placeholder2.class).get(0);
+        Placeholder player = (Placeholder) getWorld().getObjects(Placeholder.class).get(0);
         turnTowards(player.getX(), player.getY());
         move(speed);
     }

@@ -22,15 +22,20 @@ public class World2 extends SuperWorld {
     public int xpThreshold;
     int playerHealth;
     public World2() {    
-    placeholder = new Placeholder("FullSheetBoy.png", 4, 5);
-    addObject(placeholder, 300, 200);
-    Sword sword = new Sword(6, 1);
-    Fireball fireball = new Fireball();
-    Slashes slashes = new Slashes();
+
+        placeholder = new Placeholder("FullSheetBoy.png", 4, 5);
+        addObject(placeholder, 300, 200);
+        Sword sword = new Sword(6, 1);
+        Fireball fireball = new Fireball();
+        Slashes slashes = new Slashes();
     }    
 
     // Constructor to transition player with health
     public World2(int xp, int health, int playerX, int playerY) {
+        GreenfootImage background = new GreenfootImage("DarkGrass2.png");
+        background.scale(600, 400);
+        setBackground(background);
+        
         playerHealth = health;
         Placeholder newPlayer = new Placeholder("FullSheetBoy.png", 4, 5);
         addObject(newPlayer, playerX, playerY);

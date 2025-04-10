@@ -38,8 +38,9 @@ public class MyWorld extends SuperWorld
     private boolean isPaused = false;
     public MyWorld(int xp, int health, int playerX, int playerY)
     {    
-        
-        
+        GreenfootImage background = new GreenfootImage("MapGrass.png");
+        background.scale(600, 400);
+        setBackground(background);
         
         /**placeholder, enemies, bag things**/
         placeholder = new Placeholder("FullSheetBoy.png", 4, 5);

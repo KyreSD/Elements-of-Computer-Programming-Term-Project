@@ -78,16 +78,16 @@ public class MyWorld2 extends World
         xpThreshold += 15;
     }
     
-    public void act() {
-        updateUI();
-    }
+  //  public void act() {
+//        updateUI();
+    //}
     
-    private void updateUI() {
-        cooldownDisplaySword.setText("Sword Cooldown: " + player.getAttackTimerSword());
-        cooldownDisplayFireball.setText("Fireball Cooldown: " + player.getAttackTimerFireball());
-        damageUISword.setText("Sword damage: " + damageSword);
-        damageUIFireball.setText("Fireball damage: " + damageFireball);
-        damageUISlashes.setText("Slashes damage: " + damageSlashes);
-        levelUI.setText("Level: " + level);
+    //private void updateUI() {
+       // cooldownDisplaySword.setText("Sword Cooldown: " + player.getAttackTimerSword());
+        //cooldownDisplayFireball.setText("Fireball Cooldown: " + player.getAttackTimerFireball());
+        //damageUISword.setText("Sword damage: " + damageSword);
+        //damageUIFireball.setText("Fireball damage: " + damageFireball);
+        //damageUISlashes.setText("Slashes damage: " + damageSlashes);
+        //levelUI.setText("Level: " + level);
     }
-}
+

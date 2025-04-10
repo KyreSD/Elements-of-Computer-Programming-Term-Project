@@ -31,6 +31,10 @@ public class World3 extends SuperWorld {
 
     // Constructor to transition player with health
     public World3(int xp, int health, int playerX, int playerY) {
+        GreenfootImage background = new GreenfootImage("DarkGrass3.png");
+        background.scale(600, 400);
+        setBackground(background);
+        
         playerHealth = health;
         Placeholder newPlayer = new Placeholder("FullSheetBoy.png", 4, 5);
         addObject(newPlayer, playerX, playerY);

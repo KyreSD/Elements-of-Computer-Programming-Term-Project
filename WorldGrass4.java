@@ -22,6 +22,9 @@ public class WorldGrass4 extends SuperWorld
     if(player.getX() > getWidth()-2){
         WorldGrass5 next = new WorldGrass5(player, getWidth()-player.getX()+1,player.getY());
         Greenfoot.setWorld(next);
+    }else if(player.getX() < 2){
+        Encoder next = new Encoder(player, getWidth()-player.getX()-2,player.getY());
+        Greenfoot.setWorld(next);
     }else if(player.getY() > getHeight()-2){
     WorldGrass1 next = new WorldGrass1(player, player.getX(),getHeight()-player.getY()+2);
     Greenfoot.setWorld(next);

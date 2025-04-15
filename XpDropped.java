@@ -1,7 +1,7 @@
- import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class xpDropped here.
+ * XP object dropped when an enemy is defeated.
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -18,13 +18,14 @@ public class XpDropped extends Actor
         getImage().scale(30,30);
         System.out.println("XP has dropped");
     }
+    
     public void act()
     {
-        Placeholder placeholder = (Placeholder)getOneIntersectingObject(Placeholder.class);
-        if(placeholder != null){
+        PlayerOne player = (PlayerOne)getOneIntersectingObject(PlayerOne.class);
+        if(player != null){
             SuperWorld world = (SuperWorld)getWorld();
             if(world != null){
-                world.addXP(5);
+                //world.addXP(5);
                 world.removeObject(this);
             }
         }

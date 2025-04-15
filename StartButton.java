@@ -7,16 +7,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class StartButton extends Actor
-{   
-    
-    
+{
     /**
      * Act - do whatever the StartButton wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
     {
-        GreenfootImage theStart = new GreenfootImage("startGrey.png");
+        
         if(TitleScreen.SELECT == 0){
             setImage("start.png");
         }
@@ -25,7 +23,8 @@ public class StartButton extends Actor
         }
         if(Greenfoot.isKeyDown("enter")&&TitleScreen.SELECT==0)
         {
-            Greenfoot.setWorld(new MyWorld(1, 1000, 300, 200));
+            CharacterSelection.SELECT_CH = 0;
+            Greenfoot.setWorld(new WorldMain(new PlayerOne(), 300, 200));
         }
         }
-    }
+}

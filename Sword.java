@@ -6,123 +6,139 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Sword extends Actor
+public class Sword extends Weapon
 {
+    private GreenfootImage spriteSheet;
+    private GreenfootImage[] frames;
+    private GreenfootImage[] scaledFrames;
+    private int frameWidth, frameHeight;
+    private int animationFrame;
+    private int frameDelay; // Adjust this for animation speed
+    private int delayCounter;
+    int damage;
+    int damageCheck;
+    private boolean isAnimating;
+    private int cols;
+    private int rows;
+    private PlayerOne player;  // Reference to the player
+    private int offsetX, offsetY;  // Offset from player position
+    public Sword(int cols, int rows) {
+        this.cols = cols;
+        this.rows = rows;
+        damage = 20;
+        level = 0;
+        animationFrame = 0;
+        frameDelay = 2; // Slightly increased for smoother animation
+        delayCounter = 0;
+        damageCheck = 0;
+        isAnimating = true;  // Start animating immediately when created
+        
+        // Load and process sprite sheet
+        loadSpriteSheet();
+        
+        // Find player reference (will be set in the first act call)
+        player = null;
+    
+    }
+    
     /**
      * Act - do whatever the Sword wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private GreenfootImage spriteSheet;
-    private GreenfootImage[] frames;
-    private int frameWidth, frameHeight;
-    private int animationFrame = 0;
-    private int frameDelay = 2; // Adjust this for animation speed
-    private int delayCounter = 0;
-    int damage;
-    int damageCheck = 0;
-    private boolean isAnimating = false;
-    public Sword(int cols, int rows) {
+    public void act() {
+        if (player == null && getWorld() != null) {
+            // Try to find player if not already set
+            java.util.List<PlayerOne> players = getWorld().getObjects(PlayerOne.class);
+            if (!players.isEmpty()) {
+                player = players.get(0);
+            }
+        }
+        swingSword();
+        
+        if (player != null) {
+            updatePosition();
+        }
+    }
+    
+    /**
+     * Update the sword's position based on the player's position and direction
+     */
+    private void updatePosition() {
+        // Calculate position based on player's direction
+        if (player.isFacingNorth) {
+            setLocation(player.getX(), player.getY() - 60);
+            setRotation(270);
+        } else if (player.isFacingSouth) {
+            setLocation(player.getX(), player.getY() + 60);
+            setRotation(90);
+        } else if (player.isFacingWest) {
+            setLocation(player.getX() - 60, player.getY());
+            setRotation(180);
+        } else if (player.isFacingEast) {
+            setLocation(player.getX() + 60, player.getY());
+            setRotation(0);
+        }
+    }
+    
+    private void loadSpriteSheet() {
         spriteSheet = new GreenfootImage("spriteSheetSword.png");
         frameWidth = spriteSheet.getWidth() / cols;
         frameHeight = spriteSheet.getHeight() / rows;
+        
         frames = new GreenfootImage[cols * rows];
-        // Extract frames
+        scaledFrames = new GreenfootImage[cols * rows];
+        
+        // Extract and pre-scale frames
         int index = 0;
         for (int y = 0; y < rows; y++) {
             for (int x = 0; x < cols; x++) {
                 frames[index] = new GreenfootImage(frameWidth, frameHeight);
                 frames[index].drawImage(spriteSheet, -x * frameWidth, -y * frameHeight);
+                
+                // Create pre-scaled versions (100x100)
+                scaledFrames[index] = new GreenfootImage(frames[index]);
+                scaledFrames[index].scale(100, 100);
+                
                 index++;
             }
         }
+        // Set initial frame
+        setImage(scaledFrames[0]);
     }
-    public void act()
-    {
-        System.out.println("Sword damage is " + damage);
-        Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
-        EnemyTracking enemyTrack = (EnemyTracking)getOneIntersectingObject(EnemyTracking.class);
-        Punchingbag bag = (Punchingbag)getOneIntersectingObject(Punchingbag.class);
-        if (enemy != null){    
-            enemy.health = enemy.health - damage;
-            if (enemyTrack != null){
-                enemyTrack.move(-5);
-                enemyTrack.health -= damage;
-                if(enemyTrack.health <= 0){
-                }
-            }
-            damageCheck += damage;
-            if(enemy.health <= 0){
-                getWorld().removeObject(enemy);
-            }
-        }
-        if (bag != null){    
-            damageCheck += damage;
-            System.out.println(damageCheck);
-        }
-        handleAnimation();
-    }
-    /**private void handleAnimation() {
-        if (Greenfoot.isKeyDown("right")) {
-            if (Greenfoot.isKeyDown("w")){
-                setRotation(270);
-            } else if (Greenfoot.isKeyDown("a")){
-                setRotation(180);
-            } else if (Greenfoot.isKeyDown("s")){
-                setRotation(90);
-            } else if (Greenfoot.isKeyDown("d")){
-                setRotation(0);
-            } else setRotation(0);
-            if (delayCounter == 0) {
-                setImage(swingImages[animationFrame]); // Set image
-                scaleImage(getImage(), 200, 200); // Scale it to 100x100 (adjust as needed)
-                animationFrame++;
-                if (animationFrame >= swingImages.length) {
-                    animationuFrame = 0; // Reset animation
-                }
-                delayCounter = frameDelay;
-            } else {
-                delayCounter--; // Countdown
-            }
-        } else {
-            animationFrame = 0; // Reset animation when not swinging
-        }
-    }**/
-    public void updateDamage() {
-        if (getWorld() != null) {
-            damage = ((SuperWorld) getWorld()).damageSword;
-        }
-    }
+    
     public void addedToWorld(World world) {
-        updateDamage();
+        // Find the player when added to the world
+        player = (PlayerOne) getWorld().getObjects(PlayerOne.class).get(0);
+        
+        // Initialize position relative to player
+        updatePosition();
     }
-    private void handleAnimation() {
+    
+    public void swingSword() {
         if (!isAnimating && Greenfoot.isKeyDown("right")) {
             isAnimating = true;
             animationFrame = 0;
             delayCounter = frameDelay;
         }
+        
         if (isAnimating) {
-            if (Greenfoot.isKeyDown("w")){
-                setRotation(270);
-            } else if (Greenfoot.isKeyDown("a")){
-                setRotation(180);
-            } else if (Greenfoot.isKeyDown("s")){
-                setRotation(90);
-            } else if (Greenfoot.isKeyDown("d")){
-                setRotation(0);
-            } else setRotation(0);
             if (delayCounter == 0) {
-                frames[animationFrame].scale(100,100);
-                setImage(frames[animationFrame]);
+                // Use pre-scaled frames to avoid scaling issues
+                setImage(scaledFrames[animationFrame]);
                 animationFrame++;
-                if (animationFrame >= frames.length) {
+                
+                if (animationFrame >= scaledFrames.length) {
                     isAnimating = false;
                     animationFrame = 0;
                 }
+                
                 delayCounter = frameDelay;
             } else {
                 delayCounter--;
             }
         }
-    }  
+    }
+    public void setDamage(int level) {
+        damage = 20 + (level * 5);
+    }
 }

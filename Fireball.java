@@ -1,101 +1,123 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Fireball here.
+ * Write a description of class FireBall here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Fireball extends Actor
+public class FireBall extends Weapon
 {
-    /**
-     * Act - do whatever the fireball wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    private Slashes slashes;
     int damage;
     int damageCheck = 0;
     boolean canTurn = true;
-    private void spawnSlashes(int x, int y) {
-        if (slashes == null) {
-            int slashCount = 0;
-            slashes = new Slashes();
-            getWorld().addObject(slashes, x, y);
-        }
-    }
-    public Fireball(){
+    private int speed = 4; // Increased speed for better gameplay
+    private PlayerOne player;
+    
+    // Explosion animation variables
+    private boolean exploding = false;
+    private int explosionFrame = 0;
+    private int explosionDelay = 3; // Controls animation speed
+    private int explosionCounter = 0;
+    private static final int TOTAL_EXPLOSION_FRAMES = 20;
+    
+    public FireBall() {
+        damage = 30;
+        level = 0;
         setImage("fireball.png");
         scaleImage(getImage(), 50, 50);
-        if (canTurn == true){
-            if (Greenfoot.isKeyDown("w")) {
-                setRotation(-90);
-                canTurn = false;
-            } if (Greenfoot.isKeyDown("a")) {
-                setRotation(-180);
-                canTurn = false;
-            } if (Greenfoot.isKeyDown("s")) {
+    }
+    
+    public void addedToWorld(World world) {
+        // Find the player when added to the world
+        player = (PlayerOne) getWorld().getObjects(PlayerOne.class).get(0);
+        
+        // Set initial direction based on player's facing
+        if (player != null) {
+            if (player.isFacingNorth) {
+                setRotation(270);
+            } else if (player.isFacingSouth) {
                 setRotation(90);
-                canTurn = false;
-            } if (Greenfoot.isKeyDown("d")) {
+            } else if (player.isFacingWest) {
+                setRotation(180);
+            } else { // Default East
                 setRotation(0);
-                canTurn = false;
             }
-            canTurn = false;
         }
     }
-    public int fireballLocationX(){
+    
+    public int fireballLocationX() {
         return getX();
     }
-    public int fireballLocationY(){
+    
+    public int fireballLocationY() {
         return getY();
     }
-    public void updateDamage() {
-        if (getWorld() != null) {
-            damage = ((SuperWorld) getWorld()).damageFireball;
+ 
+    public void act() {
+        if (exploding) {
+            playExplosionAnimation();
+        } else {
+            move(speed);
+            
+            // Check if at edge of world
+            if (isAtEdge()) {
+                startExplosion();
+                return;
+            }
+            
+            // Check for enemy hits
+            Actor enemy = getOneIntersectingObject(null); // Replace null with your enemy class
+            if (enemy != null && !(enemy instanceof PlayerOne) && !(enemy instanceof Weapon)) {
+                // Deal damage to enemy if you have an Enemy class
+                // For example: ((Enemy)enemy).takeDamage(damage);
+                
+                startExplosion();
+            }
         }
     }
-    public void addedToWorld(World world) {
-        updateDamage();
+    
+    /**
+     * Starts the explosion animation process
+     */
+    private void startExplosion() {
+        exploding = true;
+        explosionFrame = 0;
+        explosionCounter = 0;
     }
-    public void act()
-    {
-        System.out.println("Fireball damage is " + damage);
-        Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
-        Punchingbag bag = (Punchingbag)getOneIntersectingObject(Punchingbag.class);
-        if (enemy != null){
-            enemy.health = enemy.health - damage;
-            if(enemy.health >= 0){
-                spawnSlashes(getX(),getY());
+    
+    /**
+     * Plays through the explosion animation frames
+     */
+    private void playExplosionAnimation() {
+        explosionCounter++;
+        
+        if (explosionCounter >= explosionDelay) {
+            explosionCounter = 0;
+            
+            // Set the explosion frame image
+            setExplosionImage(explosionFrame);
+            explosionFrame++;
+            
+            // Remove object after animation completes
+            if (explosionFrame >= TOTAL_EXPLOSION_FRAMES) {
                 getWorld().removeObject(this);
-                if(enemy.health <= 0){
-                    getWorld().removeObject(enemy);
-                }
             }
-        }
-        if (bag != null){    
-            damageCheck += damage;
-            spawnSlashes(getX(),getY());
-            getWorld().removeObject(this);
-            System.out.println(damageCheck);
-        }
-        move(2);
-        if (canTurn == true){
-            if (Greenfoot.isKeyDown("w")) {
-                setRotation(-90);
-                canTurn = false;
-            } if (Greenfoot.isKeyDown("a")) {
-                setRotation(-180);
-                canTurn = false;
-            } if (Greenfoot.isKeyDown("s")) {
-                setRotation(90);
-                canTurn = false;
-            } if (Greenfoot.isKeyDown("d")) {
-                setRotation(0);
-                canTurn = false;
-            }
-            canTurn = false;
         }
     }
+    
+    /**
+     * Sets the appropriate explosion image based on the current frame
+     */
+    private void setExplosionImage(int frame) {
+        String imageName = "SlashesFile" + (frame + 1) + ".png";
+        setImage(imageName);
+        
+        // Scale image as needed for the explosion effect
+        // You might want to make explosions larger than the fireball
+        scaleImage(getImage(), 70, 70);
+    }
+    
     private void scaleImage(GreenfootImage img, int width, int height) {
         img.scale(width, height);
     }

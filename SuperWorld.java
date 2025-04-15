@@ -1,59 +1,36 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class SuperWorld here.
+ * Write a description of class MyWorld here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
 public class SuperWorld extends World
 {
-
-    /**
-     * Constructor for objects of class SuperWorld.
-     * 
-     */
-    private Placeholder placeholder;
-    private Enemy enemy = new Enemy();
-    XpDropped exp;
-    //weapon damage variables
-    int damageSword;
-    int damageFireball = 1;
-    int damageSlashes = 2;
-    //weapons news
-    Sword sword = new Sword(6, 1);
-    Fireball fireball = new Fireball();
-    Slashes slashes = new Slashes();
-    //CooldownDisplays
-    CooldownDisplay cooldownDisplaySword, cooldownDisplayFireball;
-    DamageUI damageUISword, damageUIFireball, damageUISlashes, levell;
-    //xps
     public int xp;
     public int level;
     public int xpThreshold;
-    int playerHealth;
+    private boolean isPaused = false;
+    PlayerOne player;
+    /**
+     * Constructor for objects of class MyWorld.
+     * 
+     */
     public SuperWorld()
     {    
-        super(600, 400, 1); 
+        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        super(800, 600, 1); 
+        //weapon damage variables
+        //weapons news
+        Sword sword = new Sword(6, 1);
+        //CooldownDisplays
+        //Keeps track if paused or not
+
     }
-    public void addXP(int amount){
-        xp += amount;
-        levelUp();
-    }
-    public void levelUp(){
-        if(xp >= xpThreshold){
-            level++;
-            damageSword *= level;
-            damageFireball *= level;
-            damageSlashes *= level;
-            sword.updateDamage();
-            fireball.updateDamage();
-            slashes.updateDamage();
-            System.out.println("Sword Damage: " + damageSword);
-            System.out.println("Fireball Damage: " + damageFireball);
-            System.out.println("Slashes Damage: " + damageSlashes);
-            xpThreshold +=15;
-            System.out.println("New Level: " + level);
-        }
+    
+    public void checkCombat(){
+        showText("Sword Cooldown:" + PlayerOne.attackTimerSword,100, 100);
+        showText("Fireball Cooldown:" + PlayerOne.attackTimerFireball, 300, 100);
     }
 }

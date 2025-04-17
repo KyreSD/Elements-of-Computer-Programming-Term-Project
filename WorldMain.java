@@ -38,6 +38,6 @@ public class WorldMain extends SuperWorld
     }else if(player.getY() > getHeight()-2){
         Dungeon1 next = new Dungeon1(player, player.getX(),getHeight()-player.getY()+2);
         Greenfoot.setWorld(next);
-    }
+    }    
     }  
 }

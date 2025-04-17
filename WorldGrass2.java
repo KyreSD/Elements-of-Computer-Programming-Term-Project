@@ -17,6 +17,11 @@ public class WorldGrass2 extends SuperWorld
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         this.player = player;
         addObject(player, x, y);
+        Enemy enemy = new Enemy();
+        Enemy enemy2 = new Enemy();
+        Enemy enemy3 = new Enemy();
+        addObject(enemy, 400, 50);
+        addObject(enemy2, 600, 450);
     }
     public void act(){
         if(player.getX() > getWidth()-2){

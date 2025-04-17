@@ -12,11 +12,17 @@ public class BossRoom extends SuperWorld
      * Constructor for objects of class World2.
      * 
      */
+    PlayerOne player;
+    EvilRasamny rasamny;
     public BossRoom(PlayerOne player, int x, int y)
     {   
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         this.player = player;
         addObject(player, x, y);
+        addObject(player, 300, 200);
+        
+        rasamny = new EvilRasamny();
+        addObject(rasamny, 50, 300);
     }
     public void act(){
         if(player.getX() > getWidth()-2){

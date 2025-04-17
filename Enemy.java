@@ -37,7 +37,7 @@ public class Enemy extends Entity
     private int Y;
     
     // Combat properties
-    private int damageDelay; // Prevents taking damage too rapidly
+    public int damageDelay; // Prevents taking damage too rapidly
     private static final int DAMAGE_COOLDOWN = 10; // Frames between damage
     private EnemyHealthBar healthBar = null;
     
@@ -174,7 +174,7 @@ public class Enemy extends Entity
     /**
      * Handle combat interactions with the player, sword, and fireball
      */
-    private void checkCombat() {
+    public void checkCombat() {
         if (damageDelay <= 0) {
             // Check for sword damage
             Sword sword = (Sword)getOneIntersectingObject(Sword.class);
@@ -293,7 +293,7 @@ public class Enemy extends Entity
                 
                 // Create scaled frames for better appearance
                 scaledFrames[index] = new GreenfootImage(frames[index]);
-                scaledFrames[index].scale(250, 250);
+                scaledFrames[index].scale(350, 350);
                 
                 index++;
             }

@@ -13,12 +13,14 @@ public class RestartButton extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public RestartButton(){
-        GreenfootImage background = new GreenfootImage("RestartButton.png");
-        background.scale(130, 130);
-        setImage(background);
+        GreenfootImage restart = new GreenfootImage("RestartButton.png");
+        restart.scale(130, 130);
+        setImage(restart);
     }
     public void act()
     {
-        // Add your action code here.
+        if(Greenfoot.mouseClicked(this)){
+            Greenfoot.setWorld(new TitleScreen());
+        }
     }
 }

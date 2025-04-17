@@ -183,6 +183,9 @@ public class PlayerOne extends Entity
             invincibilityCount--;
         }
         
+        if (health <=0){
+            Greenfoot.setWorld(new GameOver());
+        }
         updateAnimation();
         checkCollisions(); // Add a new method to check for enemy collisions
     }

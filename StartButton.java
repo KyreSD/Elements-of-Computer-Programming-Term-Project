@@ -34,9 +34,11 @@ public class StartButton extends Actor
      * Update button appearance based on selection state
      */
     private void updateImage() {
-        GreenfootImage image = new GreenfootImage("Start Game", 24, 
-                                isSelected ? Color.YELLOW : Color.WHITE, 
-                                new Color(0, 0, 0, 0));
-        setImage(image);
+        if(isSelected){
+            GreenfootImage image = new GreenfootImage("start.png");
+            setImage(image);
+        }else{
+            setImage("startGrey.png");
+        }
     }
 }

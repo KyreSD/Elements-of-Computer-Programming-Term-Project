@@ -85,7 +85,7 @@ public class PlayerUI extends Actor
         currentImage.drawRect(0, 0, UI_WIDTH - 1, UI_HEIGHT - 1);
         
         // Draw XP bar
-        int xpNeeded = 100 + player.getLevel() * 50;
+        int xpNeeded = 100;
         int xpPercentage = player.getxp() * 100 / xpNeeded;
         drawBar(currentImage, PADDING, PADDING + 10, UI_WIDTH - PADDING * 2, 4, xpPercentage, XP_COLOR);
         

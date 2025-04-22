@@ -10,6 +10,9 @@ public class SuperWorld extends World
     private PlayerUI playerUI;
     private PlayerHealthBar healthBar;
     private boolean isPaused = false;
+    private String currentMessage = "";
+    private int messageTimer = 0;
+    private static final int MESSAGE_DURATION = 300;
     
     /**
      * Constructor for objects of class SuperWorld with player position.
@@ -44,15 +47,25 @@ public class SuperWorld extends World
     public void act() {
         if (!isPaused) {
             checkLevelProgression();
+            
+            // Update message timer
+            if (messageTimer > 0) {
+                messageTimer--;
+                if (messageTimer == 0) {
+                    // Clear the message when timer reaches zero
+                    showText("", getWidth()/2, getHeight() - 50);
+                    currentMessage = "";
+                }
             }
         }
+    }
     
     /**
      * Check if player has enough XP to level up
      */
     private void checkLevelProgression() {
-        // XP required for next level increases with each level
-        int xpNeeded = 100 + player.getLevel() * 50;
+        // Fixed XP requirement of 100 for each level
+        int xpNeeded = 100;
         
         // Check if player can level up
         if (player.getxp() >= xpNeeded) {
@@ -67,9 +80,8 @@ public class SuperWorld extends World
         // Increase player level
         player.level++;
         
-        // Carry over remaining XP
-        int xpNeeded = 100 + (player.level - 1) * 50;
-        player.xp -= xpNeeded;
+        // Subtract the fixed XP requirement (100)
+        player.xp -= 100;
         
         // Increase max health
         player.maxHealth += 25;
@@ -80,11 +92,12 @@ public class SuperWorld extends World
     }
     
     /**
-     * Display a temporary message on screen
+     * Display a temporary message on screen for 5 seconds
      */
     public void showMessage(String message) {
+        currentMessage = message;
+        messageTimer = MESSAGE_DURATION;
         showText(message, getWidth()/2, getHeight() - 50);
-        // In a more complete implementation, you would clear this message after a delay
     }
     
     /**

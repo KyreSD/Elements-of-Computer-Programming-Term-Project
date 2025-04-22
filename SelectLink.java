@@ -14,7 +14,7 @@ public class SelectLink extends Actor
      */
     public void act()
     {
-        CharacterSelection.pickCharacter();
+        // Removed the call to undefined method CharacterSelection.pickCharacter()
         if(CharacterSelection.SELECT_CH==1){
             setImage("linkSpriteSingle.png");
         }else{

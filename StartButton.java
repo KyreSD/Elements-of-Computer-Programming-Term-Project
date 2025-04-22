@@ -1,30 +1,42 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class StartButton here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Button to start the game from the title screen.
  */
 public class StartButton extends Actor
 {
+    private boolean isSelected = true;
+    
+    public StartButton() {
+        updateImage();
+    }
+    
     /**
-     * Act - do whatever the StartButton wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Act method - handle selection and clicks
      */
-    public void act()
+    public void act() 
     {
+        // Update selection based on title screen selection
+        isSelected = (TitleScreen.SELECT == 0);
+        updateImage();
         
-        if(TitleScreen.SELECT == 0){
-            setImage("start.png");
+        // Handle click or enter key to start game
+        if (isSelected && (Greenfoot.isKeyDown("enter"))) {
+            // Reset any existing player when starting fresh from title screen
+            CharacterSelection.setExistingPlayer(null);
+            
+            // Go to character selection
+            Greenfoot.setWorld(new CharacterSelection());
         }
-        if(TitleScreen.SELECT == 1){
-            setImage("startGrey.png");
-        }
-        if(Greenfoot.isKeyDown("enter")&&TitleScreen.SELECT==0)
-        {
-            CharacterSelection.SELECT_CH = 0;
-            Greenfoot.setWorld(new WorldMain(new PlayerOne(), 300, 200));
-        }
-        }
+    }
+    
+    /**
+     * Update button appearance based on selection state
+     */
+    private void updateImage() {
+        GreenfootImage image = new GreenfootImage("Start Game", 24, 
+                                isSelected ? Color.YELLOW : Color.WHITE, 
+                                new Color(0, 0, 0, 0));
+        setImage(image);
+    }
 }

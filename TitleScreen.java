@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class TitleScreen here.
+ * The starting title screen of the game.
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -9,27 +9,50 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class TitleScreen extends World
 {
     public static int SELECT = 0;
-    //Start Here.
+    
     /**
      * Constructor for objects of class TitleScreen.
-     * 
      */
     public TitleScreen()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 600, 1); 
         Greenfoot.start();
-        showText("The Legend of Zelda: Echos of the Code Catatcombs", 400, 200);
-        addObject(new StartButton(), 400, 300);
-        addObject(new ControlButton(), 400, 400);
+        showText("The Legend of Zelda: Echoes of the Code Catacombs", getWidth()/2, 200);
+        
+        // Add buttons
+        addObject(new StartButton(), getWidth()/2, 300);
+        addObject(new ControlButton(), getWidth()/2, 400);
+        
+        // Add visual cue for how to navigate
+        showText("Use UP/DOWN arrows to navigate, ENTER to select", getWidth()/2, 500);
     }
     
-    public static void selectButton(){
-        if(Greenfoot.isKeyDown("down")){
+    public void act() {
+        // Handle button selection with up/down keys
+        handleButtonNavigation();
+    }
+    
+    /**
+     * Method to handle button selection
+     */
+    private void handleButtonNavigation() {
+        // Move selection down
+        if (Greenfoot.isKeyDown("down") && SELECT == 0) {
             SELECT = 1;
+            Greenfoot.delay(10); // Add delay to prevent too rapid selection
         }
-        if(Greenfoot.isKeyDown("up")){
+        
+        // Move selection up
+        if (Greenfoot.isKeyDown("up") && SELECT == 1) {
             SELECT = 0;
+            Greenfoot.delay(10);
         }
+    }
+    
+    /**
+     * Static method for buttons to query the current selection
+     */
+    public static int getSelection() {
+        return SELECT;
     }
 }

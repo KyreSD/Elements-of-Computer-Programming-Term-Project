@@ -1,29 +1,35 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class ControlButton here.
+ * Button to access the controls/character selection screen.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
 public class ControlButton extends Actor
 {
+    private boolean isSelected = false;
+    private static final String SELECTED_IMAGE = "ctrl.png";
+    private static final String UNSELECTED_IMAGE = "ctrlwhite.png";
+    
     /**
      * Act - do whatever the ControlsButton wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
     {
-        GreenfootImage ctrlTxt = new GreenfootImage("ctrl.png");
-        TitleScreen.selectButton();
-        if(TitleScreen.SELECT == 0){
-            setImage("ctrlwhite.png");
+        // Update selection state based on TitleScreen's selection
+        isSelected = (TitleScreen.SELECT == 1);
+        
+        // Update image based on selection state
+        if (isSelected) {
+            setImage(SELECTED_IMAGE);
+        } else {
+            setImage(UNSELECTED_IMAGE);
         }
-        if(TitleScreen.SELECT == 1){
-            setImage("ctrl.png");
-        }
-        if(Greenfoot.isKeyDown("enter")&&TitleScreen.SELECT==1)
-        {
+        
+        // If this button is selected and enter is pressed, go to character selection
+        if (isSelected && Greenfoot.isKeyDown("enter")) {
             Greenfoot.setWorld(new CharacterSelection());
         }
     }

@@ -37,7 +37,7 @@ public class Enemy extends Entity
     private int Y;
     
     // Combat properties
-    private int damageDelay; // Prevents taking damage too rapidly
+    public int damageDelay; // Prevents taking damage too rapidly
     private static final int DAMAGE_COOLDOWN = 10; // Frames between damage
     private EnemyHealthBar healthBar = null;
     
@@ -174,7 +174,7 @@ public class Enemy extends Entity
     /**
      * Handle combat interactions with the player, sword, and fireball
      */
-    private void checkCombat() {
+    public void checkCombat() {
         if (damageDelay <= 0) {
             // Check for sword damage
             Sword sword = (Sword)getOneIntersectingObject(Sword.class);
@@ -267,16 +267,22 @@ public class Enemy extends Entity
                 getWorld().removeObject(healthBar);
             }
             getWorld().removeObject(this);
-            System.out.println("XP has dropped");
+            //System.out.println("XP has dropped");
         }
     }
     
+    // In Enemy.java, modify the dropXp method:
     public void dropXp(){
         SuperWorld world = (SuperWorld)getWorld();
         if (world != null){
-            // In the future, world.addObject(new XpDropped(), X, Y);
-            // For now, we'll just create a placeholder for XP dropped
-            getWorld().addObject(new XpDropped(), X, Y);
+            // 50/50 chance to drop XP or potion
+            if (Greenfoot.getRandomNumber(2) == 0) {
+                // Drop XP
+                getWorld().addObject(new XpDropped(), X, Y);
+            } else {
+                // Drop potion
+                getWorld().addObject(new PotionDropped(), X, Y);
+            }
         }
     }
     
@@ -293,7 +299,7 @@ public class Enemy extends Entity
                 
                 // Create scaled frames for better appearance
                 scaledFrames[index] = new GreenfootImage(frames[index]);
-                scaledFrames[index].scale(250, 250);
+                scaledFrames[index].scale(350, 350);
                 
                 index++;
             }

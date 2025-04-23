@@ -20,7 +20,6 @@ public class SuperWorld extends World
     public SuperWorld(PlayerOne player, int x, int y) {
         // Create a new world with 800x600 cells with a cell size of 1x1 pixels.
         super(800, 600, 1);
-        
         this.player = player;
         
         // Add the existing player to the world at the specified position
@@ -30,6 +29,19 @@ public class SuperWorld extends World
         prepareUI();
         updateUIReferences();
     }
+    public SuperWorld(PlayerOne player, int x, int y, int z) {
+        // Create a new world with 800x600 cells with a cell size of 1x1 pixels.
+        super(x, y, 1);
+        this.player = player;
+        
+        // Add the existing player to the world at the specified position
+        addObject(player, x, y);
+        
+        // Setup UI elements
+        prepareUI();
+        updateUIReferences();
+    }
+    
     
     private void prepareUI() {
         // Create health bar if it doesn't exist

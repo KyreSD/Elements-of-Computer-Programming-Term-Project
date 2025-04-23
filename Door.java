@@ -28,8 +28,8 @@ public class Door extends Actor
         if (!isLocked) {
             PlayerOne player = (PlayerOne)getOneIntersectingObject(PlayerOne.class);
             if (player != null) {
-                BossRoom bossRoom = new BossRoom(player, 700, 300);
-                Greenfoot.setWorld(bossRoom);
+                BreakoutWorld breakoutWorld = new BreakoutWorld(player);
+                Greenfoot.setWorld(breakoutWorld);
             }
         }
     }

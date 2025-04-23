@@ -12,10 +12,11 @@ public class BreakoutRasamny extends Enemy
      * Act - do whatever the BreakoutRasamny wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    
-    BreakoutRasamny(){
+    PlayerOne player;
+BreakoutRasamny(){
         health = 2000;
-    }
+        this.player = player;
+}
     public void act()
     {
         setImage("BreakoutRasamnyq.png");
@@ -23,13 +24,15 @@ public class BreakoutRasamny extends Enemy
     if (damageDelay > 0) {
             damageDelay--;
     }
-        if(health<=0){
-        BossRoom next = new BossRoom();
-        Greenfoot.setWorld(next);
-    }
     Ball ball = (Ball)getOneIntersectingObject(Ball.class);
     if (ball != null){
         health -= 20;
+    }
+    if(health <= 0){
+        if(health<=0){
+        BossRoom next = new BossRoom(player, 500, 700);
+        Greenfoot.setWorld(next);
+    }
     }
 }
 }

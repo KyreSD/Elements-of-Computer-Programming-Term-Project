@@ -27,6 +27,7 @@ public class Projectile extends Actor
         setImage(image); 
         blop = new ProjectileText(damage, speed, size);
         doItOnce = 0;
+        this.damage = damage;
     }
     
     public void act()

@@ -14,12 +14,11 @@ public class BossRoom extends SuperWorld
      */
     PlayerOne player;
     EvilRasamny rasamny;
-    public BossRoom(PlayerOne player, int x, int y)
+    public BossRoom()
     {   
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         this.player = player;
-        addObject(player, x, y);
-        addObject(player, 300, 200);
+        addObject(player, 700, 500);
         
         rasamny = new EvilRasamny();
         addObject(rasamny, 50, 300);

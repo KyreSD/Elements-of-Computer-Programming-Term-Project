@@ -267,7 +267,6 @@ public class Enemy extends Entity
                 getWorld().removeObject(healthBar);
             }
             getWorld().removeObject(this);
-            System.out.println("XP has dropped");
         }
     }
     

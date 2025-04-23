@@ -27,7 +27,7 @@ public class BreakoutWorld extends World
         PlayerOne player = new PlayerOne();
         BreakoutRasamny rasamny = new BreakoutRasamny();
         addObject(player,300, getHeight()-80);
-        addObject(rasamny, 400, 153);
+        addObject(rasamny, 400, 133);
         for(brickPlace=25; brickPlace < 800;brickPlace+=50){
             for(brickY=250; brickY<350;brickY+=20){
                 addObject(new Brick(), brickPlace, brickY);
@@ -40,6 +40,7 @@ public class BreakoutWorld extends World
 public void act(){
         //music.playLoop();
     }
+    
 }
 
 

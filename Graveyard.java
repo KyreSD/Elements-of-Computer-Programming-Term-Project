@@ -22,9 +22,6 @@ public class Graveyard extends SuperWorld
         if(player.getX() > getWidth()-2){
         WorldMain next = new WorldMain(player, getWidth()-player.getX()+1,player.getY());
         Greenfoot.setWorld(next);
-    }else if(player.getY() < 2){
-        BossRoom next = new BossRoom(player, player.getX(),getHeight()-player.getY()-2);
-        Greenfoot.setWorld(next);
     }else if(player.getY() > getHeight()-2){
         Dungeon4 next = new Dungeon4(player, player.getX(),getHeight()-player.getY()+2);
         Greenfoot.setWorld(next);

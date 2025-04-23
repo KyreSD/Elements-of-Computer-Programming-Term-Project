@@ -168,6 +168,7 @@ public class PlayerOne extends Entity
      */
     public void act()
     {
+
         if (isKnockedBack) {
             applyKnockback();
         } else {
@@ -185,6 +186,7 @@ public class PlayerOne extends Entity
         
         updateAnimation();
         checkCollisions(); // Add a new method to check for enemy collisions
+        checkProjCollisions();
     }
     
     //Return player location for functions inside of this Object.
@@ -214,6 +216,7 @@ public class PlayerOne extends Entity
     private void checkCollisions() {
         if (invincibilityCount <= 0) {
             Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
+            Ball ball = (Ball)getOneIntersectingObject(Ball.class);
             if (enemy != null) {
                 // Take damage
                 takeDamage(10);  // Assume enemy deals 10 damage per hit
@@ -224,8 +227,33 @@ public class PlayerOne extends Entity
                 // Set invincibility period
                 invincibilityCount = invinEnd;
             }
+            if(ball != null){
+                takeDamage(10);
+                
+                applyKnockbackFrom(ball.getX(), ball.getY());
+            }
         }
     }
+    
+    /**
+     * Check for collisions with enemies and take damage
+     */
+    private void checkProjCollisions() {
+        if (invincibilityCount <= 0) {
+            Projectile projectile = (Projectile)getOneIntersectingObject(Projectile.class);
+            if (projectile != null) {
+                // Take damage
+                takeDamage(projectile.damage);
+                System.out.println(projectile.damage);
+                // Apply knockback from the enemy
+                applyKnockbackFrom(projectile.getX(), projectile.getY());
+                
+                // Set invincibility period
+                invincibilityCount = invinEnd;
+            }
+        }
+    }
+    
     
     /**
      * Take damage and update health

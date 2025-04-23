@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PlayerOne extends Entity
 {
+    private int keyCount = 0;
     public int health;
     private int maxHealth;
     private int speed;
@@ -178,6 +179,9 @@ public class PlayerOne extends Entity
         if (swordCooldown > 0) {
             swordCooldown--;
         }
+        
+        //check for keys
+        collectKey();
         
         if (invincibilityCount > 0) {
             invincibilityCount--;
@@ -696,6 +700,22 @@ public class PlayerOne extends Entity
             getWorld().addObject(fireBall, x, y);
             attackTimerFireball = timerFireball;
         }
+    }
+    
+    public void collectKey() {
+        Key key = (Key)getOneIntersectingObject(Key.class);
+        //If there is a key found to be intersecting
+        if (key != null) {
+            //add to total keys
+            keyCount++;
+            //remove the key
+            getWorld().removeObject(key);
+            System.out.println("Key Picked Up, Total: " + keyCount);
+        }
+    }
+    
+    public int getKeyCount() {
+        return keyCount;
     }
 }
 

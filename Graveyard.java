@@ -14,7 +14,7 @@ public class Graveyard extends SuperWorld
         super(player, x, y);
         
         // Add world-specific objects here
-    }
+        }
     
     public void act() {
         super.act(); // Call parent act to maintain UI and game logic

@@ -14,14 +14,22 @@ public class BreakoutRasamny extends Enemy
      */
     
     BreakoutRasamny(){
-        health = 4200;
+        health = 2000;
     }
     public void act()
     {
         setImage("BreakoutRasamnyq.png");
         super.checkCombat();
-        if (damageDelay > 0) {
+    if (damageDelay > 0) {
             damageDelay--;
-        }
     }
+        if(health<=0){
+        BossRoom next = new BossRoom();
+        Greenfoot.setWorld(next);
+    }
+    Ball ball = (Ball)getOneIntersectingObject(Ball.class);
+    if (ball != null){
+        health -= 20;
+    }
+}
 }

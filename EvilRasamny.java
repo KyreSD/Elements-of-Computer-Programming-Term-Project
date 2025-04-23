@@ -23,7 +23,7 @@ public class EvilRasamny extends Enemy
     public EvilRasamny(){
         projectileTimer = 150;
         projectileLaunched = true;
-        health = 4200;
+        health = 2000;
         animationCounter = 4;
         rotation = 0;
     }
@@ -46,7 +46,7 @@ public class EvilRasamny extends Enemy
             projectileLaunched = false;
         }
         if (projectileLaunched == false){
-            projectile = new Projectile(Greenfoot.getRandomNumber(40)+60, Greenfoot.getRandomNumber(7)+8, Greenfoot.getRandomNumber(70)+60); 
+            projectile = new Projectile(Greenfoot.getRandomNumber(20)+20, Greenfoot.getRandomNumber(7)+8, Greenfoot.getRandomNumber(70)+60); 
             getWorld().addObject(projectile, getX(), getY());
             projectileTimer = 150;
         }
@@ -54,7 +54,6 @@ public class EvilRasamny extends Enemy
         if (damageDelay > 0) {
             damageDelay--;
         }
-        System.out.println(health);
         animateSprite();
     }
     

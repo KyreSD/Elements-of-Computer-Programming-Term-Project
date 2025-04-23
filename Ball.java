@@ -1,4 +1,4 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+  import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.Random;
 /**
  * Write a description of class Ball here.
@@ -71,6 +71,7 @@ public class Ball extends Weapon
         move(6);
         checkplayerCollision();
         checkBrickCollision();
+        checkRamRamCollision();
         }
         
         
@@ -106,4 +107,10 @@ public class Ball extends Weapon
             brickBounceSound.play();
         }
         }
+        public void checkRamRamCollision(){
+        BreakoutRasamny ramRam = (BreakoutRasamny)getOneIntersectingObject(BreakoutRasamny.class);
+        if (ramRam != null){
+            turn(-2*getRotation());
+        }
     }
+}

@@ -1,43 +1,43 @@
+// WorldMain.java
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class WorldOne here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * The main starting world of the game.
  */
 public class WorldMain extends SuperWorld
 {
-
     /**
-     * Constructor for objects of class WorldOne.
-     * 
+     * Constructor for objects of class WorldMain.
      */
-    public WorldMain()
-    {    
-        player = new PlayerOne();
-        addObject(player, 300, 200);
-    }
-    public WorldMain(PlayerOne player, int x, int y)
-    {
-        this.player = player;
-        addObject(player, x, y);
+    public WorldMain(PlayerOne player, int x, int y) {
+        super(player, x, y);
+        
+        // Add enemy only in this constructor
         Enemy enemy = new Enemy();
         addObject(enemy, 600, 400);
     }
-    public void act(){
-        if(player.getX() > getWidth()-2){
-        WorldGrass1 next = new WorldGrass1(player, getWidth()-player.getX()+1,player.getY());
-        Greenfoot.setWorld(next);
-    }else if(player.getX() < 2){
-        Graveyard next = new Graveyard(player, getWidth()-player.getX()-2,player.getY());
-        Greenfoot.setWorld(next);
-    }else if(player.getY() < 2){
-        Encoder next = new Encoder(player, player.getX(),getHeight()-player.getY()-2);
-        Greenfoot.setWorld(next);
-    }else if(player.getY() > getHeight()-2){
-        Dungeon1 next = new Dungeon1(player, player.getX(),getHeight()-player.getY()+2);
-        Greenfoot.setWorld(next);
+    
+    /**
+     * Handle world transitions based on player position
+     */
+    public void act() {
+        super.act(); // Important to call super.act() to maintain UI and game logic
+        
+        if(player.getX() > getWidth() - 5) {
+            WorldGrass1 next = new WorldGrass1(player, 10, player.getY());
+            Greenfoot.setWorld(next);
+        } 
+        else if(player.getX() < 5) {
+            Graveyard next = new Graveyard(player, getWidth() - 10, player.getY());
+            Greenfoot.setWorld(next);
+        } 
+        else if(player.getY() < 5) {
+            Encoder next = new Encoder(player, player.getX(), getHeight() - 10);
+            Greenfoot.setWorld(next);
+        } 
+        else if(player.getY() > getHeight() - 5) {
+            Dungeon1 next = new Dungeon1(player, player.getX(), 10);
+            Greenfoot.setWorld(next);
+        }
     }
-    }  
 }

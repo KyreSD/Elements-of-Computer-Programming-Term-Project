@@ -15,7 +15,7 @@ public class Sword extends Weapon
     private int animationFrame;
     private int frameDelay; // Adjust this for animation speed
     private int delayCounter;
-    int damage;
+    public int damage;
     int damageCheck;
     private boolean isAnimating;
     private int cols;
@@ -25,13 +25,12 @@ public class Sword extends Weapon
     public Sword(int cols, int rows) {
         this.cols = cols;
         this.rows = rows;
-        damage = 20;
-        level = 0;
+        damage = 20;  // Set a default damage value
         animationFrame = 0;
-        frameDelay = 2; // Slightly increased for smoother animation
+        frameDelay = 2;
         delayCounter = 0;
         damageCheck = 0;
-        isAnimating = true;  // Start animating immediately when created
+        isAnimating = true;
         
         // Load and process sprite sheet
         loadSpriteSheet();

@@ -8,23 +8,33 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Text extends Actor
 {
-    /**
-     * Act - do whatever the Text wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    int counter;
-    public Text(int counter){
-        counter = 0;
+    private int count = 0;
+    private String currentChar;
+    private boolean isRandom = true;
+    private boolean randomize = true;
+    private int textSize = 100;
+    public Text() {
+        randomizeChar();
+    }
+    
+    public void act() {
+        count++;
+        if(count % 6 == 0 && randomize) {
+            randomizeChar();
+        }
+    }
+    
+    private void randomizeChar() {
+        //gets random number then converts to ASCII
+        currentChar = String.valueOf((char)(Greenfoot.getRandomNumber(26) + 65));
+        setImage(new GreenfootImage(currentChar, textSize, Color.WHITE, Color.BLACK));
         
     }
-    public void act()
-    { 
-        counter += 1;
-        if(counter % 6 ==0 ){
-        int x = Greenfoot.getRandomNumber(69)+30;
-        char c = (char) x;
-        String s = String.valueOf(c);
-        setImage(new GreenfootImage(s, 54, Color.WHITE, Color.BLACK));
-    }
+    
+    public void setLetter(String letter) {
+        isRandom = false;
+        currentChar = letter;
+        setImage(new GreenfootImage(currentChar, textSize, Color.WHITE, Color.BLACK));
+        randomize = false;
     }
 }

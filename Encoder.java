@@ -1,42 +1,65 @@
+// Encoder.java
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class World2 here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Encoder area that connects to other worlds.
  */
 public class Encoder extends SuperWorld
 {
-    /**
-     * Constructor for objects of class World2.
-     * 
-     */
-    Text text1;
-    Text text2;
-    Text text3;
-    Text text4;
-    public Encoder(PlayerOne player, int x, int y)
-    {   
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+    Text R = new Text();
+    Text E = new Text();
+    Text A = new Text();
+    Text D = new Text();
+    
+    Door door = new Door();
+    
+    public Encoder(PlayerOne player, int x, int y) {
         this.player = player;
         addObject(player, x, y);
-        text1 = new Text(0);
-        text2 = new Text(0);
-        text3 = new Text(0);
-        text4 = new Text(0);
-        addObject(text1, 270, 135);
-        addObject(text2, 300, 135);
-        addObject(text3, 330, 135);
-        addObject(text4, 360, 135);
+        //Add Letters
+        addObject(R, 230, 135);
+        addObject(E, 300, 135);
+        addObject(A, 370, 135);
+        addObject(D, 440, 135);
+        //Add Door
+        addObject(door, 50, 300);
+        //Add all 4 keys
+        addObject(new Key(), 150, 200);
+        addObject(new Key(), 300, 350);
+        addObject(new Key(), 450, 100);
+        addObject(new Key(), 600, 250);
+        System.out.println("Starting with " + player.getKeyCount() + " keys");
     }
-    public void act(){  
-        if(player.getX() > getWidth()-2){
-        WorldGrass4 next = new WorldGrass4(player, getWidth()-player.getX()+1,player.getY());
-        Greenfoot.setWorld(next);
-    }else if(player.getY() > getHeight()-2){
-        WorldMain next = new WorldMain(player, player.getX(),getHeight()-player.getY()+2);
-        Greenfoot.setWorld(next);
+    
+    private void checkDoor() {
+        if (player.getKeyCount() >= 4) {
+            door.unlock();
+            System.out.println("door unlcoked");
+        }
     }
+    
+    private void letterUpdate() {
+        int keys = player.getKeyCount();
+        System.out.println("have " + keys);
+        if (keys >= 1) R.setLetter("R");
+        if (keys >= 2) E.setLetter("E");
+        if (keys >= 3) A.setLetter("A");
+        if (keys >= 4) D.setLetter("D");
+    }
+    
+    public void act() {
+        letterUpdate();
+        checkBounds();
+        checkDoor();
+    }
+    
+    private void checkBounds() {
+        if (player.getX() > getWidth() - 2) {
+            WorldGrass4 next = new WorldGrass4(player, getWidth() - player.getX() + 1, player.getY());
+            Greenfoot.setWorld(next);
+        } else if (player.getY() > getHeight()-2) {
+            WorldMain next = new WorldMain(player, player.getX(), getHeight()-player.getY()+2);
+            Greenfoot.setWorld(next);
+        }
     }
 }

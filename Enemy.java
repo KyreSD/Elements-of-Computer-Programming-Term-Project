@@ -270,12 +270,18 @@ public class Enemy extends Entity
         }
     }
     
+    // In Enemy.java, modify the dropXp method:
     public void dropXp(){
         SuperWorld world = (SuperWorld)getWorld();
         if (world != null){
-            // In the future, world.addObject(new XpDropped(), X, Y);
-            // For now, we'll just create a placeholder for XP dropped
-            getWorld().addObject(new XpDropped(), X, Y);
+            // 50/50 chance to drop XP or potion
+            if (Greenfoot.getRandomNumber(2) == 0) {
+                // Drop XP
+                getWorld().addObject(new XpDropped(), X, Y);
+            } else {
+                // Drop potion
+                getWorld().addObject(new PotionDropped(), X, Y);
+            }
         }
     }
     

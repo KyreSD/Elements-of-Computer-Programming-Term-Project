@@ -8,30 +8,31 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PlayerOne extends Entity
 {
+    private int keyCount = 0;
     public int health;
-    private int maxHealth;
-    private int speed;
-    private int level;
-    private int xp;
-    private int armorCount;
-    private int armorHealth;
+    public int maxHealth;
+    public int speed;
+    public int level;
+    public int xp;
+    public int potionCount;
+    public int potionHealth;
     private int select;
     private int swordCooldown;
     private boolean canSwordSwing;
     private boolean clickSword;
     private boolean clickFireball;
-    private int fireBallCooldown;
+    public int fireBallCooldown;
     private Sword sword;
     private FireBall fireBall;
     //Timers
     int timerSword = 50;
-    int timerFireball = 300;
+    public int timerFireball = 300;
     //Attack Timers
     static int attackTimerSword = 0;
-    static int attackTimerFireball = 0;
+    public static int attackTimerFireball = 0;
     //Can Attacks
     boolean canAttackSword;
-    boolean canAttackFireball;
+    public boolean canAttackFireball;
     //Click booleans
     int inactiveCount = 0;
     int invincibilityCount = 0;
@@ -59,15 +60,15 @@ public class PlayerOne extends Entity
     // Knockback properties
     private boolean isKnockedBack = false;
     private int knockbackDuration = 0;
-    private static final int MAX_KNOCKBACK_DURATION = 15;
+    private static final int MAX_KNOCKBACK_DURATION = 20;
     private int knockbackX = 0;
     private int knockbackY = 0;
-    private static final int KNOCKBACK_STRENGTH = 10; // How far player gets pushed
+    private static final int KNOCKBACK_STRENGTH = 15; // How far player gets pushed
     
     // Animation speed modifiers for each character type
     private int linkAnimationSpeed = 2;      // Adjust this value to change Link's animation speed
-    private int boyAnimationSpeed = 4;       // Adjust this value to change Boy's animation speed
-    private int retroAnimationSpeed = 3;     // Adjust this value to change Retro character's animation speed
+    private int boyAnimationSpeed = 2;       // Adjust this value to change Boy's animation speed
+    private int retroAnimationSpeed = 2;     // Adjust this value to change Retro character's animation speed
     
     /**
      * Constructor to initialize Gameplay Values, location and sprite sheet.
@@ -75,12 +76,12 @@ public class PlayerOne extends Entity
     public PlayerOne(){
         select = 1;
         health = 100;
-        maxHealth = 250;
+        maxHealth = 300;
         speed = 3;
-        level = 0;
+        level = 1;
         xp = 0;
-        armorCount = 0;
-        armorHealth = 0;
+        potionCount = 0;
+        potionHealth = 75;
         swordCooldown = 0;
         fireBallCooldown = 0;
         canSwordSwing = true;
@@ -116,12 +117,12 @@ public class PlayerOne extends Entity
     public PlayerOne(int select, int cols, int rows){
         this.select = select;
         health = 100;
-        maxHealth = 250;
+        maxHealth = 300;
         speed = 3;
-        level = 0;
+        level = 1;
         xp = 0;
-        armorCount = 0;
-        armorHealth = 0;
+        potionCount = 0;
+        potionHealth = 75;
         swordCooldown = 0;
         fireBallCooldown = 0;
         canSwordSwing = true;
@@ -176,14 +177,21 @@ public class PlayerOne extends Entity
         }
         
         attacking();
+        usePotion(); // Add this line to check for potion usage
         if (swordCooldown > 0) {
             swordCooldown--;
         }
+        
+        //check for keys
+        collectKey();
         
         if (invincibilityCount > 0) {
             invincibilityCount--;
         }
         
+        if (health <=0){
+            Greenfoot.setWorld(new GameOver());
+        }
         updateAnimation();
         checkCollisions(); // Add a new method to check for enemy collisions
         checkProjCollisions();
@@ -208,6 +216,30 @@ public class PlayerOne extends Entity
     
     public int getxp(){
         return xp;
+    }
+    
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+    
+    public int getPotionCount() {
+        return potionCount;
+    }
+    
+    public int getPotionHealth() {
+        return potionHealth;
+    }
+    
+    public boolean getCanAttackFireball() {
+        return canAttackFireball;
+    }
+    
+    public boolean getCanAttackSword() {
+        return canAttackSword;
+    }
+    
+    public int getSpeed() {
+        return speed;
     }
     
     /**
@@ -512,6 +544,36 @@ public class PlayerOne extends Entity
         }
     }
     
+    /**
+     * Set the character type and update sprite properties
+     */
+    public void setCharacterType(int select) {
+        this.select = select;
+        
+        // Set appropriate dimensions based on character type
+        if (select == 0) {
+            setSpriteDimensions(4, 5);  // Boy
+            frameDelay = boyAnimationSpeed;
+        } else if (select == 1) {
+            setSpriteDimensions(10, 8); // Link
+            frameDelay = linkAnimationSpeed;
+        } else if (select == 2) {
+            setSpriteDimensions(4, 4);  // Retro
+            frameDelay = retroAnimationSpeed;
+        }
+        
+        // Reload sprite sheet with new dimensions
+        loadSpriteSheet();
+    }
+    
+    /**
+     * Set the sprite sheet dimensions
+     */
+    public void setSpriteDimensions(int cols, int rows) {
+        this.cols = cols;
+        this.rows = rows;
+    }
+    
     private void loadSpriteSheet() {
         if(select == 1) {
             // Link sprite code - unchanged
@@ -723,6 +785,50 @@ public class PlayerOne extends Entity
             fireBall = new FireBall();
             getWorld().addObject(fireBall, x, y);
             attackTimerFireball = timerFireball;
+        }
+    }
+    
+    public void collectKey() {
+        Key key = (Key)getOneIntersectingObject(Key.class);
+        //If there is a key found to be intersecting
+        if (key != null) {
+            //add to total keys
+            keyCount++;
+            //remove the key
+            getWorld().removeObject(key);
+            System.out.println("Key Picked Up, Total: " + keyCount);
+        }
+    }
+    
+    public int getKeyCount() {
+        return keyCount;
+
+    public void addXp(int value){
+        xp+=value;
+    }
+    
+    /**
+     * Method to use potions when left arrow key is pressed
+     */
+    private void usePotion() {
+        String key = Greenfoot.getKey();
+        if ("left".equals(key) && potionCount > 0) {
+            // Only use potion if health isn't already at max
+            if (health < maxHealth) {
+                // Add potion health to current health
+                health += potionHealth;
+                
+                // Cap health at max health
+                if (health > maxHealth) {
+                    health = maxHealth;
+                }
+                
+                // Decrease potion count
+                potionCount--;
+                
+                // Add visual feedback or sound effect here if desired
+                // For example: getWorld().addObject(new HealEffect(), getX(), getY());
+            }
         }
     }
 }

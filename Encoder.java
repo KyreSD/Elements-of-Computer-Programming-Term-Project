@@ -14,6 +14,7 @@ public class Encoder extends SuperWorld
     Door door = new Door();
     
     public Encoder(PlayerOne player, int x, int y) {
+        super(player, x, y);
         this.player = player;
         addObject(player, x, y);
         //Add Letters
@@ -28,19 +29,16 @@ public class Encoder extends SuperWorld
         addObject(new Key(), 300, 350);
         addObject(new Key(), 450, 100);
         addObject(new Key(), 600, 250);
-        System.out.println("Starting with " + player.getKeyCount() + " keys");
     }
     
     private void checkDoor() {
         if (player.getKeyCount() >= 4) {
             door.unlock();
-            System.out.println("door unlcoked");
         }
     }
     
     private void letterUpdate() {
         int keys = player.getKeyCount();
-        System.out.println("have " + keys);
         if (keys >= 1) R.setLetter("R");
         if (keys >= 2) E.setLetter("E");
         if (keys >= 3) A.setLetter("A");
@@ -55,10 +53,10 @@ public class Encoder extends SuperWorld
     
     private void checkBounds() {
         if (player.getX() > getWidth() - 2) {
-            WorldGrass4 next = new WorldGrass4(player, getWidth() - player.getX() + 1, player.getY());
+            WorldGrass4 next = new WorldGrass4(player, getWidth() - player.getX() + 7, player.getY());
             Greenfoot.setWorld(next);
-        } else if (player.getY() > getHeight()-2) {
-            WorldMain next = new WorldMain(player, player.getX(), getHeight()-player.getY()+2);
+        } else if (player.getY() > getHeight()-5) {
+            WorldMain next = new WorldMain(player, player.getX(), getHeight()-player.getY()+4);
             Greenfoot.setWorld(next);
         }
     }

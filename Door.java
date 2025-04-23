@@ -38,7 +38,6 @@ public class Door extends Actor
         if (isLocked) {
             isLocked = false;
             setImage(openDoor);
-            System.out.println("Door Unlocked");
         }
     }
     

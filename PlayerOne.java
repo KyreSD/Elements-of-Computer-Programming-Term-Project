@@ -768,13 +768,12 @@ public class PlayerOne extends Entity
             keyCount++;
             //remove the key
             getWorld().removeObject(key);
-            System.out.println("Key Picked Up, Total: " + keyCount);
         }
     }
     
     public int getKeyCount() {
         return keyCount;
-
+    }
     public void addXp(int value){
         xp+=value;
     }

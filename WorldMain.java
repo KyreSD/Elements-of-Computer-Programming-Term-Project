@@ -32,7 +32,7 @@ public class WorldMain extends SuperWorld
             Greenfoot.setWorld(next);
         } 
         else if(player.getY() < 5) {
-            Encoder next = new Encoder(player, player.getX(), getHeight() - 10);
+            Encoder next = new Encoder(player, player.getX(), getHeight()-10);
             Greenfoot.setWorld(next);
         } 
         else if(player.getY() > getHeight() - 5) {

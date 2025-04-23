@@ -17,19 +17,12 @@ public class BossRoom extends SuperWorld
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         this.player = player;
         addObject(player, 700, 500);
-        
+        rasamny = new EvilRasamny();
+        addObject(rasamny, 100, 100);
         // Add boss and other world-specific objects here
     }
     
     public void act() {
         super.act(); // Call parent act to maintain UI and game logic
-        
-        if(player.getX() > getWidth() - 5) {
-            Encoder next = new Encoder(player, 10, player.getY());
-            Greenfoot.setWorld(next);
-        } else if(player.getY() > getHeight() - 5) {
-            Graveyard next = new Graveyard(player, player.getX(), 10);
-            Greenfoot.setWorld(next);
-        }
     }
 }

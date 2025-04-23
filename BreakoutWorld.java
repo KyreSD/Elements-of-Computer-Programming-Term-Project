@@ -29,7 +29,7 @@ public class BreakoutWorld extends SuperWorld
         //music = new GreenfootSound("music.mp3");
         //music.setVolume(40);
         
-        BreakoutRasamny rasamny = new BreakoutRasamny();
+        BreakoutRasamny rasamny = new BreakoutRasamny(player);
         addObject(rasamny, 400, 133);
         for(brickPlace=25; brickPlace < 800;brickPlace+=50){
             for(brickY=250; brickY<350;brickY+=20){

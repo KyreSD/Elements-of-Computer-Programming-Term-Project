@@ -13,10 +13,10 @@ public class BreakoutRasamny extends Enemy
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     PlayerOne player;
-BreakoutRasamny(){
+    BreakoutRasamny(PlayerOne player){
         health = 2000;
         this.player = player;
-}
+    }
     public void act()
     {
         setImage("BreakoutRasamnyq.png");
@@ -30,7 +30,8 @@ BreakoutRasamny(){
     }
     if(health <= 0){
         if(health<=0){
-        BossRoom next = new BossRoom(player, 500, 700);
+        BossRoom next = new BossRoom(player, 500, 500);
+        getWorld().removeObject(this);
         Greenfoot.setWorld(next);
     }
     }

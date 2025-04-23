@@ -26,6 +26,16 @@ public class FireBall extends Weapon
         level = 0;
         setImage("fireball.png");
         scaleImage(getImage(), 50, 50);
+        
+        // Get player level and update damage
+        World world = getWorld();
+        if (world != null) {
+            java.util.List<PlayerOne> players = world.getObjects(PlayerOne.class);
+            if (!players.isEmpty()) {
+                PlayerOne player = players.get(0);
+                updateDamage(player.getLevel());
+            }
+        }
     }
     
     public void addedToWorld(World world) {

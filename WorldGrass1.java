@@ -1,29 +1,41 @@
-// BossRoom.java
+// WorldGrass1.java
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Boss Room area that connects to other worlds.
+ * First grass area world that connects to other worlds.
  */
-public class BossRoom extends SuperWorld
+public class WorldGrass1 extends SuperWorld
 {
     /**
-     * Constructor for objects of class BossRoom.
+     * Constructor for objects of class WorldGrass1.
      */
-    public BossRoom(PlayerOne player, int x, int y)
+    public WorldGrass1(PlayerOne player, int x, int y)
     {   
         super(player, x, y);
         
-        // Add boss and other world-specific objects here
+        // Add any world-specific objects here
     }
     
+    /**
+     * Handle world transitions based on player position
+     */
     public void act() {
-        super.act(); // Call parent act to maintain UI and game logic
+        super.act(); // Important to call super.act() to maintain UI and game logic
         
         if(player.getX() > getWidth() - 5) {
-            Encoder next = new Encoder(player, 10, player.getY());
+            WorldGrass2 next = new WorldGrass2(player, 10, player.getY());
             Greenfoot.setWorld(next);
-        } else if(player.getY() > getHeight() - 5) {
-            Graveyard next = new Graveyard(player, player.getX(), 10);
+        } 
+        else if(player.getX() < 5) {
+            WorldMain next = new WorldMain(player, getWidth() - 10, player.getY());
+            Greenfoot.setWorld(next);
+        } 
+        else if(player.getY() < 5) {
+            WorldGrass4 next = new WorldGrass4(player, player.getX(), getHeight() - 10);
+            Greenfoot.setWorld(next);
+        } 
+        else if(player.getY() > getHeight() - 5) {
+            WorldGrass7 next = new WorldGrass7(player, player.getX(), 10);
             Greenfoot.setWorld(next);
         }
     }

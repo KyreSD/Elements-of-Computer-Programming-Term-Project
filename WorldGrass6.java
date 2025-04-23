@@ -28,4 +28,3 @@ public class WorldGrass6 extends SuperWorld
         }
     }
 }
-

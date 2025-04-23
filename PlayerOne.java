@@ -764,7 +764,8 @@ public class PlayerOne extends Entity
      * Method to use potions when left arrow key is pressed
      */
     private void usePotion() {
-        if (Greenfoot.isKeyDown("left") && potionCount > 0) {
+        String key = Greenfoot.getKey();
+        if ("left".equals(key) && potionCount > 0) {
             // Only use potion if health isn't already at max
             if (health < maxHealth) {
                 // Add potion health to current health

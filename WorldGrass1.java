@@ -1,40 +1,42 @@
+// WorldGrass1.java
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class World2 here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * First grass area world that connects to other worlds.
  */
 public class WorldGrass1 extends SuperWorld
 {
     /**
-     * Constructor for objects of class World2.
-     * 
+     * Constructor for objects of class WorldGrass1.
      */
     public WorldGrass1(PlayerOne player, int x, int y)
     {   
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        this.player = player;
-        addObject(player, x, y);
-        Enemy enemy = new Enemy();
-        Enemy enemy2 = new Enemy();
-        addObject(enemy, 100, 50);
-        addObject(enemy2, 350, 200);
+        super(player, x, y);
+        
+        // Add any world-specific objects here
     }
-    public void act(){
-        if(player.getX() > getWidth()-2){
-        WorldGrass2 next = new WorldGrass2(player, getWidth()-player.getX()+1,player.getY());
-        Greenfoot.setWorld(next);
-    }else if(player.getX() < 2){
-        WorldMain next = new WorldMain(player, getWidth()-player.getX()-2,player.getY());
-        Greenfoot.setWorld(next);
-    }else if(player.getY() < 2){
-        WorldGrass4 next = new WorldGrass4(player, player.getX(),getHeight()-player.getY()-2);
-        Greenfoot.setWorld(next);
-    }else if(player.getY() > getHeight()-2){
-        WorldGrass7 next = new WorldGrass7(player, player.getX(),getHeight()-player.getY()+2);
-        Greenfoot.setWorld(next);
-    }
+    
+    /**
+     * Handle world transitions based on player position
+     */
+    public void act() {
+        super.act(); // Important to call super.act() to maintain UI and game logic
+        
+        if(player.getX() > getWidth() - 5) {
+            WorldGrass2 next = new WorldGrass2(player, 10, player.getY());
+            Greenfoot.setWorld(next);
+        } 
+        else if(player.getX() < 5) {
+            WorldMain next = new WorldMain(player, getWidth() - 10, player.getY());
+            Greenfoot.setWorld(next);
+        } 
+        else if(player.getY() < 5) {
+            WorldGrass4 next = new WorldGrass4(player, player.getX(), getHeight() - 10);
+            Greenfoot.setWorld(next);
+        } 
+        else if(player.getY() > getHeight() - 5) {
+            WorldGrass7 next = new WorldGrass7(player, player.getX(), 10);
+            Greenfoot.setWorld(next);
+        }
     }
 }

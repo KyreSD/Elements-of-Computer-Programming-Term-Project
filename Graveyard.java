@@ -1,33 +1,33 @@
+// Graveyard.java
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class World2 here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Graveyard area that connects to other worlds.
  */
 public class Graveyard extends SuperWorld
 {
     /**
-     * Constructor for objects of class World2.
-     * 
+     * Constructor for objects of class Graveyard.
      */
     public Graveyard(PlayerOne player, int x, int y)
     {   
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        this.player = player;
-        addObject(player, x, y);
+        super(player, x, y);
+        
+        // Add world-specific objects here
     }
-    public void act(){
-        if(player.getX() > getWidth()-2){
-        WorldMain next = new WorldMain(player, getWidth()-player.getX()+1,player.getY());
-        Greenfoot.setWorld(next);
-    }else if(player.getY() < 2){
-        BossRoom next = new BossRoom(player, player.getX(),getHeight()-player.getY()-2);
-        Greenfoot.setWorld(next);
-    }else if(player.getY() > getHeight()-2){
-        Dungeon4 next = new Dungeon4(player, player.getX(),getHeight()-player.getY()+2);
-        Greenfoot.setWorld(next);
-    }
+    
+    public void act() {
+        super.act(); // Call parent act to maintain UI and game logic
+        
+        if(player.getX() > getWidth() - 5) {
+            WorldMain next = new WorldMain(player, 10, player.getY());
+            Greenfoot.setWorld(next);
+        } else if(player.getY() < 5) {
+            BossRoom next = new BossRoom(player, player.getX(), getHeight() - 10);
+            Greenfoot.setWorld(next);
+        } else if(player.getY() > getHeight() - 5) {
+            Dungeon4 next = new Dungeon4(player, player.getX(), 10);
+            Greenfoot.setWorld(next);
+        }
     }
 }

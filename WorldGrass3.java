@@ -17,7 +17,6 @@ public class WorldGrass3 extends SuperWorld
         setBackground(image);
         
 
-        addObject(new Orc(), 100, 200);
         addObject(new Orc(), 200, 100);
         addObject(new Orc(), 300, 200);
         addObject(new Orc(), 400, 100);

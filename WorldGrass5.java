@@ -18,11 +18,9 @@ public class WorldGrass5 extends SuperWorld
         setBackground(image);
         
 
-        addObject(new Golem(), 100, 100);
-        addObject(new Golem(), 200, 200);
-        addObject(new Golem(), 300, 100);
-        addObject(new Golem(), 400, 200);
-        addObject(new Golem(), 500, 100);
+        addObject(new Frog(), 200, 200);
+        addObject(new Frog(), 400, 200);
+        addObject(new Frog(), 500, 100);
  
         // Add world-specific objects here
     }

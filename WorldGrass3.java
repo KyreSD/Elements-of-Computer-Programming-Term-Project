@@ -12,6 +12,7 @@ public class WorldGrass3 extends SuperWorld
     public WorldGrass3(PlayerOne player, int x, int y)
     {   
         super(player, x, y);
+        player.WorldType = WORLDSTATE.GRASS;
         GreenfootImage image = new GreenfootImage("GrassWorld3-4.jpg");
         setBackground(image);
         

@@ -12,6 +12,7 @@ public class Dungeon2 extends SuperWorld
     public Dungeon2(PlayerOne player, int x, int y)
     {   
         super(player, x, y);
+        player.WorldType = WORLDSTATE.DUNGEON;
         GreenfootImage image = new GreenfootImage("image-4.png");
         setBackground(image);
 

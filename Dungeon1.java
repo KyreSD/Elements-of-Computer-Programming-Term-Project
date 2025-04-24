@@ -12,6 +12,8 @@ public class Dungeon1 extends SuperWorld
     public Dungeon1(PlayerOne player, int x, int y)
     {   
         super(player, x, y);
+        GreenfootImage image = new GreenfootImage("image-5-2.png");
+        setBackground(image);
         
         // Add world-specific objects here
     }

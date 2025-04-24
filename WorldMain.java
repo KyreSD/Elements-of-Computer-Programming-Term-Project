@@ -17,12 +17,15 @@ public class WorldMain extends SuperWorld
         setBackground(image);
         
         // Add enemy only in this constructor
+<<<<<<< HEAD
         Enemy enemy = new Enemy();
         //addObject(enemy, 600, 400)
+=======
         addObject(new Slime(), 700, 200);
         addObject(new Slime(), 600, 400);
         //addObject(enemy, 600, 400);
         
+>>>>>>> cbf0d6976a3054ccb2fa44aac6b691a498be5e70
     }
     
     /**

@@ -13,7 +13,7 @@ public class Imp extends Monster
         //Monsters stas
         health = 100;
         maxHealth = 100;
-        damage = 5;
+        damage = 13;
         speed = 1;
         miniBoss = false;
         

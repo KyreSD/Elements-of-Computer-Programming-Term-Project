@@ -12,7 +12,11 @@ public class WorldGrass5 extends SuperWorld
     public WorldGrass5(PlayerOne player, int x, int y)
     {   
         super(player, x, y);
-        
+        addObject(new Golem(), 100, 100);
+        addObject(new Golem(), 200, 200);
+        addObject(new Golem(), 300, 100);
+        addObject(new Golem(), 400, 200);
+        addObject(new Golem(), 500, 100);
         // Add world-specific objects here
     }
     

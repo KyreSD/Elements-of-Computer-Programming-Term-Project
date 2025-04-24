@@ -12,7 +12,11 @@ public class WorldGrass1 extends SuperWorld
     public WorldGrass1(PlayerOne player, int x, int y)
     {   
         super(player, x, y);
-        
+        addObject(new Frog(), 100, 100);
+        addObject(new Frog(), 200, 100);
+        addObject(new Frog(), 300, 100);
+        addObject(new Frog(), 400, 100);
+        addObject(new Frog(), 500, 100);
         // Add any world-specific objects here
     }
     

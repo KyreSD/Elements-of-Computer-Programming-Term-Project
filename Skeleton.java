@@ -11,9 +11,9 @@ public class Skeleton extends Monster
 {
     public Skeleton() {
         //Monsters stas
-        health = 50;
-        maxHealth = 50;
-        damage = 2;
+        health = 40;
+        maxHealth = 40;
+        damage = 3;
         speed = 1;
         miniBoss = false;
         
@@ -24,7 +24,7 @@ public class Skeleton extends Monster
         attackAnimation = new GifImage("SkeletonAttack.gif");
         
         //Monster Scale Modifer
-        int gifScale = 200;
+        int gifScale = 100;
         //Functions for the gif Scale Modifier 
         for (GreenfootImage image : downAnimation.getImages()) {
             int wide = image.getWidth()*gifScale/100;

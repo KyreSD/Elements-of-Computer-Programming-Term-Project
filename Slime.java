@@ -11,9 +11,9 @@ public class Slime extends Monster
 {
     public Slime() {
         //Monsters stas
-        health = 30;
-        maxHealth = 30;
-        damage = 1;
+        health = 25;
+        maxHealth = 25;
+        damage = 2;
         speed = 1;
         miniBoss = false;
         

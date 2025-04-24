@@ -24,11 +24,13 @@ public class Encoder extends SuperWorld
         addObject(D, 440, 135);
         //Add Door
         addObject(door, 50, 300);
+        /*
         //Add all 4 keys
         addObject(new Key(), 150, 200);
         addObject(new Key(), 300, 350);
         addObject(new Key(), 450, 100);
         addObject(new Key(), 600, 250);
+        */
     }
     
     private void checkDoor() {

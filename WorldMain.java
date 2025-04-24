@@ -14,7 +14,11 @@ public class WorldMain extends SuperWorld
         
         // Add enemy only in this constructor
         Enemy enemy = new Enemy();
-        addObject(enemy, 600, 400);
+        //addObject(enemy, 600, 400);
+        addObject(new KingOrc(), 600, 200);
+        addObject(new KingFrog(), 600, 400);
+        addObject(new VampireLord(), 600, 600);
+        addObject(new MountainGolem(), 700, 500);
     }
     
     /**

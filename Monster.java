@@ -1,130 +1,96 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Enemy class that handles both movement and tracking functionality.
- * The EnemyTracking class has been integrated into this class.
- * Updated to work directly with PlayerOne, Sword, and FireBall.
+ * Write a description of class Monster here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Enemy extends Entity
+
+/*
+ * Class Monster was created to work as a version of the Enemy Class 
+ * that can handle the animation of gifs instead of sprite sheets
+ */
+public class Monster extends Enemy
 {
-    /**
-     * Act - do whatever the Enemy wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    private boolean hasDroppedKey;
+    //Combat Properties (Same as Enemy)
     public int health;
-    //default damage for enemies
-    protected int damage = 10;
-    //Miniboss
-    protected boolean miniBoss = false;
+    protected int maxHealth;
+    //private int damage = 10;
+    private int damageDelay;
+    private static final int DAMAGE_COOLDOWN = 10;
+    private EnemyHealthBar healthBar = null;
+    private boolean isKnockedBack;
+    private int knockbackDuration;
+    private static final int MAX_KNOCKBACK_DURATION = 10;
+    private int knockbackX, knockbackY;
+    private static final int KNOCKBACK_STRENGTH = 10;
+    protected boolean keyNotDropped = true;
     
-    private int maxHealth;
-    private GreenfootImage spriteSheet;
-    private GreenfootImage[] frames;
-    private GreenfootImage[] scaledFrames;
-    int frameWidth, frameHeight;
-    private int currentFrame;
-    private int frameDelay; // Adjust for speed
-    private int delayCount;
+    //Initializing Gif Storage
+    protected GifImage downAnimation;
+    protected GifImage leftAnimation;
+    protected GifImage rightAnimation;
+    protected GifImage upAnimation;
+    protected GifImage attackAnimation;
     
+    //movement (same as Enemy)
     // Direction flags
     private boolean isFacingSouth;
     private boolean isFacingWest;
     private boolean isFacingEast;
     private boolean isFacingNorth;
+    protected int speed = 2;
     
-    private int cols;
-    private int rows;
-    private int frame;
-    private int X;
-    private int Y;
-    
-    // Combat properties
-    public int damageDelay; // Prevents taking damage too rapidly
-    private static final int DAMAGE_COOLDOWN = 10; // Frames between damage
-    private EnemyHealthBar healthBar = null;
-    
-    // Knockback properties
-    private boolean isKnockedBack;
-    private int knockbackDuration;
-    private static final int MAX_KNOCKBACK_DURATION = 10;
-    private int knockbackX;
-    private int knockbackY;
-    private static final int KNOCKBACK_STRENGTH = 10; // How far enemy gets pushed
-    
-    public Enemy() {
-        // Initialize health and combat properties
-        health = 100;
-        maxHealth = 100;
-        damageDelay = 0;
-        
-        // Initialize animation properties
-        currentFrame = 0;
-        frameDelay = 5; // Adjust for speed
-        delayCount = 0;
-        frame = 0;
-        
-        // Initialize direction flags
+    public Monster() {
+        //Refers to Enemy for health, damageDelay, etc...
+        super();
+        //Starting direction
         isFacingSouth = true;
-        isFacingWest = false;
-        isFacingEast = false;
-        isFacingNorth = false;
+        //default monster (not a miniboss)
         
-        // Initialize knockback properties
-        isKnockedBack = false;
-        knockbackDuration = 0;
-        knockbackX = 0;
-        knockbackY = 0;
-        
-        // Initialize position tracking
-        X = 0;
-        Y = 0;
-        
-        // Set sprite sheet configuration
-        cols = 6; // Each direction has 3 animation frames
-        rows = 4; // 4 directions (South, West, East, North)
-        
-        // Load and prepare sprite sheet
-        spriteSheet = new GreenfootImage("zombie_n_skeleton2.png");
-        frameWidth = spriteSheet.getWidth() / cols;
-        frameHeight = spriteSheet.getHeight() / rows;
-        
-        loadSpriteSheet();
     }
     
     public void addedToWorld(World world) {
-        // Create and attach health bar
         if (world != null) {
             healthBar = new EnemyHealthBar();
-            world.addObject(healthBar, getX(), getY() - frameHeight/3);
-            healthBar.setTracker(this);
+            world.addObject(healthBar, getX(), getY() - getImage().getHeight()/3);
+            //healthBar.setTracker(this);
+            ((EnemyHealthBar)healthBar).setTracker(this);
         }
     }
     
     public void act(){
-        this.X = getX();
-        this.Y = getY();
-        
         if (isKnockedBack) {
             applyKnockback();
         } else {
             trackPlayer(); // Move enemy toward player
         }
-        
         checkCombat(); // Handle combat interactions
-        
+        updateGif();
         if (damageDelay > 0) {
             damageDelay--;
         }
-        
         checkHealth();
     }
     
-    // Updated to use directional flags and improved animation
-    public void trackPlayer(){
-        if (!getWorld().getObjects(PlayerOne.class).isEmpty()){
+    
+    protected void updateGif() {
+        if (isFacingNorth) {
+            setImage(upAnimation.getCurrentImage());
+        } else if (isFacingSouth) {
+            setImage(downAnimation.getCurrentImage());
+        } else if (isFacingWest) {
+            setImage(leftAnimation.getCurrentImage());
+        } else if (isFacingEast) {
+            setImage(rightAnimation.getCurrentImage());
+        }
+    }
+    
+    //@Override (permission issue)
+    public void trackPlayer() {
+        if (!getWorld().getObjects(PlayerOne.class).isEmpty()) {
             PlayerOne player = (PlayerOne)getWorld().getObjects(PlayerOne.class).get(0);
             
             // Calculate direction to player
@@ -157,7 +123,7 @@ public class Enemy extends Entity
             }
             
             // Update animation based on current direction
-            updateAnimation();
+            updateGif();
             
             // Move toward player (without rotating the sprite)
             int moveX = 0;
@@ -271,14 +237,25 @@ public class Enemy extends Entity
             if (healthBar != null) {
                 getWorld().removeObject(healthBar);
             }
+            
             getWorld().removeObject(this);
         }
     }
     
     // In Enemy.java, modify the dropXp method:
     public void dropXp(){
+        //always drops key
+        /*
+        if (miniBoss && !hasDroppedKey) {
+            getWorld().addObject(new Key(), getX(), getY());
+            hasDroppedKey = true;
+        }
+        */
+        
         SuperWorld world = (SuperWorld)getWorld();
         if (world != null){
+            int X = getX();
+            int Y = getY();
             // 50/50 chance to drop XP or potion
             if (Greenfoot.getRandomNumber(2) == 0) {
                 // Drop XP
@@ -290,64 +267,4 @@ public class Enemy extends Entity
         }
     }
     
-    public void dropKey() {
-        SuperWorld world = (SuperWorld)getWorld();
-        if (world != null) {
-            getWorld().addObject(new Key(), getX(), getY());
-        }
-    }
-    
-    // Load sprite sheet for animation
-    private void loadSpriteSheet() {
-        frames = new GreenfootImage[cols * rows];
-        scaledFrames = new GreenfootImage[cols * rows];
-        
-        int index = 0;
-        for (int y = 0; y < rows; y++) {
-            for (int x = 0; x < cols; x++) {
-                frames[index] = new GreenfootImage(frameWidth, frameHeight);
-                frames[index].drawImage(spriteSheet, -x * frameWidth, -y * frameHeight);
-                
-                // Create scaled frames for better appearance
-                scaledFrames[index] = new GreenfootImage(frames[index]);
-                scaledFrames[index].scale(350, 350);
-                
-                index++;
-            }
-        }
-        
-        // Set initial frame to south-facing
-        frame = 0;
-        setImage(frames[frame]);
-    }
-    
-    // Update animation frames based on direction
-    private void updateAnimation() {
-        int rowIndex = 0; // Default to south-facing
-        
-        if (isFacingSouth) {
-            rowIndex = 0; // Row 1 for south
-        } else if (isFacingWest) {
-            rowIndex = 1; // Row 2 for west
-        } else if (isFacingEast) {
-            rowIndex = 2; // Row 3 for east
-        } else if (isFacingNorth) {
-            rowIndex = 3; // Row 4 for north
-        }
-        
-        // Calculate frame indices for this row
-        int startIndex = rowIndex * cols;
-        int endIndex = startIndex + cols - 1;
-        
-        // Update animation frame with proper delay
-        delayCount++;
-        if (delayCount >= frameDelay) {
-            frame = startIndex + ((frame - startIndex + 1) % cols);
-            if (frame < startIndex || frame > endIndex) {
-                frame = startIndex;
-            }
-            setImage(frames[frame]);
-            delayCount = 0;
-        }
-    }
 }

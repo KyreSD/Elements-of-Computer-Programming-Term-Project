@@ -20,7 +20,13 @@ public class RestartButton extends Actor
     public void act()
     {
         if(Greenfoot.mouseClicked(this)){
-            Greenfoot.setWorld(new TitleScreen());
+            TitleScreen title = new TitleScreen();
+            Greenfoot.setWorld(title);
+            Greenfoot.start();
+            KingOrc.keyDroppedReset();
+            KingFrog.keyDroppedReset();
+            VampireLord.keyDroppedReset();
+            MountainGolem.keyDroppedReset();
         }
     }
 }

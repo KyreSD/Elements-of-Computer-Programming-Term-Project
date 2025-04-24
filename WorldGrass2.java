@@ -13,7 +13,17 @@ public class WorldGrass2 extends SuperWorld
     {   
         super(player, x, y);
         player.WorldType = WORLDSTATE.GRASS;
+
+        GreenfootImage image = new GreenfootImage("GrassWorld2.png");
+        setBackground(image);
         
+        addObject(new Frog(), 100, 200);
+        addObject(new Frog(), 200, 300);
+        addObject(new Frog(), 300, 200);
+        addObject(new Frog(), 400, 300);
+        addObject(new Frog(), 500, 200);
+        addObject(new Frog(), 600, 300);
+        addObject(new Frog(), 700, 200);
         // Add world-specific objects here
     }
     

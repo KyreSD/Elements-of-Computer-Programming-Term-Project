@@ -10,7 +10,7 @@ public class Encoder extends SuperWorld
     Text E = new Text();
     Text A = new Text();
     Text D = new Text();
-    
+    Computer computer = new Computer();
     Door door = new Door();
     
     public Encoder(PlayerOne player, int x, int y) {
@@ -18,18 +18,22 @@ public class Encoder extends SuperWorld
         player.WorldType = WORLDSTATE.DUNGEON;
         this.player = player;
         addObject(player, x, y);
-        //Add Letters
-        addObject(R, 230, 135);
-        addObject(E, 300, 135);
-        addObject(A, 370, 135);
-        addObject(D, 440, 135);
         //Add Door
         addObject(door, 50, 300);
+        //Add Computer
+        addObject(computer, 440, 200);
+        //Add Letters
+        addObject(R, 350, 115);
+        addObject(E, 410, 115);
+        addObject(A, 470, 115);
+        addObject(D, 530, 115);
+        /*
         //Add all 4 keys
         addObject(new Key(), 150, 200);
         addObject(new Key(), 300, 350);
         addObject(new Key(), 450, 100);
         addObject(new Key(), 600, 250);
+        */
     }
     
     private void checkDoor() {

@@ -275,7 +275,7 @@ public class PlayerOne extends Entity
             Ball ball = (Ball)getOneIntersectingObject(Ball.class);
             if (enemy != null) {
                 // Take damage
-                takeDamage(10);  // Assume enemy deals 10 damage per hit
+                takeDamage(enemy.damage);  // Assume enemy deals 10 damage per hit
                 
                 // Apply knockback from the enemy
                 applyKnockbackFrom(enemy.getX(), enemy.getY());

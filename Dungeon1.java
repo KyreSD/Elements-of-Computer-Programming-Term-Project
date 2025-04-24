@@ -13,6 +13,15 @@ public class Dungeon1 extends SuperWorld
     {   
         super(player, x, y);
         player.WorldType = WORLDSTATE.DUNGEON;
+        GreenfootImage image = new GreenfootImage("image-5-2.png");
+        setBackground(image);
+        addObject(new Imp(), 200, 100);
+        addObject(new Imp(), 100, 200);
+        addObject(new Imp(), 200, 300);
+        addObject(new Imp(), 300, 400);
+        addObject(new Imp(), 500, 500);
+        addObject(new Imp(), 700, 500)
+        
         // Add world-specific objects here
     }
     

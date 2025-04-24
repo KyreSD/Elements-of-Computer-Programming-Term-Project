@@ -14,6 +14,8 @@ public class Dungeon3 extends SuperWorld
         super(player, x, y);
         GreenfootImage image = new GreenfootImage("image-4.jpg");
         setBackground(image);
+
+        addObject(new VampireLord(), 400, 300);
         // Add world-specific objects here
     }
     

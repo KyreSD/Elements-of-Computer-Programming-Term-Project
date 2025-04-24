@@ -15,6 +15,11 @@ public class Enemy extends Entity
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public int health;
+    //default damage for enemies
+    protected int damage = 10;
+    //Miniboss
+    protected boolean miniBoss = false;
+    
     private int maxHealth;
     private GreenfootImage spriteSheet;
     private GreenfootImage[] frames;
@@ -282,6 +287,13 @@ public class Enemy extends Entity
                 // Drop potion
                 getWorld().addObject(new PotionDropped(), X, Y);
             }
+        }
+    }
+    
+    public void dropKey() {
+        SuperWorld world = (SuperWorld)getWorld();
+        if (world != null) {
+            getWorld().addObject(new Key(), getX(), getY()-30);
         }
     }
     

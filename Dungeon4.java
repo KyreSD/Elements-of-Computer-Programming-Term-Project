@@ -15,6 +15,11 @@ public class Dungeon4 extends SuperWorld
         GreenfootImage image = new GreenfootImage("image-5-2.jpg");
         setBackground(image);
         
+
+        addObject(new Vampire(), 500, 300);
+        addObject(new Vampire(), 700, 400);
+        addObject(new Vampire(), 200, 200);
+        addObject(new Vampire(), 400, 500);
         // Add world-specific objects here
     }
     

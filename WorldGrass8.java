@@ -15,6 +15,13 @@ public class WorldGrass8 extends SuperWorld
         GreenfootImage image = new GreenfootImage("GrassWorld3-8.jpg");
         setBackground(image);
         
+
+        addObject(new Orc(), 100, 100);
+        addObject(new Orc(), 200, 200);
+        addObject(new Orc(), 300, 100);
+        addObject(new Orc(), 400, 200);
+        addObject(new Orc(), 500, 100);
+ 
         // Add world-specific objects here
     }
     

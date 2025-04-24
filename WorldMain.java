@@ -11,6 +11,8 @@ public class WorldMain extends SuperWorld
      */
     public WorldMain(PlayerOne player, int x, int y) {
         super(player, x, y);
+        GreenfootImage image = new GreenfootImage("image-7.jpg");
+        setBackground(image);
         
         // Add enemy only in this constructor
         addObject(new Slime(), 700, 200);

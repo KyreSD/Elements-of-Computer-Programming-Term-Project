@@ -12,6 +12,10 @@ public class Graveyard extends SuperWorld
     public Graveyard(PlayerOne player, int x, int y)
     {   
         super(player, x, y);
+        GreenfootImage image = new GreenfootImage("image-3.jpg");
+        setBackground(image);
+        
+
         addObject(new Skeleton(), 100, 100);
         addObject(new Skeleton(), 150, 100);
         addObject(new Skeleton(), 200, 200);
@@ -23,6 +27,7 @@ public class Graveyard extends SuperWorld
         addObject(new Skeleton(), 500, 500);
         addObject(new Skeleton(), 550, 500);
         addObject(new Skeleton(), 600, 600);
+
         // Add world-specific objects here
         }
     

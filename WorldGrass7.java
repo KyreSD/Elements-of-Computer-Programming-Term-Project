@@ -12,6 +12,8 @@ public class WorldGrass7 extends SuperWorld
     public WorldGrass7(PlayerOne player, int x, int y)
     {   
         super(player, x, y);
+        GreenfootImage image = new GreenfootImage("GrassWorld4-2.jpg");
+        setBackground(image);
         addObject(new KingFrog(), 400, 300);
         
         // Add world-specific objects here

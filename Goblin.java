@@ -11,9 +11,9 @@ public class Goblin extends Monster
 {
     public Goblin() {
         //Monsters stas
-        health = 100;
-        maxHealth = 100;
-        damage = 5;
+        health = 50;
+        maxHealth = 50;
+        damage = 7;
         speed = 1;
         miniBoss = false;
         

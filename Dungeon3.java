@@ -12,7 +12,7 @@ public class Dungeon3 extends SuperWorld
     public Dungeon3(PlayerOne player, int x, int y)
     {   
         super(player, x, y);
-        
+        addObject(new VampireLord(), 400, 300);
         // Add world-specific objects here
     }
     

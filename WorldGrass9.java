@@ -12,6 +12,7 @@ public class WorldGrass9 extends SuperWorld
     public WorldGrass9(PlayerOne player, int x, int y)
     {   
         super(player, x, y);
+        addObject(new KingOrc(), 400, 300);
         
         // Add world-specific objects here
     }

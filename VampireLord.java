@@ -19,9 +19,9 @@ public class VampireLord extends Monster
         this.miniBoss = true;
         this.keyNotDropped = !keyDropped;
         //Monsters stas
-        health = 50;
-        maxHealth = 50;
-        damage = 1;
+        health = 300;
+        maxHealth = 300;
+        damage = 20;
         speed = 1;
         
         

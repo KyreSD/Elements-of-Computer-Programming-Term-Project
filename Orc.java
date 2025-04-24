@@ -11,9 +11,9 @@ public class Orc extends Monster
 {
     public Orc() {
         //Monsters stas
-        health = 100;
-        maxHealth = 100;
-        damage = 5;
+        health = 80;
+        maxHealth = 80;
+        damage = 10;
         speed = 1;
         miniBoss = false;
         

@@ -21,7 +21,7 @@ public class KingOrc extends Monster
         //Monsters stas
         health = 300;
         maxHealth = 300;
-        damage = 90;
+        damage = 20;
         speed = 1;
         
         

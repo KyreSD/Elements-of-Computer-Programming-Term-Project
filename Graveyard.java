@@ -12,7 +12,17 @@ public class Graveyard extends SuperWorld
     public Graveyard(PlayerOne player, int x, int y)
     {   
         super(player, x, y);
-        
+        addObject(new Skeleton(), 100, 100);
+        addObject(new Skeleton(), 150, 100);
+        addObject(new Skeleton(), 200, 200);
+        addObject(new Skeleton(), 250, 200);
+        addObject(new Skeleton(), 300, 300);
+        addObject(new Skeleton(), 350, 300);
+        addObject(new Skeleton(), 400, 400);
+        addObject(new Skeleton(), 450, 400);
+        addObject(new Skeleton(), 500, 500);
+        addObject(new Skeleton(), 550, 500);
+        addObject(new Skeleton(), 600, 600);
         // Add world-specific objects here
         }
     

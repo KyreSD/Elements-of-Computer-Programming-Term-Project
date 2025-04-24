@@ -293,7 +293,7 @@ public class Enemy extends Entity
     public void dropKey() {
         SuperWorld world = (SuperWorld)getWorld();
         if (world != null) {
-            getWorld().addObject(new Key(), getX(), getY());
+            getWorld().addObject(new Key(), getX(), getY()-30);
         }
     }
     

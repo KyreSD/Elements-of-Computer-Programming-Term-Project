@@ -11,9 +11,9 @@ public class Golem extends Monster
 {
     public Golem() {
         //Monsters stas
-        health = 100;
-        maxHealth = 100;
-        damage = 5;
+        health = 60;
+        maxHealth = 60;
+        damage = 8;
         speed = 1;
         miniBoss = false;
         

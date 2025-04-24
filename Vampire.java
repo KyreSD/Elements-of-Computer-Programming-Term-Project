@@ -11,9 +11,9 @@ public class Vampire extends Monster
 {
     public Vampire() {
         //Monsters stas
-        health = 150;
-        maxHealth = 150;
-        damage = 5;
+        health = 160;
+        maxHealth = 160;
+        damage = 17;
         speed = 1;
         miniBoss = false;
         

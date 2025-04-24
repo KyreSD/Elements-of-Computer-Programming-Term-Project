@@ -11,6 +11,7 @@ public class WorldMain extends SuperWorld
      */
     public WorldMain(PlayerOne player, int x, int y) {
         super(player, x, y);
+        player.WorldType = WORLDSTATE.GRASS;
         
         // Add enemy only in this constructor
         Enemy enemy = new Enemy();

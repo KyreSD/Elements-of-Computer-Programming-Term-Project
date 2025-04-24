@@ -12,7 +12,7 @@ public class WorldGrass8 extends SuperWorld
     public WorldGrass8(PlayerOne player, int x, int y)
     {   
         super(player, x, y);
-        
+        player.WorldType = WORLDSTATE.GRASS;
         // Add world-specific objects here
     }
     

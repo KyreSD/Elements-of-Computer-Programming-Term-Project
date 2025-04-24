@@ -14,6 +14,7 @@ public class BossRoom extends SuperWorld
     public BossRoom(PlayerOne player, int x, int y)
     {   
         super(player, x , y); 
+        player.WorldType = WORLDSTATE.BOSSTWO;
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         this.player = player;
         addObject(player, 700, 500);

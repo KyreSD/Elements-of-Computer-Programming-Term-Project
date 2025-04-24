@@ -24,7 +24,7 @@ public class BreakoutWorld extends SuperWorld
         
         
         super(player, 800, 800, 1);
-        
+        player.WorldType = WORLDSTATE.BOSSONE;
         this.player = player;
         //music = new GreenfootSound("music.mp3");
         //music.setVolume(40);

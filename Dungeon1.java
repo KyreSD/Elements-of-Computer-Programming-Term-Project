@@ -12,7 +12,7 @@ public class Dungeon1 extends SuperWorld
     public Dungeon1(PlayerOne player, int x, int y)
     {   
         super(player, x, y);
-        
+        player.WorldType = WORLDSTATE.DUNGEON;
         // Add world-specific objects here
     }
     

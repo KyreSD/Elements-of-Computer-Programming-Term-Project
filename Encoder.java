@@ -15,6 +15,7 @@ public class Encoder extends SuperWorld
     
     public Encoder(PlayerOne player, int x, int y) {
         super(player, x, y);
+        player.WorldType = WORLDSTATE.DUNGEON;
         this.player = player;
         addObject(player, x, y);
         //Add Letters

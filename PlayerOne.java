@@ -1,5 +1,4 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
 /**
  * Write a description of class PlayerOne here.
  * 
@@ -9,6 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class PlayerOne extends Entity
 {
     private int keyCount = 0;
+    private GreenfootSound sound;
+    public WORLDSTATE WorldType;
     public int health;
     public int maxHealth;
     public int speed;
@@ -56,6 +57,8 @@ public class PlayerOne extends Entity
     int damage;
     int damageCheck;
     private boolean isAnimating;
+    private WORLDSTATE previousWorldType;
+    private GreenfootSound movementSound;
     
     // Knockback properties
     private boolean isKnockedBack = false;
@@ -74,6 +77,7 @@ public class PlayerOne extends Entity
      * Constructor to initialize Gameplay Values, location and sprite sheet.
      */
     public PlayerOne(){
+        WorldType = WORLDSTATE.GRASS;
         select = 1;
         health = 100;
         maxHealth = 300;
@@ -115,6 +119,7 @@ public class PlayerOne extends Entity
     }
     
     public PlayerOne(int select, int cols, int rows){
+        WorldType = WORLDSTATE.GRASS;
         this.select = select;
         health = 100;
         maxHealth = 300;
@@ -158,7 +163,8 @@ public class PlayerOne extends Entity
         } else if (select == 2) {
             frameDelay = retroAnimationSpeed;
         }
-        
+        WorldType = WORLDSTATE.GRASS;
+        previousWorldType = WorldType;
         delayCount = 0;
         loadSpriteSheet();
     }
@@ -169,6 +175,24 @@ public class PlayerOne extends Entity
      */
     public void act()
     {
+        // Check if world type has changed
+        if (WorldType != previousWorldType) {
+            SuperWorld world = (SuperWorld) getWorld();
+            if (world != null) {
+                world.updateBackgroundMusic(WorldType);
+                
+                // Update movement sound based on new world type
+                if (WorldType == WORLDSTATE.GRASS) {
+                    movementSound = new GreenfootSound("MovingOnGrass.mp3");
+                } else {
+                    movementSound = new GreenfootSound("MovingOnStone.mp3");
+                }
+                movementSound.setVolume(85);
+                
+                previousWorldType = WorldType;
+            }
+        }
+        
 
         if (isKnockedBack) {
             applyKnockback();
@@ -394,6 +418,7 @@ public class PlayerOne extends Entity
                 }
             }
         }
+        
     }
     
     //Animate Idle
